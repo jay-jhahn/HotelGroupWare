@@ -48,8 +48,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 			} else {
 				vo.setTitle("입력 오류");
 			}
-			vo.setStart("2021-03-" + (i + 1));
-			vo.setEnd("2021-03-" + (i + 1));
+			
+			if( i+1 < 10) {
+				vo.setStart("2021-03-0" + (i+1));
+				vo.setEnd("2021-03-0" +(i+1));
+			} else {
+				vo.setStart("2021-03-" + (i+1));
+				vo.setEnd("2021-03-" +(i+1));
+			}
+			
 //		          String [] removeScd = work.get(i).toString().split(",");
 //		          removeScd[0].remove();
 //					vo.setEmpCode(empCode);
