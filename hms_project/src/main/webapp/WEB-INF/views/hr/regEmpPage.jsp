@@ -34,13 +34,6 @@
 									</tr>
 	
 									<tr>
-										<th> 영문성명  </th>
-										<td><input type="text" class="form-control" name="empEngName" id="empEngName"></td>
-										<th> 한자성명  </th>
-										<td><input type="text" class="form-control" name="empChiName" id="empChiName"></td>
-									</tr>
-	
-									<tr>
 										<th><span class="redStar"> * </span> 주민번호  </th>
 										<td><input type="text" class="form-control" name="empJumin" id="empJumin"></td>
 										<th> 성별  </th>
@@ -52,102 +45,63 @@
 	
 									<tr>
 										<th><span class="redStar"> * </span> 생년월일 </th>
-										<td><input type="text" class="form-control" name="empBirth" id="empBirth"></td>
+										<td><input type="date" class="form-control" name="empBirth" id="empBirth"></td>
 										<th><span class="redStar"> * </span> 양력&nbsp;음력 </th>
 										<td>
 											<input type="radio" value="solarCalendar" name="solarOrLunar">&nbsp;&nbsp;양력&nbsp;&nbsp;&nbsp;&nbsp;
 											<input type="radio" value="lunarCalendar" name="solarOrLunar">&nbsp;&nbsp;음력
 										</td>
 									</tr>
-	
+									
 									<tr>
-										<th><span class="redStar"> * </span> 결혼유무 </th>
-										<td>
-											<input type="radio" value="married" name="isMarried">&nbsp;&nbsp;기혼&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" value="single" name="isMarried">&nbsp;&nbsp;미혼
+										<th> 자택전화</th>
+										<td>  
+											<input type="text" class="form-control3-phone" name="homePhone1" id="homePhone1" maxlength="3">&nbsp;-&nbsp;
+											<input type="text" class="form-control3-phone" name="homePhone2" id="homePhone2" maxlength="4">&nbsp;-&nbsp;
+											<input type="text" class="form-control3-phone" name="homePhone3" id="homePhone3" maxlength="4">
 										</td>
-										<th> 결혼기념일 </th>
-										<td><input type="text" class="form-control" name="weddingAnniv" id="weddingAnniv"></td>
+										
+										<th><span class="redStar"> * </span> 핸드폰 </th>
+										<td> 
+											<input type="text" class="form-control3-phone" name="empPhone1" id="empPhone1" maxlength="3">&nbsp;-&nbsp;
+											<input type="text" class="form-control3-phone" name="empPhone2" id="empPhone2" maxlength="4">&nbsp;-&nbsp;
+											<input type="text" class="form-control3-phone" name="empPhone3" id="empPhone3" maxlength="4">
+										</td>
 									</tr>
-	
+		
+									<tr>
+										<th><span class="redStar"> * </span> 이메일 </th>
+										<td colspan="3">
+											<input type="text" class="form-control2" name="empEmail1" placeholder="E-mail">&nbsp;@&nbsp;
+											<input type="text" class="form-control2" name="empEmail2">&nbsp;
+											<select name="empEmail3" class="select" onchange="selectRegEmailChk();">
+												<option value="0"> 직접입력 </option>
+												<option value="naver.com"> 네이버 </option>
+												<option value="gmail.com"> 구글 </option>
+												<option value="nate.com"> 네이트 </option>
+												<option value="daum.com"> 다음 </option>
+												<option value="kakao.com"> 카카오 </option>
+											</select>
+										</td>
+									</tr>
+		
+									<tr>
+										<th><span class="redStar"> * </span> 자택주소 </th>
+										<td colspan="3"> 
+											<input type="text" class="addrPostCode" id="postCode" placeholder="우편번호">
+											<input type="button" class="searchPostBtn" onclick="daumPostcode()" value="우편번호 찾기">
+											<input type="text" class="roadAddrInput" id="roadAddress" placeholder="도로명주소"><br>
+											<input type="hidden" class="addr" id="jibunAddress" placeholder="지번주소">
+											<span id="guide" style="color:#999;display:none"></span>
+											<input type="text" class="addr" id="detailAddress" placeholder="상세주소">
+											<input type="text" class="addr" id="extraAddress" placeholder="참고항목">
+										</td>
+									</tr>
 								</table>
 							</div>
 						</div>
 	
-						<div class="perDataDiv2 mb-10">
-							<table class="table table-bordered mb-10 mt-10 perDataTab">
-								<tr>
-									<th> 회사전화 </th>
-									<td> 
-										<input type="text" class="form-control3" name="comPhone1" id="comPhone1" maxlength="3">&nbsp;-&nbsp;
-										<input type="text" class="form-control3" name="comPhone2" id="comPhone2" maxlength="4">&nbsp;-&nbsp;
-										<input type="text" class="form-control3" name="comPhone3" id="comPhone3" maxlength="4"> 
-									</td>
-									<th> 자택전화</th>
-									<td>  
-										<input type="text" class="form-control3" name="homePhone1" id="homePhone1" maxlength="3">&nbsp;-&nbsp;
-										<input type="text" class="form-control3" name="homePhone2" id="homePhone2" maxlength="4">&nbsp;-&nbsp;
-										<input type="text" class="form-control3" name="homePhone3" id="homePhone3" maxlength="4">
-									</td>
-								</tr>
-	
-								<tr>
-									<th><span class="redStar"> * </span> 핸드폰 </th>
-									<td colspan="3"> 
-										<input type="text" class="form-control3-phone" name="empPhone1" id="empPhone1" maxlength="3">&nbsp;-&nbsp;
-										<input type="text" class="form-control3-phone" name="empPhone2" id="empPhone2" maxlength="4">&nbsp;-&nbsp;
-										<input type="text" class="form-control3-phone" name="empPhone3" id="empPhone3" maxlength="4">
-									</td>
-								</tr>
-	
-								<tr>
-									<th> 회사이메일 </th>
-									<td colspan="3"> 
-										<input type="text" class="form-control2" name="empComEmail1" placeholder="E-mail">&nbsp;@&nbsp;
-										<input type="text" class="form-control2" name="empComEmail2" >&nbsp;
-										<select name="empComEmail3" class="select" onchange="selectRegComEmailChk();">
-											<option value="0"> 직접입력 </option>
-											<option value="naver.com"> 네이버 </option>
-											<option value="gmail.com"> 구글 </option>
-											<option value="nate.com"> 네이트 </option>
-											<option value="daum.com"> 다음 </option>
-											<option value="kakao.com"> 카카오 </option>
-										</select>
-									</td>
-								</tr>
-	
-								<tr>
-									<th><span class="redStar"> * </span> 외부이메일 </th>
-									<td colspan="3">
-										<input type="text" class="form-control2" name="empEmail1" placeholder="E-mail">&nbsp;@&nbsp;
-										<input type="text" class="form-control2" name="empEmail2">&nbsp;
-										<select name="empEmail3" class="select" onchange="selectRegEmailChk();">
-											<option value="0"> 직접입력 </option>
-											<option value="naver.com"> 네이버 </option>
-											<option value="gmail.com"> 구글 </option>
-											<option value="nate.com"> 네이트 </option>
-											<option value="daum.com"> 다음 </option>
-											<option value="kakao.com"> 카카오 </option>
-										</select>
-									</td>
-								</tr>
-	
-								<tr>
-									<th><span class="redStar"> * </span> 자택주소 </th>
-									<td colspan="3"> 
-										<input type="text" class="addrPostCode" id="postCode" placeholder="우편번호">
-										<input type="button" class="searchPostBtn" onclick="daumPostcode()" value="우편번호 찾기">
-										<input type="text" class="roadAddrInput" id="roadAddress" placeholder="도로명주소"><br>
-										<input type="hidden" class="addr" id="jibunAddress" placeholder="지번주소">
-										<span id="guide" style="color:#999;display:none"></span>
-										<input type="text" class="addr" id="detailAddress" placeholder="상세주소">
-										<input type="text" class="addr" id="extraAddress" placeholder="참고항목">
-									</td>
-								</tr>
-							</table>
-						</div>
-	
-						<div class="perDataDiv mb-10">
+						<div class="perDataDiv3 mb-10">
 							<table class="table table-bordered mb-10 mt-10 perDataTab">
 								<tr>
 									<th><span class="redStar"> * </span> 부서 </th>
@@ -161,25 +115,34 @@
 										</select> 
 									</td>
 									<th> 급여계약기준 </th>
-									<td> <input type="text" class="form-control" name="payConStand" id="payConStand"> </td>
+									<td>
+										<select name="payConStand" id="payConStand" class="select">
+											<option value="#"> == 재직구분 == </option>
+											<option value="none"> 없음 </option>
+											<option value="EMP"> 사원 </option>
+											<option value="MNG"> 매니저 </option>
+											<option value="SMNG"> 시니어 매니저 </option>
+											<option value="GM"> 총지배인 </option>
+										</select> 
+									</td>
 									<th> 입사일자 </th>
 									<td> <input type="date" class="form-control" name="enterDate" id="enterDate"> </td>
 								</tr>
 	
 								<tr>
-									<th><span class="redStar"> * </span> 직급 </th>
+									<th><span class="redStar"> * </span> 직위 </th>
 									<td>
 										<select name="level" class="select">
-											<option value="#"> == 직급선택 == </option>
-											<option value="0"> 인턴 </option>
-											<option value="1"> 수습 </option>
-											<option value="2"> 사원 </option>
-											<option value="3"> 주임 </option>
-											<option value="4"> 계장 </option>
-											<option value="5"> 대리 </option>
-											<option value="6"> 과장 </option>
-											<option value="7"> 차장 </option>
-											<option value="8"> 부장 </option>
+											<option value="#"> == 직위선택 == </option>
+											<option value="1"> 인턴 </option>
+											<option value="2"> 수습 </option>
+											<option value="3"> 사원 </option>
+											<option value="4"> 주임 </option>
+											<option value="5"> 계장 </option>
+											<option value="6"> 대리 </option>
+											<option value="7"> 과장 </option>
+											<option value="8"> 차장 </option>
+											<option value="9"> 부장 </option>
 										</select> 
 									</td>
 									<th> 수습여부/적용률 </th>
@@ -192,10 +155,26 @@
 								</tr>
 	
 								<tr>
-									<th> 직위 </th>
-									<td> <input type="text" class="form-control" name="levelCode" id="levelCode"> </td>
+									<th> 직책 </th>
+									<td>
+										<select name="levelCode" id="levelCode" class="select">
+											<option value="#"> == 직책선택 == </option>
+											<option value="NONE"> 없음 </option>
+											<option value="EMP"> 사원 </option>
+											<option value="MNG"> 매니저 </option>
+											<option value="SMNG"> 시니어 매니저 </option>
+											<option value="GM"> 총지배인 </option>
+										</select> 
+									</td>
 									<th> 재직구분 </th>
-									<td> <input type="text" class="form-control" name="empState" id="empState"> </td>
+									<td>
+										<select name="empState" id="empState" class="select">
+											<option value="#"> == 재직구분 == </option>
+											<option value="재직"> 재직 </option>
+											<option value="휴직"> 휴직 </option>
+											<option value="퇴사"> 퇴사 </option>
+										</select> 
+									</td>
 									<th colspan="2"></th>
 								</tr>
 	
