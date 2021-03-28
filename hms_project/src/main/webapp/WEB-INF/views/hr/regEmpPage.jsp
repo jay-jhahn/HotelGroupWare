@@ -48,8 +48,8 @@
 										<td><input type="date" class="form-control" name="empBirth" id="empBirth"></td>
 										<th><span class="redStar"> * </span> 양력&nbsp;음력 </th>
 										<td>
-											<input type="radio" value="solarCalendar" name="solarOrLunar">&nbsp;&nbsp;양력&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" value="lunarCalendar" name="solarOrLunar">&nbsp;&nbsp;음력
+											<input type="radio" value="양력" name="solarOrLunar">&nbsp;&nbsp;양력&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="음력" name="solarOrLunar">&nbsp;&nbsp;음력
 										</td>
 									</tr>
 									
