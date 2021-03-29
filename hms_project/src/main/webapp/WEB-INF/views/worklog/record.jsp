@@ -11,15 +11,20 @@
 		<jsp:include page="${jspPath}common/header.jsp" flush="false" />
 		
 		<div class="content">
-			<div>
-				<div class="jumbotron">
-					  <h1 class="display-3">비콘전송</h1>
-					  <p class="lead">HMS 출퇴근용 비콘 </p>
-					  <hr class="my-4">
-					  <p>주의사항 : 한번 클릭시 재전송이 불가하니 신중히 클릭할것!</p>
-					  <p class="lead">
-					    <a class="btn btn-primary btn-lg" href="#" role="button">비콘전송</a>
-					  </p>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">업무일지</h4>
+						</div>
+						<div class="card-body">
+							<div>
+								<iframe class="holidayListIframe" src="http://localhost:3000/MainList">
+								
+								</iframe>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
