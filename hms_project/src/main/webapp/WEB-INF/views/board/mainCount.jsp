@@ -27,9 +27,11 @@ function counter(){
 		<h4>월급날까지 ${cmd }</h4>
 		<div class="content" style="font-size: 30px; color: red;">
 			<script type="text/javascript">
-						counter();		
-					</script>
-			</b>
+
+
+				counter();
+			</script>
+
 			<!-- <script type="text/javascript">
 						var Dday = new Date(2021,03,26);   
 						var now = new Date();                    
