@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="common/setting.jsp"%>
 <body>
+	
 	<!-- ======= Header ======= -->
 	<jsp:include page="${jspPath}common/header.jsp" flush="false" />
 
@@ -41,13 +42,13 @@
 						         <form>
 						            <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 						            <div class="media">
-										<img class="mr-3" alt="증명사진 이미지" src="imgLoad.al?fileDir=" />
-										<div class="media-body">
-											<h3 class="mt-0" style="color: white;"><b>${empVo.getEmpName()}</b></h3>
-											<h6 style="color: white;">사번 : ${empVo.getEmpCode()}</h6>
-											<h6 style="color: white;">부서 : ${empVo.getDeptName()}</h6>
-											<h6 style="color: white;">EMAIL : ${empVo.getEmpEmail()}</h6>
-											<h6 style="color: white;">PHONE : ${empVo.getEmpPhone()}</h6>
+						               <img class="mr-3" alt="증명사진 이미지" src="http://placehold.it/150x200" />
+						               <div class="media-body">
+						                  <h3 class="mt-0" style="color: white;"><b>관리자</b></h3>
+						                     <h6 style="color: white;">사번 : F001</h6>
+						                     <h6 style="color: white;">부서 : 프론트</h6>
+						                     <h6 style="color: white;">EMAIL : admin@hms.com</h6>
+						                     <h6 style="color: white;">PHONE : 010-1234-5678</h6>
 						               </div>
 						            </div>
 						         </form>

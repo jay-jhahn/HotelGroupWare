@@ -102,11 +102,7 @@ public class ScheduleController {
 	// 근무조회에서 직원찾는 메서드 - 이철한
 	@RequestMapping("/searchEmp.al")
 	public String searchEmp(HttpServletRequest req, Model model) {
-<<<<<<< HEAD
 		service.getEmpInfo(req, model);
-=======
-		
->>>>>>> main
 		return "schedule/searchEmp";
 	}
 	
@@ -118,15 +114,12 @@ public class ScheduleController {
 		
 	}
 	
-<<<<<<< HEAD
 	// 조회한 직원 선택하는 메서드 (스케줄 입력 페이지에서) - 이철한
 	@RequestMapping("/selectEmp.al")
 	public String selectEmp(HttpServletRequest req, Model model) {
 		
 		return "";
 	}
-=======
->>>>>>> main
 	
 	
 	

@@ -10,8 +10,7 @@
 		<div class="searchDiv">
 			<div class="d-flex">
 				<div class="p-2">
-					<span class="searchWord">검색옵션</span> 
-					<select name="searchKind" id="searchKind" class="searchKind">
+					<span class="searchWord">검색옵션</span> <select name="searchKind" id="searchKind" class="searchKind">
 						<option value="empCode">사원번호</option>
 						<option value="empName">성명</option>
 						<option value="dept">부서명</option>
