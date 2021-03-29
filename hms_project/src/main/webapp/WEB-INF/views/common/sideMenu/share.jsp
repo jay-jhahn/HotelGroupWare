@@ -67,10 +67,14 @@ $(function(){
              </ul>
           </li>
             
-            <li >
+            <li class="dpMenu">
                 <a href="#">
-                	<i class="now-ui-icons location_map-big"></i> 업무일지 관리
+                	<i class="now-ui-icons design_app"></i> 업무일지 관리
                 </a>
+                <ul class="hide list-group list-group-flush text-center" style="display: none;">
+					<li class="subMenuLi list-group-item scheduleList"><a href="workChk.al">비콘 전송</a></li>
+					<li class="subMenuLi list-group-item scheduleList"><a href="record.al">업무일지 관리</a></li>
+				</ul>
             </li>
             
              <li class="dpMenu">
