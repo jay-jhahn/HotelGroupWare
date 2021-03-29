@@ -73,9 +73,9 @@ public class ScheduleController {
 	}
 
 	// 리액트 가져오기 - 이철한
-	@RequestMapping("/reqModify.al")
+	@RequestMapping("/reqmodify.al")
 	public String toReact(HttpServletRequest req, Model model) {
-		return "schedule/reqModify";
+		return "schedule/reqmodify";
 	}
 	
 	// 관리자 근무 집어넣기 - 이철한 삭제 고려
@@ -91,14 +91,4 @@ public class ScheduleController {
 		
 		return "schedule/reqModifyScdList";
 	}
-	
-	// 근무 신청변경폼 ajax 로 변경하기
-	@RequestMapping("/dayOffTypeForm.al")
-	public String dayOffTypeForm (HttpServletRequest req, Model model) {
-		
-		return "schedule/dayOffTypeForm";
-	}
-	
-	
-	
 }
