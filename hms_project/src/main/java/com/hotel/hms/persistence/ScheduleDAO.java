@@ -21,6 +21,12 @@ public interface ScheduleDAO {
 	// 직원 휴무신청 DB에 넣기 - 이철한
 	public int insertDayOff(Map <String, Object> map);
 	
-	// 직원이 휴무신청한 List 가져오기 (내역 가져오기)
+	// 직원이 휴무신청한 List 가져오기 (내역 가져오기) - 이철한
 	public List<HolidayVO> getLogDayOff (String empCode);
+	
+	// 선택 직원이 해당월이 테이블에 데이터가 있는지 확인하는 메서드  - 이철한
+	public int checkWorkData (Map <String, Object> map);
+	
+	
+	
 }

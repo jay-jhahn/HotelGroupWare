@@ -18,24 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
     themeSystem: 'bootstrap',
     eventSources: [
     {
-          googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
+          url : 'ko.south_korea#holiday@group.v.calendar.google.com',
           className: '대한민국의 휴일',
           color: '#0000FF', //rgb,#ffffff 등의 형식으로 할 수 있어요.
           //textColor: 'black' 
-        }
-  
-    /*   {
-          googleCalendarId: '여기에 구글 캘린더 ID를 붙여넣기하시면 됩니다.',
-          className: '정보처리기능사',
-            color: '#204051',
-            //textColor: 'black' 
-        },
-      {
-          googleCalendarId: '여기에 구글 캘린더 ID를 붙여넣기하시면 됩니다.',
-          className: '정보처리기사',
-            color: '#3b6978',
-            //textColor: 'black' 
-        } */
+    },
+   		 {
+    	
+    		url : 'getWork.al',
+    		color : '#58FAAC',
+    		textColor : 'black'
+    	
+    	}
     ],
   
    	  dateClick: function() {
@@ -66,22 +60,37 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	<div class="content">
 	<div class="row">
-		<div class="col-md-12"> 
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+
+				<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='monthSchedule.al'"> 스케줄 조회 </a></li>
+				<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='reqModify.al'"> 근무 변경 신청  </a></li>
+			</ul> 
 			<div class="card"> 
 				<div class="card-header"> 
-					<h4 class="card-title"> 3 월 스케줄 조회 </h4> 
+					<h4 class="card-title"> 스케줄 조회 </h4> 
 			</div> 
 				<div class="card-body">
 					<div class="table-responsive">
 					   <table class="table"> 
 						  <tr>  										
-							  <td> 직원조회 </td> 
-							  <td><input type="text" name="dayOffName"  value="직원 조회한 이름" readonly></td> 
-							  <td> 소속부서 </td> 
-							  <td><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
+							  <td>직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력"></td>
 							  <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 
-							  <td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="조회하기" onclick=""></td> 
+							  <td ><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="직원조회" onclick="searchEmp(empName.value)" ></td>  
+							  <td>소속부서
+							  <input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
 							</tr> 
+						
+						  <tr>
+						  	<td> 오전근무 	
+						  	<input type="text"  value="오전근무 일 수"  readonly></td>	
+						  	<td> 오후근무 
+						  	<input type="text"  value="오후근무 일 수"  readonly></td>	
+						  	<td> 야간근무 
+						  	<input type="text"  value="야간근무 일 수" readonly></td>	
+						  	<td> 휴무일 수
+						  	<input type="text"  value="휴무 일 수" readonly></td>	
+						  </tr>			
 						</table> 
 					</div> 
 				</div> 
@@ -89,23 +98,23 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div> 
 	</div> 
 	<div class="row"> 
- 				<div class="col-md-12"> 
- 					<div class="card"> 
-						<div class="card-header">
+			<div class="col-md-12"> 
+				<div class="card"> 
+					<div class="card-header">
 						<div class="card-body">
 							<div class="table-responsive">
- 							  <div id="calendar"></div>
- 							</div> 
- 						</div> 
- 					</div> 
+						  <div id="calendar"></div>
+						</div> 
+					</div> 
 				</div> 
- 			</div> 
-		
-	</div>
-	
+			</div> 
+ 		</div> 
+	  </div>
+   </div>
   </div>
-  
 </div> <!-- close wrapper -->	
+
+
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
 

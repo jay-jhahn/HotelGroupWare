@@ -37,7 +37,7 @@
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table text-center">
-											<tr>
+											<tr class="text-center backgray">
 												<th>날짜</th>
 												<th>유형</th>
 												<th>REMARK</th>
@@ -68,7 +68,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 

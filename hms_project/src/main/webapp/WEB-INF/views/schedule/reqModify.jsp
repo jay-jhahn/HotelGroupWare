@@ -13,7 +13,11 @@
 		
 		<div class="content">
 			<div class="row">
-				<div class="col-md-12"> 
+				<div class="col-md-12">
+					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='monthSchedule.al'"> 스케줄 조회 </a></li>
+						<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='reqModify.al'"> 근무 변경 신청  </a></li>
+					</ul>  
 					<div class="card"> 
 						<div class="card-header">
 							<h4 class="card-title"> 스케줄 변경 신청 </h4>  
