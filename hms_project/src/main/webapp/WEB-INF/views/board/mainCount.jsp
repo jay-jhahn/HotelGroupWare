@@ -4,7 +4,7 @@
 <body>
 	<script type="text/javascript">
 function counter(){
-    var dday = new Date(2021, 03, 26); //디데이
+    var dday = new Date(2021, 04, 30); //디데이
 	setInterval(function(){
 		var now = new Date(); //현재 날짜 가져오기
 		var distance = dday.getTime() - now.getTime();
@@ -29,7 +29,7 @@ function counter(){
 			<script type="text/javascript">
 						counter();		
 					</script>
-			</b>
+			
 			<!-- <script type="text/javascript">
 						var Dday = new Date(2021,03,26);   
 						var now = new Date();                    
