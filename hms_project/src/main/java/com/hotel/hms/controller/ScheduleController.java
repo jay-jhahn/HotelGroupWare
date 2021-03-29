@@ -118,7 +118,7 @@ public class ScheduleController {
 	@RequestMapping("/selectEmp.al")
 	public String selectEmp(HttpServletRequest req, Model model) {
 		
-		return "schedule/selectEmp";
+		return "";
 	}
 	
 	
