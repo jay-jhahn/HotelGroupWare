@@ -105,4 +105,12 @@ public class LoginServiceImpl implements LoginService {
 			model.addAttribute("insertCnt", insertCnt);
 		}
 	}
+
+	@Override
+	public void getLoginEmpl(HttpServletRequest req, Model model) {
+		String empCode = (String)req.getSession().getAttribute("empCode");
+		System.out.println("empCode 서비스서비스서비스서비스==>" + empCode);
+		EmployeeVO empVo = dao.getLoginEmpl(empCode);
+		model.addAttribute("empVo", empVo);		
+	}
 }

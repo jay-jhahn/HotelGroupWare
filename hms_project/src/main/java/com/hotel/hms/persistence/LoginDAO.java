@@ -27,4 +27,8 @@ public interface LoginDAO {
 	
 	// 비밀번호 가져오기
 	public String pwdCheck(String strId);
+	
+	// 로그인한 직원 정보 가져오기
+	public EmployeeVO getLoginEmpl(String empCode);
+	
 }
