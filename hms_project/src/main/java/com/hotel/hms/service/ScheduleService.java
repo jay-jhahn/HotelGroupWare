@@ -22,6 +22,12 @@ public interface ScheduleService {
 	// 휴무 신청 처리 메서드 - 이철한
 	public void insertDayOff(HttpServletRequest req, Model model);
 	
-	// 휴무 신청 내역 가져오기
+	// 휴무 신청 내역 가져오기 - 이철한
 	public void logDayOff(HttpServletRequest req, Model model);
+	
+	
+	
+	
+	
+	
 }
