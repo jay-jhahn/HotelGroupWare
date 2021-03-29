@@ -10,7 +10,7 @@ function errorAlert(errorMsg) {
 	window.history.back();	// 이전 페이지로 이동
 }
 
-/* 로그인 페이지 */
+/* 메인화면 로그인부분 */
 function idFocus() {
 	document.loginform.memId.focus();
 }
