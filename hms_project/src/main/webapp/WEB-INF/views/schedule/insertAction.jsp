@@ -12,16 +12,26 @@
 	
 	<c:if test = "${insertCnt == 0}">
 		<script type="text/javascript">
-			alert('입력 오류 입니다');			
+			alert('입력 오류 입니다');
+			self.close();
 		</script>
 	</c:if>
 
 	<c:if test= "${insertCnt == 1}">
 		<script type="text/javascript">
 			alert('정상 입력 되었습니다 !');
-			window.location.href="main.al";
+			self.close();
 		</script>
 	</c:if>
+	
+	<c:if test= "${insertCnt == 5}">
+		<script type="text/javascript">
+			alert('이미 해당 월의 근무가 입력되어있습니다 !!');
+			self.close();
+		</script>
+	</c:if>
+	
+	
 	
 
 </body>

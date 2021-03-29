@@ -13,7 +13,6 @@ function checkInExit(){
 }
 
 function roomDetail(){
-   
    var url = "roomDetail.al";
    window.open(url, "roomDetail", "menubar=no, width=700, height=600");
 }

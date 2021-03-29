@@ -74,9 +74,13 @@ function makeSchedule() {
 		  <div class="mr-auto p-2"><h3> 스케줄 입력 </h3></div>
 		  <div class="p-2">공통 > 스케줄 > 스케줄 입력 </div>
 	     </div>
-	    <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+	    <input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	    	<div class="row">
  				<div class="col-md-12"> 
+ 					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link active" 	data-toggle="tab" onclick="window.location='insertSchedule.al'"> 스케줄 입력 </a></li>
+						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='scdModifyList.al'"> 스케줄 수정  </a></li>
+					</ul>  
  					<div class="card"> 
  						<div class="card-header"> 
  							<h4 class="card-title"> 직원 스케줄 입력 </h4> 
@@ -86,7 +90,8 @@ function makeSchedule() {
 								<table class="table"> 
 									<tr>  										
 										<td> 직원조회 </td> 
- 										<td><input type="text" name="dayOffName"  value="직원 조회한 이름" readonly></td> 
+ 										<td><input type="text" name="empName"  value="직원 조회한 이름"></td> 
+										<td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="조회하기" onclick="searchEmp(empName.value);"></td>
 										<td> 소속부서 </td> 
  										<td><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td> 
  										<td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="입력하기" onclick="makeSchedule();"></td> 

@@ -17,19 +17,25 @@
 	</select>
 	
 	<!-- 매니저가 작성한 스케줄근무 db에 집어넣는 매핑 시퀀스 나중에 고치기 -->
-	<insert id="insertSchedule" parameterType="map" >
-		INSERT INTO work_tbl_test (skdCode, skdMonth, empCode, skdWorkd)  VALUES ('9', 5, 'lee', #{work}) 
+	<insert id="insertSchedule" parameterType="map">
+		INSERT INTO work_tbl_test (skdCode, skdMonth, empCode, skdWorkd)  VALUES (scdcode_seq.nextval, #{skdMonth}, #{empCode}, #{work}) 
 	</insert>
 	
 	<insert id="insertDayOff" parameterType="java.util.Map">
-		INSERT INTO holiday_tbl (holidayCode, empCode, startHoliday, endHoliday, state, reasonHoliday) VALUES(3, #{empCode}, #{startDate} ,#{endDate} , 1, #{dayOffReason})
+		INSERT INTO holiday_tbl (holidayCode, empCode, startHoliday, endHoliday, state, reasonHoliday) VALUES(dayoff_seq.nextval, #{empCode}, #{startDate} ,#{endDate} , 1, #{dayOffReason})
 	</insert>	
 	
 	<!-- 직원이 휴무 신청한 내역 가져오기 -->
 	<select id="getLogDayOff" parameterType="String" resultType="com.hotel.hms.vo.HolidayVO">
 		SELECT * FROM holiday_tbl WHERE empCode=#{empCode}		
-	
 	</select>
+	
+	<select id="checkWorkData" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM work_tbl_test WHERE empCode=#{empCode} AND skdMonth= #{skdMonth} 
+	</select>
+	
+	
+	
 	
 </mapper> 
     
