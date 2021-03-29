@@ -8,6 +8,7 @@ import lombok.Data;
 public class EmployeeVO {
 	private String empCode;			// 사원번호
 	private String deptCode;		// 부서코드
+	private String deptName;		// 부서명
 	private int levelCode;			// 직위코드
 	private String dutyCode;		// 직책코드
 	private String empPwd;			// 비밀번호

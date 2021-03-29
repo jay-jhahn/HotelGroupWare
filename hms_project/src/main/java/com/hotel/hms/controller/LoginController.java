@@ -18,7 +18,10 @@ public class LoginController {
 	
 	// 메인페이지
 	@RequestMapping("main.al")
-	public String main() {
+	public String main(HttpServletRequest req, Model model) {
+		if(req.getSession().getAttribute("empCode")!=null) {
+			service.getLoginEmpl(req, model);
+		}
 		return "index";
 	}
 	
