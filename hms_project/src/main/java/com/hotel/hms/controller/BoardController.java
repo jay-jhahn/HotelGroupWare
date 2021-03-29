@@ -15,27 +15,29 @@ public class BoardController {
 	public String shareMain(HttpServletRequest req, Model model) {
 
 
-
-
 		return "/board/shareMain";
 	}
-	
+
+	// 월급날까지 => 설예진
+	@RequestMapping("mainCount.al")
+	public String mainCount(HttpServletRequest req, Model model) {
+
+		return "/board/mainCount";
+	}
+
 	// 공지사항 리액트 연결 > 공지사항 리스트 => 설예진
 	@RequestMapping("boardList.al")
 	public String board(HttpServletRequest req, Model model) {
 
 
-
-
 		return "/board/boardList";
 	}
+
 	// 공지사항 리액트 연결 > 공지사항 작성 => 설예진
 	@RequestMapping("boardWrite.al")
 	public String boardWrite(HttpServletRequest req, Model model) {
 
-
 	
-
 		return "/board/boardWrite";
 	}
 }
