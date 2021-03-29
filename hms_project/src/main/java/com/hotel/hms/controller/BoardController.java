@@ -14,6 +14,7 @@ public class BoardController {
 	@RequestMapping("shareMain.al")
 	public String shareMain(HttpServletRequest req, Model model) {
 
+
 		return "/board/shareMain";
 	}
 
@@ -28,6 +29,7 @@ public class BoardController {
 	@RequestMapping("boardList.al")
 	public String board(HttpServletRequest req, Model model) {
 
+
 		return "/board/boardList";
 	}
 
@@ -35,6 +37,7 @@ public class BoardController {
 	@RequestMapping("boardWrite.al")
 	public String boardWrite(HttpServletRequest req, Model model) {
 
+	
 		return "/board/boardWrite";
 	}
 }
