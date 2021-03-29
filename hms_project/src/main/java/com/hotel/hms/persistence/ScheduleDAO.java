@@ -27,6 +27,9 @@ public interface ScheduleDAO {
 	// 선택 직원이 해당월이 테이블에 데이터가 있는지 확인하는 메서드  - 이철한
 	public int checkWorkData (Map <String, Object> map);
 	
+	// 직원정보 조회하는 메서드  - 이철한
+	public List<EmployeeVO> getEmpInfo(String empName);
+	
 	
 	
 }

@@ -10,7 +10,18 @@ function errorAlert(errorMsg) {
 	window.history.back();	// 이전 페이지로 이동
 }
 
-/* 메인화면 로그인부분 */
+/* 가족사항 테이블 열 추가 */
+function addRow() {
+	const table = document.getElementById('famMemTbl');
+	const newRow = table.insertRow();
+	
+	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation' id='relation'> </td>";
+	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName' id='faMemName'> </td>";
+	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge' id='faMemAge'> </td>";
+	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt' id='isLiveTogt'> </td>";
+}
+
+/* 로그인 페이지 */
 function idFocus() {
 	document.loginform.memId.focus();
 }
@@ -42,7 +53,6 @@ function getEmpList(){
 	});
 };
 
-/* 인사정보 페이지 상위 탭 ajax */
 /* 인사정보 등록 페이지 */
 function getInsertEmp() {
 	$.ajax({
@@ -58,7 +68,7 @@ function getInsertEmp() {
 	});
 };
 
-/* 인사등록 페이지 부서 선택하면 사원번호 생성 */ 
+/* 부서 선택하면 사원번호 생성 */
 function makeEmpCode() {
 	// 6자리 난수 생성
 	var ranNum = Math.floor(Math.random() * 1000000)+100000;
@@ -68,6 +78,7 @@ function makeEmpCode() {
 	// 사번 input 태그에 부서 약자 + 6자리 난수 자동 입력
 	$("#empCode").val($("#dept").val() + ranNum);
 }
+
 
 /* 우편번호/도로명주소 검색 */
 function daumPostcode() {
@@ -124,7 +135,7 @@ function daumPostcode() {
     }).open();
 }
 
-/* 인사정보등록 페이지 사진 미리보기 */
+/* 썸네일 */
 function setThumbnail(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -165,54 +176,6 @@ function selectRegEmailChk() {
 		form.empEmail2.value = form.empEmail3.value;
 	}
 }
-
-/* 인사등록 페이지 가족사항 테이블 열 추가 */
-function addRow() {
-	var table = document.getElementById('famMemTbl');
-	var newRow = table.insertRow();
-	
-	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation'> </td>";
-	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName'> </td>";
-	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge'> </td>";
-	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt'> </td>";
-}
-
-/* 인사등록 페이지 저장버튼 클릭시 */
-//function submit() {
-//	alert("탔다!");
-//	alert("탔다!!");
-//	alert("탔다!!!");
-//	alert("탔다!!!!");
-//	alert("탔다!!!!!");
-//	
-//	$("#famMemTbl tr").each(function(){
-//		alert("안탐?");
-//		var famMemArray = [];	// 가족구성원 한명의 정보를 담을 배열
-//		var famArray = [];		// 가족구성원 모두의 정보를 담을 배열
-//		
-//		var len = $(this).find("td").length;
-//		
-//		for(var i=0;i<len;i++){
-//			famMemArray.push($(this).find("td").eq(i).text());
-//			alert(famMemArray);
-//		}
-//		famArray.push(famMemArray);
-//		alert(famArray);
-//	});
-//	$("#femMemArr[]").val(famArray);
-//	
-//	$("#regEmpForm").submit();
-//}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -344,6 +307,144 @@ function nextHp3() {
 	}
 }
 
+
+/* 마이페이지 이동 */
+function pwdCheck() {
+	var form = document.mypagePwdCheck;
+	if(!form.pwd.value) {
+		alert("비밀번호를 입력해주세요.");
+		form.pwd.focus();
+		return false;
+	}
+}
+
+function pwdFocus() {
+	document.mypagePwdCheck.pwd.focus();
+}
+
+/* 회원탈퇴 */
+function dPwdCheck() {
+	var form = document.deletePwdCheck;
+	if(!form.pwd.value) {
+		alert("비밀번호를 입력해주세요.");
+		form.pwd.focus();
+		return false;
+	}
+}
+
+function deletePwdFocus() {
+	document.deletePwdCheck.pwd.focus();
+}
+
+/* 회원정보 수정 */
+function modifyPwdCheck() {
+	var form = document.modifyMemberPwdCheck;
+	if(!form.pwd.value) {
+		alert("비밀번호를 입력해주세요.");
+		form.pwd.focus();
+		return false;
+	}
+}
+
+function modifyPwdFocus() {
+	document.modifyMemberPwdCheck.pwd.focus();
+}
+
+/* 회원정보 수정 */
+function modifyMemberFocus() {
+	document.modifyform.id.focus();
+}
+
+function selectModifyEmailChk() {
+	var form = document.modifyform;
+	
+	if(form.email3.value == '0'){
+		form.email2.value = "";
+		form.email2.focus();
+	} else {
+		form.email2.value = form.email3.value;
+	}
+}
+
+function modifyCheck() {
+	var form = document.modifyform;
+	
+	if(!form.pwd.value){
+		alert("비밀번호를 입력하세요.");
+		form.pwd.focus();
+		return false;
+	} 
+	if(!form.repwd.value){
+		alert("비밀번호를 확인하세요.");
+		form.repwd.focus();
+		return false;
+	} 
+	if(form.pwd.value != form.repwd.value){
+		alert("비밀번호가 일치하지 않습니다.");
+		form.repwd.focus();
+		return false;
+	} 
+	if(!form.name.value){
+		alert("이름을 입력하세요.");
+		form.name.focus();
+		return false;
+	} 
+	if(!form.jumin1.value){
+		alert("주민번호를 입력하세요.");
+		form.jumin1.focus();
+		return false;
+	} 
+	if(!form.jumin2.value){
+		alert("주민번호 뒷자리를 입력하세요.");
+		form.jumin2.focus();
+		return false;
+	}
+	if(!form.email1.value){
+		alert("이메일을 입력하세요.");
+		form.email1.focus();
+		return false;
+	} 
+	if(!form.email2.value || form.email2.value == "0"){
+		alert("이메일을 형식에 일치하지 않습니다.");
+		form.email2.focus();
+		return false;
+	}
+}
+
+function nextModiJumin1() {	
+	var form = document.modifyform;
+	if(form.jumin1.value.length >= 6) {
+		form.jumin2.focus();
+	}
+}
+
+function nextModiJumin2() {	
+	var form = document.modifyform;
+	if(form.jumin2.value.length >= 7) {
+		form.phone1.focus();
+	}
+}
+
+function nextModiHp1() {
+	var form = document.modifyform;
+	if(form.phone1.value.length >= 3) {
+		form.phone2.focus();
+	}
+}
+
+function nextModiHp2() {
+	var form = document.modifyform;
+	if(form.phone2.value.length >= 4) {
+		form.phone3.focus();
+	}
+}
+
+function nextModiHp3() {
+	var form = document.modifyform;
+	if(form.phone3.value.length >= 4) {
+		form.email1.focus();
+	}
+}
 
 /* 게시글 작성 비밀글 여부 체크박스 체크 */
 $(function isSecret(){
