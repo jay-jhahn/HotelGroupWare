@@ -60,7 +60,7 @@
 								-->
 								<!-- 상세보기시 휴가사유 나오게 하기  <th> 휴가사유 </th> --> 
 								<!-- List로 Dummy Data 띄워보기 -->
-								<tr class="">  										
+								<tr class="text-center backgray">  										
 										<th> No </th> 
  										<th> 신청일 </th>
  										<th> 휴가구분 </th>
@@ -92,7 +92,7 @@
  											</c:if>
  										</td>
  										
- 										<td><input type="button" class="btn" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="상세보기 " ></td>
+ 										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="상세보기 " ></td>
  									</tr>
 								</c:forEach>
  								</table> 

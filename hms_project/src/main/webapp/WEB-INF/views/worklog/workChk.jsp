@@ -4,7 +4,7 @@
 <body>
 <div class="wrapper">
 	<!-- ====== Side Menu ===== -->
-	<jsp:include page="${jspPath}common/sideMenu.jsp" flush="false" />
+	<jsp:include page="${jspPath}common/sideMenu/share.jsp" flush="false" />
 	
 	<div class="main-panel" id="main-panel">
 		<!-- ======= Header ======= -->

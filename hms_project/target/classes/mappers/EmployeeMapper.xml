@@ -40,13 +40,4 @@
 	<select id = "gradeCheck" resultType = "String">
 		SELECT empAuthority FROM emp_tbl WHERE empCode = #{strId}
 	</select>
-	
-	<!-- 로그인한 회원정보 가져오기 -->
-	<select id="getLoginEmpl" resultType="com.hotel.hms.vo.EmployeeVO" parameterType="String">
-		SELECT e.empcode, e.empname, d.deptname, e.empemail, e.empphone
-		  FROM emp_tbl e
-		     , dept_tbl d
-		 WHERE e.deptcode = d.deptcode
-           AND e.empCode = #{empCode}
-	</select>
 </mapper>
