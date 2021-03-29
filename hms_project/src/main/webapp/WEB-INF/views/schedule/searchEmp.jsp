@@ -33,7 +33,17 @@
 											<th> 전화번호 </th>
 											<th> 선택 </th>
 										</tr>
+									<c:forEach var="list" items="${vo}">
+										<tr>
+											<td> ${list.empName}  </td>
+											<td> 객실부서 </td>
+											<td> 지배인 </td>
+											<td> ${list.empPhone} </td>
+											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="selectEmp.al?empName=${list.empName}"></th>
+										</tr>
+									</c:forEach>
 									
+									<!--  
 										<tr>
 											<td> LEE CHUL HAN </td>
 											<td> 객실부서 </td>
@@ -50,15 +60,15 @@
 											<td> 010-1111-2222 </td>
 											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="#"></th>
 										</tr>
+									-->
 									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
+			</div>
 		</div>
-	</div>
 
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />

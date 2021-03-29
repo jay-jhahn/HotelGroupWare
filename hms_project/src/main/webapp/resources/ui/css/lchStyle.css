@@ -1,4 +1,29 @@
 @charset "UTF-8";
  /* 이철한 스타일 시트  */
 
-/*  input focus 시 placeholder 지워주는 메서드 */
+/*  Buuton Style 지정
+.leebtn {
+	display: inline-block;
+	font-weight: 400;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+				border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	background-color:#55789B;
+	border-radius: 0rem;
+	
+}
+ */
+
+
+
+
+

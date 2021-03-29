@@ -60,6 +60,13 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 		return sqlSession.selectOne("com.hotel.hms.persistence.ShareDAO.checkWorkData", map);
 	}
 	
+	// 직원정보 조회하는 메서드  - 이철한
+	@Override
+	public List<EmployeeVO> getEmpInfo(String empName) {
+		
+		return sqlSession.selectList("com.hotel.hms.persistence.ShareDAO.getEmpInfo", empName);
+	}
+	
 	
 	
 	

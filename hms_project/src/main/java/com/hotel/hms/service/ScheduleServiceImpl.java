@@ -174,6 +174,33 @@ public class ScheduleServiceImpl implements ScheduleService {
 		model.addAttribute("logDayOff", holiday);
 
 	}
+
+	// 직원조회하는 메서드 
+	@Override
+	public void getEmpInfo(HttpServletRequest req, Model model) {
+		
+		String empName = req.getParameter("empName");
+		
+		List<EmployeeVO> vo = dao.getEmpInfo(empName);
+		
+		System.out.println("empName : " + empName);
+		
+		for(int i=0; i<vo.size(); i++) {
+			System.out.println("vo : " + vo.get(i).getEmpName() );
+		}
+		
+		
+		model.addAttribute("vo", vo);
+		
+	}
+
+	// 선택한 직원 정보 가져오는 메서드 - 이철한 
+	@Override
+	public void selectEmp(HttpServletRequest req, Model model) {
+		
+		
+		
+	}
 	
 	
 	
