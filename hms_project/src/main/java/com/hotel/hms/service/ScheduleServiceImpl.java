@@ -189,7 +189,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 			System.out.println("vo : " + vo.get(i).getEmpName() );
 		}
 		
-		
 		model.addAttribute("vo", vo);
 		
 	}
