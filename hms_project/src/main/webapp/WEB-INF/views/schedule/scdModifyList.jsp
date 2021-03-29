@@ -49,7 +49,7 @@
  									<td> 이철한 </td>
  									<td> 객실부서 </td>
  									<td> 2021-03-28 </td>
- 									<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="상세보기"></td>
+ 									<td><input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;" data-toggle="modal" data-target="#exampleModal" value="상세보기"></td>
  								</tr>
  								</table> 
  							</div> 
@@ -63,8 +63,57 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> 상세보기 </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action ="#" method="post">
+      <input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <table class="table text-center">
+			<tr>
+				<th> 신청자 </th>
+				<td><input type="text" name="empName"  value="${empCode}" readonly></td>
+			</tr>
+			<tr>	
+				<th> 변경희망일  </th>
+				<td><input type="text" name=""  value="변경희망일 값" readonly></td>
+			</tr>
+			<tr>	
+				<th> 변경근무 타입 </th>
+				<td><input type="text" name=""  value="희망변경근무 값" readonly> </td>
+				
+			</tr>
+			
+			<tr>
+				<th> 변경사유</th>
+				<td><textarea type="text" name=""  value="변경사유 값" readonly></textarea> </td>
+			
+			</tr>
+			<tr class="text-center">
+			    <td>
+		      	  <input type="submit" class="btn" style="background-color: #516375; border-radius: 0rem;" data-dismiss="modal" value="승인"> 
+		      	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="반려"> 
+		     	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;" onclick="self.close()" value="닫기"> 
+			    </td>
+			</tr>
+        </table>
+       </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!-- ======= Footer ======= -->
-<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
+<jsp:include page="${jspPath}common/footer.jsp" flush="false"/>
 
 	
 </body>

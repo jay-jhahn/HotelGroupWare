@@ -94,7 +94,7 @@ function makeSchedule() {
 										<td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="조회하기" onclick="searchEmp(empName.value);"></td>
 										<td> 소속부서 </td> 
  										<td><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td> 
- 										<td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="입력하기" onclick="makeSchedule();"></td> 
+ 										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="입력하기" onclick="makeSchedule();"></td> 
  									</tr> 
  								</table> 
  							</div> 
