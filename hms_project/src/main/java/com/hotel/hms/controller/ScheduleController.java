@@ -73,9 +73,9 @@ public class ScheduleController {
 	}
 
 	// 리액트 가져오기 - 이철한
-	@RequestMapping("/reqmodify.al")
+	@RequestMapping("/reqModify.al")
 	public String toReact(HttpServletRequest req, Model model) {
-		return "schedule/reqmodify";
+		return "schedule/reqModify";
 	}
 	
 	// 관리자 근무 집어넣기 - 이철한 삭제 고려
@@ -91,4 +91,32 @@ public class ScheduleController {
 		
 		return "schedule/reqModifyScdList";
 	}
+	
+	// 근무 신청변경폼 ajax 로 변경하기
+	@RequestMapping("/dayOffTypeForm.al")
+	public String dayOffTypeForm (HttpServletRequest req, Model model) {
+		
+		return "schedule/dayOffTypeForm";
+	}
+	
+	// 근무조회에서 직원찾는 메서드 - 이철한
+	@RequestMapping("/searchEmp.al")
+	public String searchEmp(HttpServletRequest req, Model model) {
+		
+		return "schedule/searchEmp";
+	}
+	
+	// 직원들이 스케줄 변경신청한것 부서별 관리자가 확인하는 페이지  - 이철한
+	@RequestMapping("/scdModifyList.al")
+	public String scdModifyList(HttpServletRequest req, Model model) {
+		
+		return "schedule/scdModifyList";
+		
+	}
+	
+	
+	
+	
+	
+	
 }
