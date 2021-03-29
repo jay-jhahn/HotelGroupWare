@@ -30,12 +30,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public List<WorkVO> getWork(HttpServletRequest req, Model model) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("skdMonth", 3);
-		map.put("empCode", "lee");
+		String empCode = (String)req.getSession().getAttribute("empCode");
+		// 현재 월 구하기 
+		Calendar cal = Calendar.getInstance();
+		 
+		map.put("skdMonth", cal.get(Calendar.MONTH) +1);
+		map.put("empCode", empCode);
 		List<WorkVO> work = dao.getWork(map);
 		WorkVO vo = null;
 
-		// 1/0/1/0/1/0/1/1/1/1/1/1/1/0/0/1/0/1/0/1/1/1/0/0/0/1/1/0/1 1: 근무 0: 휴가
+		// 1/0/1/0/1/0/1/1/1/ㅊㅇ1/1/1/1/0/0/1/0/1/0/1/1/1/0/0/0/1/1/0/1 1: 근무 0: 휴가
 		String[] day = work.get(0).getSkdWorkd().split("/");
 		work.clear();
 
@@ -48,7 +52,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 			} else {
 				vo.setTitle("입력 오류");
 			}
-			
+			// 10일보다 작을 시 일 앞에 0 이 없으므로 0 붙여주기 
 			if( i+1 < 10) {
 				vo.setStart("2021-03-0" + (i+1));
 				vo.setEnd("2021-03-0" +(i+1));
@@ -57,14 +61,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 				vo.setEnd("2021-03-" +(i+1));
 			}
 			
-//		          String [] removeScd = work.get(i).toString().split(",");
-//		          removeScd[0].remove();
-//					vo.setEmpCode(empCode);
-//					vo.setSkdMonth(3);
-//					vo.setRealDay( Integer.parseInt(day[i]) );
 			work.add(vo);
 		}
-		// json에 skdMonth 랑 realDay 왜 들어가는지 .. ??????
 		return work;
 	}
 
@@ -72,8 +70,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public void insertScd(HttpServletRequest req, Model model) {
 
+		Calendar cal = Calendar.getInstance();
+		
 		// 0: 근무선택 1:오전근무 2:오후근무 3:야간근무 7:휴무
 		String[] values = req.getParameterValues("workType");
+		String empCode = (String)req.getSession().getAttribute("empCode");
+		int skdMonth = cal.get(Calendar.MONTH) +1 ;
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		StringBuilder builder = new StringBuilder();
@@ -83,12 +86,22 @@ public class ScheduleServiceImpl implements ScheduleService {
 			builder.append(values[i] + "/");
 		}
 		builder.deleteCharAt(builder.lastIndexOf("/"));
-
+		// skdMonth 나중에 scdMonth 로 바꾸어주기 
 		map.put("work", String.valueOf(builder));
-		int insert = dao.insertSchedule(map);
-
-		// 하드코딩임 나중에 고치기
-		model.addAttribute("insertCnt", 1);
+		map.put("empCode", empCode);
+		map.put("skdMonth", skdMonth);
+		
+		// 먼저 이 사원이 해당 월이 근무테이블에 들어가 있는지 확인 하기 
+		int selectCnt = dao.checkWorkData(map);
+		int insert = 0;
+		if(selectCnt == 0) {
+			insert = dao.insertSchedule(map);
+		} else  {
+			insert = 5;
+		}
+		
+		// insert 근무테이블에 Data 넣기 넣기 성공하였으면 1 성공실패하였으면 0 5는 이미 해당 정보가 테이블에 있음 
+		model.addAttribute("insertCnt", insert);
 
 	}
 
@@ -98,7 +111,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		String empCode = (String) req.getSession().getAttribute("empCode");
 		EmployeeVO vo = dao.getInfoEmp(empCode);
-
+			
 		Date date = new Date();
 		int year = 2021;
 		int month = Calendar.FEBRUARY;
@@ -108,10 +121,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 		Calendar calendar = new GregorianCalendar(year, month, day);
 		int march = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 		List<Integer> days = new ArrayList<>();
-
+			
 		for (int i = 0; i < march; i++) {
 			days.add(i);
 		}
+		
 		System.out.println("march : " + march);
 		// int year, int month, int day 값 받기
 		// session 을 통해 empCode 가져온 후 직원정보 가져온 후 vo 로 리턴
@@ -120,7 +134,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	}
 
-	// 직언이 휴무 신청한거 처리하는 메서드
+	// 직원이 휴무 신청한거 처리하는 메서드
 	@Override
 	public void insertDayOff(HttpServletRequest req, Model model) {
 
@@ -155,8 +169,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		// 휴가 신청내역 가져오기
 		List<HolidayVO> holiday = dao.getLogDayOff(empCode);
+		// kindHoliday : 0: 반차     1: 연차      2: 병가 
 		// 휴무 신청 상태 ( 0: 신청됨 1: 반려 / 2: 승인 나타내는 코드)
 		model.addAttribute("logDayOff", holiday);
 
 	}
+	
+	
+	
+	
+	
 }

@@ -62,22 +62,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
+
 				<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='monthSchedule.al'"> 스케줄 조회 </a></li>
 				<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='reqModify.al'"> 근무 변경 신청  </a></li>
 			</ul> 
 			<div class="card"> 
 				<div class="card-header"> 
-					<h4 class="card-title"> 3 월 스케줄 조회 </h4> 
+					<h4 class="card-title"> 스케줄 조회 </h4> 
 			</div> 
 				<div class="card-body">
 					<div class="table-responsive">
 					   <table class="table"> 
 						  <tr>  										
-							  <td>직원조회<input type="text" name="dayOffName"  value="직원 이름 입력"></td>
+							  <td>직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력"></td>
 							  <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 
-							  <td ><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="직원조회" onclick=""></td>  
-							  <td >소속부서</td> 
-							  <td ><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
+							  <td ><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="직원조회" onclick="searchEmp(empName.value)" ></td>  
+							  <td>소속부서
+							  <input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
 							</tr> 
 						
 						  <tr>
@@ -108,10 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				</div> 
 			</div> 
  		</div> 
-	</div>
+	  </div>
+   </div>
   </div>
- </div>
 </div> <!-- close wrapper -->	
+
+
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
 

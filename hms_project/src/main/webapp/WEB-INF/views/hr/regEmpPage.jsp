@@ -35,7 +35,10 @@
 	
 									<tr>
 										<th><span class="redStar"> * </span> 주민번호  </th>
-										<td><input type="text" class="form-control" name="empJumin" id="empJumin"></td>
+										<td>
+											<input type="text" class="form-control-jumin" name="empJumin1" maxlength="6">&nbsp;-&nbsp;
+											<input type="password" class="form-control-jumin" name="empJumin2" maxlength="7">
+										</td>
 										<th> 성별  </th>
 										<td>
 											<input type="radio" value="male" name="gender">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
@@ -117,12 +120,9 @@
 									<th> 급여계약기준 </th>
 									<td>
 										<select name="payConStand" id="payConStand" class="select">
-											<option value="#"> == 재직구분 == </option>
-											<option value="none"> 없음 </option>
-											<option value="EMP"> 사원 </option>
-											<option value="MNG"> 매니저 </option>
-											<option value="SMNG"> 시니어 매니저 </option>
-											<option value="GM"> 총지배인 </option>
+											<option value="#"> == 급여계약기준 == </option>
+											<option value="연봉제"> 연봉제 </option>
+											<option value="시급"> 시급 </option>
 										</select> 
 									</td>
 									<th> 입사일자 </th>
@@ -132,7 +132,7 @@
 								<tr>
 									<th><span class="redStar"> * </span> 직위 </th>
 									<td>
-										<select name="level" class="select">
+										<select name="level" id="level" class="select">
 											<option value="#"> == 직위선택 == </option>
 											<option value="1"> 인턴 </option>
 											<option value="2"> 수습 </option>
@@ -157,7 +157,7 @@
 								<tr>
 									<th> 직책 </th>
 									<td>
-										<select name="levelCode" id="levelCode" class="select">
+										<select name="duty" id="duty" class="select">
 											<option value="#"> == 직책선택 == </option>
 											<option value="NONE"> 없음 </option>
 											<option value="EMP"> 사원 </option>
@@ -180,7 +180,7 @@
 	
 								<tr>
 									<th> 비고 </th>
-									<td colspan="5"> <textarea class="notes" rows="4" cols="90"></textarea> </td>
+									<td colspan="5"> <textarea class="notes" name="notes" rows="4" cols="90"></textarea> </td>
 								</tr>
 							</table>
 						</div>
@@ -191,46 +191,46 @@
 								<div class="addMemberBtnDiv">
 									<input type="button" class="addMemberBtn" value="十 구성원 추가" onclick="addRow();">
 								</div>
+								<input type="hidden" class="femMemArr" name="femMems" value="">
 								<table class="table table-bordered famMemTbl" id="famMemTbl">
-									<tr>
-										<th rowspan="10" class="famMemHead"> 가족관계 </th>
-										<th> 관계 </th>
-										<th> 성명 </th>
-										<th> 나이 </th>
-										<th> 동거여부 </th>
-									</tr>
-									
-									<tr>
-										<td> <input type="text" class="form-control" name="relation" id="relation1"> </td>
-										<td> <input type="text" class="form-control" name="faMemName" id="faMemName1"> </td>
-										<td> <input type="text" class="form-control" name="faMemAge" id="faMemAge1"> </td>
-										<td> <input type="text" class="form-control" name="isLiveTogt" id="isLiveTogt1"> </td>
-									</tr>
-									
-									<tr>
-										<td> <input type="text" class="form-control" name="relation" id="relation2"> </td>
-										<td> <input type="text" class="form-control" name="faMemName" id="faMemName2"> </td>
-										<td> <input type="text" class="form-control" name="faMemAge" id="faMemAge2"> </td>
-										<td> <input type="text" class="form-control" name="isLiveTogt" id="isLiveTogt2"> </td>
-									</tr>
-									
-									<tr>
-										<td> <input type="text" class="form-control" name="relation" id="relation3"> </td>
-										<td> <input type="text" class="form-control" name="faMemName" id="faMemName3"> </td>
-										<td> <input type="text" class="form-control" name="faMemAge" id="faMemAge3"> </td>
-										<td> <input type="text" class="form-control" name="isLiveTogt" id="isLiveTogt3"> </td>
-									</tr>
-									
-									<tr>
-										<td> <input type="text" class="form-control" name="relation" id="relation4"> </td>
-										<td> <input type="text" class="form-control" name="faMemName" id="faMemName4"> </td>
-										<td> <input type="text" class="form-control" name="faMemAge" id="faMemAge4"> </td>
-										<td> <input type="text" class="form-control" name="isLiveTogt" id="isLiveTogt4"> </td>
-									</tr>
+										<tr>
+											<th rowspan="10" class="famMemHead"> 가족관계 </th>
+											<th> 관계 </th>
+											<th> 성명 </th>
+											<th> 나이 </th>
+											<th> 동거여부 </th>
+										</tr>
+										<tr>
+											<td> <input type="text" class="form-control" name="relation" value=""> </td>
+											<td> <input type="text" class="form-control" name="faMemName" value=""> </td>
+											<td> <input type="text" class="form-control" name="faMemAge" value=""> </td>
+											<td> <input type="text" class="form-control" name="isLiveTogt" value=""> </td>
+										</tr>
+										
+<!-- 										<tr> -->
+<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
+<!-- 										</tr> -->
+										
+<!-- 										<tr> -->
+<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
+<!-- 										</tr> -->
+										
+<!-- 										<tr> -->
+<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
+<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
+<!-- 										</tr> -->
 								</table>
 								<div class="faMemBtnDiv">
 									<input type="reset" class="faMemBtn" value="초기화">
-									<input type="submit" class="faMemBtn" value="저장">
+									<input type="button" class="faMemBtn" value="저장" id="sbmBtn">
 								</div>
 							</div>	
 						</div>									
@@ -241,6 +241,62 @@
 	</div>
 </body>
 
-<script src="${path}js/myScript.js"></script>
-
+<script src="${path}js/jayScript.js"></script>
+<script type="text/javascript">
+$("#sbmBtn").click(function(){
+	alert("gogo")
+	
+	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
+	var td = tr.find("td");		 // 한 행의 td
+	var i = 1;
+	td.each(function(){
+		alert($(this).text()+i);
+		console.log(td.text());
+		i++;
+	});
+	
+// 	var len = td.length;		 // 한 행의 td의 갯수
+	
+// 	var famMemArray = [];	// 가족구성원 한명의 정보를 담을 배열
+// 	var famArray = [];		// 가족구성원 모두의 정보를 담을 배열
+	
+// 	tr.each(function(){
+// 	var trim = $.trim(td.text());	// 공백 제거한 td
+// 		if(trim == ""){
+// 			len=0;
+// 		} else {
+// 			for(var i=0;i<len;i++){
+// 				famMemArray.push(td.eq(i).text());
+// 			}
+// 			famArray.push(famMemArray);
+// 		}
+// 	});
+// 	alert(len);
+	
+// 	// 행을 돌면서
+// 	tr.each(function(){
+// 		// 첫 행의 td가 비어있지 않으면
+// 		if(td.text().trim() != "") {
+// 			// 행의 td수만큼 돌면서
+// 			for(var i=0;i<len;i++){
+// 				// td의 text를 famMemArray에 push
+// 				famMemArray.push(td.eq(i).text());
+// 			}
+// 			// 한 행의 td의 정보가 담긴 famMemArray를 famArray에 push
+// 			famArray.push(famMemArray);
+// 			alert(famArray);
+// 		// 첫 행의 td가 비어있으면 
+// 		} else if(td.text().trim() == ""){
+// 			// length는 0
+// 			len = 0;
+// 			alert(len);
+// 			// each문 탈출
+// 			return false;
+// 		}
+// 		alert(len);
+// 	});
+// 	$(".femMemArr").val(famArray);
+// 	$("#regEmpForm").submit();	
+});
+</script>
 </html>

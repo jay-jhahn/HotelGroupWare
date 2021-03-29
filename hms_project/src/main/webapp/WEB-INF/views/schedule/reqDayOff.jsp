@@ -34,11 +34,11 @@
 								<table class="table"> 
 									<tr>  										
 										<td> 신청자 </td> 
- 										<td> <input type="text" name="dayOffName"  value="${empCode}" readonly></td> 
+ 										<td> <input type="text" name="empName"  value="${empCode}" readonly></td> 
  									</tr> 
  									<tr>  										
 										<td> 소속부서 </td> 
- 										<td> <input type="text" name="dayOffDept"  value="부서 값 받기" readonly></td> 
+ 										<td> <input type="text" name="empDept"  value="부서 값 받기" readonly></td> 
  									</tr> 
  								</table> 
  							</div> 
@@ -70,26 +70,28 @@
  										<th> 상세보기 </th>
  								</tr> 
 								<c:forEach var="list" items="${logDayOff}">
-									<tr>
- 										<td> ${list.startHoliday} </td>
- 										<td> <%-- ${list.kindHoliday} --%> 휴가 구분 주기 </td>
- 										<td> ${list.state}</td>
- 										<td> 2021-03-17 </td>
- 										<td> 2021-03-18 </td>
- 										<td>  
- 										<!-- DayOffType => 휴무타입  휴무 신청  상태 ( 0: 신청됨 1: 반려 / 2: 승인  나타내는 코드)  -->
- 										<c:if test="${list.state == 0}">
- 											반려
- 										</c:if>
- 										
- 										<c:if test="${list.state == 1}">
- 											승인대기
- 										</c:if>
- 										
- 										<c:if test="${list.state == 2}">
-											승인 										
- 										</c:if>
+									<tr><!-- 나중에 sysdate로 신청일 주기  -->
+ 										<td> ${list.holidayCode} </td>
+ 										<td><fmt:formatDate pattern="yyyy-mm-dd" value="${list.startHoliday}" /></td>
+ 										<td> <%-- ${list.kindHoliday} --%> 휴가 구분 주기 
+ 											<c:if test="${list.kindHoliday == 0 }" >
+ 												반차											
+ 											</c:if>
+ 											<c:if test="${list.kindHoliday == 1 }" >
+												  연차										
+ 											</c:if>
+ 											<c:if test="${list.kindHoliday == 2 }" >
+												  병가										
+ 											</c:if>
  										</td>
+ 										<td><fmt:formatDate pattern="yyyy-mm-dd" value="${list.startHoliday}" /></td>
+ 										<td><fmt:formatDate pattern="yyyy-mm-dd" value="${list.endHoliday}" /></td>
+ 										<td> <!-- 휴무 신청 상태 ( 0: 신청됨 1: 반려 / 2: 승인 나타내는 코드) -->
+ 											<c:if test="${ list.state == 0}">
+ 												진행 중 
+ 											</c:if>
+ 										</td>
+ 										
  										<td><input type="button" class="btn" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="상세보기 " ></td>
  									</tr>
 								</c:forEach>
