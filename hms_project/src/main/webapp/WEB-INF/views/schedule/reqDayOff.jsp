@@ -92,7 +92,11 @@
  											</c:if>
  										</td>
  										
+<<<<<<< HEAD
  										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="상세보기 " ></td>
+=======
+ 										<td><input type="button" class="btn" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="상세보기 " ></td>
+>>>>>>> main
  									</tr>
 								</c:forEach>
  								</table> 

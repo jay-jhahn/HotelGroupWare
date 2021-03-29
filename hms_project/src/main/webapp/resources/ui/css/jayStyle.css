@@ -1,2 +1,391 @@
 /* 안재효 스타일시트 */
 @charset "UTF-8";
+
+/* 인사정보 등록 페이지 CSS */
+.redStar{
+	color: red;	
+	margin-right: 4px;
+}
+
+.select{
+	width: 200px; /* 원하는 너비설정 */ 
+	padding: .4em .5em; /* 여백으로 높이 설정 */ 
+	font-family: inherit; /* 폰트 상속 */ 
+	background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
+	border: 1px solid #999; 
+	border-radius: 0px; /* iOS 둥근모서리 제거 */ 
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+	-moz-appearance: none; 
+	appearance: none;
+}
+
+.perDataDiv {
+	height: 440px;
+	margin-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+}
+
+.perDataDiv3 {
+	height: 315px;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+}
+
+.perDataImg{
+	height: 151.181102362px;
+	width: 113.385826772px;
+	margin-right: 10px;
+	float: left;
+}
+
+.filebox {
+	margin-top: 4px;
+	align-items: center;
+}
+
+.filebox label {
+	width:100%;
+	display: inline-block;
+	padding: .2em 25px;
+	color: #fff;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+    background: #55789B;
+	cursor: pointer;
+	border: 1px solid #55789B;
+	border-radius: 0;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #516375;
+}
+
+.filebox label:active {
+  background-color: #516375;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.perDataSection{
+	height: 240px;
+	width: 88%;
+	float: left;
+}
+
+.perFamDataDiv{
+	margin-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+}
+
+.famMemTbl{
+	margin-top: 10px;
+}
+
+.famMemTbl th{
+	background-color: #EBECF1;
+	width: 12%;
+}
+
+.faMemBtnDiv {
+	text-align: right;
+}
+
+.famMemHead{
+	width: 5%!important;
+}
+
+.addMemberBtnDiv{
+	text-align: right;	
+}
+
+.faMemBtn{
+	text-align:center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 0;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    width: 120px;
+    margin-top:10px;
+    margin-bottom:10px;
+    animation-delay: 0.8s;
+    border: 0;
+    background: #55789B;
+}
+
+.addMemberBtn{
+	text-align:center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 0;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    width: 140px;
+    margin-top:10px;
+    margin-bottom:10px;
+    animation-delay: 0.8s;
+    border: 0;
+    background: #55789B;
+}
+
+.notes{
+	resize: none;
+}
+
+.perDataTab th{
+	background-color: #EBECF1;
+	width: 12%;
+}
+
+.mb-10{
+	margin-bottom: 10px;
+}
+
+.mt-10{
+	margin-top: 10px;
+}
+
+.probationCheck{
+	cursor: pointer;
+}
+
+.searchPostBtn{
+	text-align:center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 0;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    width: 140px;
+    margin-top:10px;
+    margin-bottom:10px;
+    animation-delay: 0.8s;
+    border: 0;
+    background: #55789B;
+}
+
+.form-control-check{
+	width: 15%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control-jumin{
+	width: 40%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control3-phone {
+	width: 25%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control2 {
+	width: 15%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.roadAddrInput{
+	width: 37%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.addrPostCode {
+	width: 10%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.addr{
+	width: 30%;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* empList */
+.empListTbl th {
+	text-align: center;
+}
+
+.noData{
+	text-align: center;
+}
+
+.searchDiv{
+	background-color: #EBECF1;
+	margin-bottom: 10px;
+	height: 60px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.searchWord{
+	margin-right: 20px;
+}
+
+.include {
+	font-size: 9pt;
+	padding-left: 3px;
+}
+
+.check {
+	margin-right: 5px;
+	margin-left: 30px;
+}
+
+.searchInput .searchKind{
+	border-radius: 0;
+	width: 150px;
+}
+
+.searchKind{
+	width: 150px;
+	padding: .3em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.searchKind::-ms-expand {
+	display: none;
+}
+
+.innerWrapper {
+	margin-top: 5px;
+	margin-bottom:5px;
+	vertical-align: middle;
+}
+
+.searchBtn {
+	text-align:center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 0;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    width: 120px;
+    hight: 31px;
+    margin-right:10px;
+    margin-bottom: 20px;
+    animation-delay: 0.8s;
+    border: 0;
+    background: #55789B;    
+}
+
+/* 연회장예약 페이지 CSS */
+.perDataDivEx {
+	margin-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid white;
+}
+

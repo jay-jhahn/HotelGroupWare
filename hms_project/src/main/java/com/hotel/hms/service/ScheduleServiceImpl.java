@@ -174,6 +174,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		model.addAttribute("logDayOff", holiday);
 
 	}
+<<<<<<< HEAD
 
 	// 직원조회하는 메서드 
 	@Override
@@ -205,6 +206,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	
 	
+=======
+>>>>>>> main
 	
 	
 	

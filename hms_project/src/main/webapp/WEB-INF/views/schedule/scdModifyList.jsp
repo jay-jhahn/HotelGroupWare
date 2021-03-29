@@ -49,7 +49,11 @@
  									<td> 이철한 </td>
  									<td> 객실부서 </td>
  									<td> 2021-03-28 </td>
+<<<<<<< HEAD
  									<td><input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;" data-toggle="modal" data-target="#exampleModal" value="상세보기"></td>
+=======
+ 									<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="상세보기"></td>
+>>>>>>> main
  								</tr>
  								</table> 
  							</div> 
@@ -63,6 +67,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -114,6 +119,10 @@
 
 <!-- ======= Footer ======= -->
 <jsp:include page="${jspPath}common/footer.jsp" flush="false"/>
+=======
+<!-- ======= Footer ======= -->
+<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
+>>>>>>> main
 
 	
 </body>

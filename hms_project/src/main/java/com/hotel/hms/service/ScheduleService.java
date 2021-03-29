@@ -25,11 +25,17 @@ public interface ScheduleService {
 	// 휴무 신청 내역 가져오기 - 이철한
 	public void logDayOff(HttpServletRequest req, Model model);
 	
+<<<<<<< HEAD
 	// 직원조회하기 - 이철한
 	public void getEmpInfo(HttpServletRequest req, Model model);
 	
 	// 선택한 직원 정보 가져오는 메서드 - 이철한 
 	public void selectEmp(HttpServletRequest req, Model model);
+=======
+	
+	
+	
+>>>>>>> main
 	
 	
 }
