@@ -16,12 +16,18 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">직원 할인 패키지</h4>
+								<h4 class="card-title">마이 쿠폰 목록</h4>
 							</div>
 							<div class="card-body">
-								<div>
-									<iframe class="welfareCardIframe" src="http://localhost:3003"></iframe>
-								</div>
+								<form>
+									<table>
+										<tr>
+											<th>
+												 Hello, World!
+											</th>
+										</tr>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>

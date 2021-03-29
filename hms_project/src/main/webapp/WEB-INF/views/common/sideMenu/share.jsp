@@ -51,7 +51,7 @@ $(function(){
 					<li class="subMenuLi list-group-item" onclick="boardWrite();"><a>게시글쓰기</a></li>
 				</ul>
             </li>
-            
+           
            <li class="dpMenu" >
              <a href="#">
 	             <i class="now-ui-icons design_app"></i>
@@ -73,10 +73,14 @@ $(function(){
                 </a>
             </li>
             
-            <li >
-                <a href="welfareCard.al">
-                	<i class="now-ui-icons ui-1_bell-53"></i> 직원복지
+             <li class="dpMenu">
+                <a>
+               		<i class="now-ui-icons ui-1_bell-53"></i> 직원복지
                 </a>
+                <ul class="hide list-group list-group-flush text-center" style="display: none;">
+					 <li class="list-group-item scheduleList"><a href="welfareCard.al"> 직원 할인 패키지 </a></li>
+					 <li class="list-group-item scheduleList"><a href="welfareMyCupon.al"> 마이 쿠폰 목록 </a></li>
+				</ul>
             </li>
       </ul>
   </div>
