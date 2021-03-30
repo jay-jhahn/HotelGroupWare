@@ -39,9 +39,6 @@
 							<li><a href="officeMain.ad">경영지원</a></li>
 						</ul></li>
 					<li><a href="#contact">Contact Us</a></li>
-					<c:if test="${sessionScope.empCode == null}">
-						<a href="joinPage.al">join</a>
-					</c:if>
 					<c:if test="${sessionScope.empCode != null}">
 						<li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
 						<form id="logout-form" action='<c:url value='logout.al' />' method="POST">
@@ -52,6 +49,5 @@
 			</nav> <!--.nav-menu -->
 		</div>
 	</header> <!--End Header -->
-
 </body>
 </html>
