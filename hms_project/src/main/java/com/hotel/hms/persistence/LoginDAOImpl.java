@@ -77,7 +77,6 @@ public class LoginDAOImpl implements LoginDAO {
 		}else {
 			gradeCnt = 0;
 		}
-			
 		return gradeCnt;
 	}
 
@@ -91,5 +90,11 @@ public class LoginDAOImpl implements LoginDAO {
 	public String pwdCheck(String strId) {
 		String pwd = sqlSession.selectOne("com.hotel.hms.persistence.EmployeeDAO.pwdCheck", strId);
 		return pwd;
+	}
+
+	@Override
+	public EmployeeVO getLoginEmpl(String empCode) {
+		EmployeeVO empVo = sqlSession.selectOne("com.hotel.hms.persistence.EmployeeDAO.getLoginEmpl", empCode);
+		return empVo;
 	}
 }
