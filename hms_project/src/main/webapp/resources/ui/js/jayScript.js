@@ -12,13 +12,17 @@ function errorAlert(errorMsg) {
 
 /* 가족사항 테이블 열 추가 */
 function addRow() {
+	var num = $('.num').val();
+	var i = parseInt(num);
+	
 	const table = document.getElementById('famMemTbl');
 	const newRow = table.insertRow();
+	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>";
+	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>";
+	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>";
+	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td>";
 	
-	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation' id='relation'> </td>";
-	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName' id='faMemName'> </td>";
-	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge' id='faMemAge'> </td>";
-	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt' id='isLiveTogt'> </td>";
+	$('.num').val(i+1);
 }
 
 /* 로그인 페이지 */
@@ -135,7 +139,7 @@ function daumPostcode() {
     }).open();
 }
 
-/* 썸네일 */
+/* 증명사진 미리보기 */
 function setThumbnail(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -174,6 +178,40 @@ function selectRegEmailChk() {
 		form.empEmail2.focus();
 	} else {
 		form.empEmail2.value = form.empEmail3.value;
+	}
+}
+
+$("#sbmBtn").click(function(){
+	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
+	var trlen = tr.length;		// 행의 갯수
+	
+	var famJson = new Object();		// 가족구성원 한명의 정보를 담을 JSON Object
+	var famJsonArray = new Array();	// 가족구성원 모두의 정보를 담을 Array
+
+	for(var i=1;i<trlen; i++){
+		var relation = $("input[name='relation"+i+"']").val();
+		var faMemName = $("input[name='faMemName"+i+"']").val();
+		var faMemAge = $("input[name='faMemAge"+i+"']").val();
+		var isLiveTogt = $("input[name='isLiveTogt"+i+"']").val();
+		// JSON Object에 배열로 한명의 정보 담음
+		famJson = {
+				relation : relation,
+				faMemName : faMemName,
+				faMemAge : faMemAge,
+				isLiveTogt : isLiveTogt
+		};
+		famJsonArray.push(famJson);
+		var famJson = JSON.stringify(famJsonArray);
+	}
+	$(".femMemArr").val(famJson);
+	$("#regEmpForm").submit();	
+});
+
+function changeVal() {
+	if($('.probationCheck').prop('checked')) {
+		$('.probationCheck').val('Y');
+	} else {
+		$('.probationCheck').val('N');
 	}
 }
 

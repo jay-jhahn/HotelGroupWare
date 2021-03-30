@@ -47,7 +47,6 @@
 <link href="${path}vendor/venobox/venobox.css" rel="stylesheet">
 <link href="${path}vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 <link href="${path}vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}css/regEmplPage.css" rel="stylesheet">
 
 <!-- Vendor JS Files -->
 <script src="${path}vendor/jquery/jquery.min.js"></script>
