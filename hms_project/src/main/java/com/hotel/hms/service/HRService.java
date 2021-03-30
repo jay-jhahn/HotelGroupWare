@@ -7,4 +7,6 @@ public interface HRService {
 
 	// 인사정보 등록 처리
 	public void registerEmpAction(MultipartHttpServletRequest multi, Model model);
+	
+	
 }

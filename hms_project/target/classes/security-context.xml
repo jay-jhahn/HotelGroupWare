@@ -14,24 +14,24 @@
 		<sec:intercept-url pattern = "/**.al" access = "permitAll"/>
 		
 		<!-- 총지배인(관리자 : 'ROLE_GM') -->
-		<sec:intercept-url pattern = "/**.gm" access = "hasAnyRole('ROLE_GM','ROLE_OFF', 'ROLE_OFFM', 'ROLE_OFFSM', 'ROLE_RO', 'ROLE_ROM', 'ROLE_ROSM')"/>
+		<sec:intercept-url pattern = "/**.gm" access = "hasAnyRole('ROLE_GM')"/>
 		
 		<!-- 로그인한 사용자 영역  -->
 		<!-- 백오피스(OFF) -->
 		<!-- 백오피스 전원('ROLE_OFF' : 사원) : office all(oa)  -->
-		<sec:intercept-url pattern = "/**.oa" access = "hasAnyRole('ROLE_OFF', 'ROLE_OFFM', 'ROLE_OFFSM')"/>
+		<sec:intercept-url pattern = "/**.oa" access = "hasAnyRole('ROLE_OFF', 'ROLE_OFFM', 'ROLE_OFFSM', 'ROLE_GM')"/>
 		<!-- 백오피스 매니저('ROLE_OFFM') : office manager(om) -->
-		<sec:intercept-url pattern = "/**.om" access = "hasAnyRole('ROLE_OFFM', 'ROLE_OFFSM')"/>
+		<sec:intercept-url pattern = "/**.om" access = "hasAnyRole('ROLE_OFFM', 'ROLE_OFFSM', 'ROLE_GM')"/>
 		<!-- 백오피스 시니어 매니저('ROLE_OFFSM') : office senior(os) -->
-		<sec:intercept-url pattern = "/**.os" access = "hasRole('ROLE_OFFSM')"/>
+		<sec:intercept-url pattern = "/**.os" access = "hasRole('ROLE_OFFSM', 'ROLE_GM')"/>
 		
 		<!-- 객실(ROOM) -->
 		<!-- 객실팀 전원('ROLE_RO' : 사원) : room all(ra) -->
-		<sec:intercept-url pattern = "/**.ra" access = "hasAnyRole('ROLE_RO', 'ROLE_ROM', 'ROLE_ROSM')"/>
+		<sec:intercept-url pattern = "/**.ra" access = "hasAnyRole('ROLE_RO', 'ROLE_ROM', 'ROLE_ROSM', 'ROLE_GM')"/>
 		<!-- 객실팀 매니저('ROLE_ROM') : room manager(rm) -->
-		<sec:intercept-url pattern = "/**.rm" access = "hasAnyRole('ROLE_ROM', 'ROLE_ROSM')"/>
+		<sec:intercept-url pattern = "/**.rm" access = "hasAnyRole('ROLE_ROM', 'ROLE_ROSM', 'ROLE_GM')"/>
 		<!-- 객실팀 시니어 매니저('ROLE_ROSM') : room senior(rs) -->
-		<sec:intercept-url pattern = "/**.rs" access = "hasRole('ROLE_ROSM')"/>
+		<sec:intercept-url pattern = "/**.rs" access = "hasRole('ROLE_ROSM', 'ROLE_GM')"/>
 		
 		<!-- 로그인 폼 -->
 		<!-- username-parameter = "컬럼명" password-parameter = "컬럼명" -->
