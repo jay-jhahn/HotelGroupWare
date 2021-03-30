@@ -134,7 +134,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	}
 
-	// 직원이 휴무 신청한거 처리하는 메서드
+	// 직원이 휴무 신청한거 처리하는 메서드 - 이철한
 	@Override
 	public void insertDayOff(HttpServletRequest req, Model model) {
 
@@ -158,7 +158,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	}
 
-	// 휴무 신청 내역 가져오기
+	// 휴무 신청 내역 가져오기 - 이철한
 	@Override
 	public void logDayOff(HttpServletRequest req, Model model) {
 
@@ -175,33 +175,19 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	}
 
-	// 직원조회하는 메서드 
+	// 직원조회하는 메서드 - 이철한
 	@Override
 	public void getEmpInfo(HttpServletRequest req, Model model) {
 		
+		
 		String empName = req.getParameter("empName");
-		
+		// empName 으로 직원 찾는 부분
 		List<EmployeeVO> vo = dao.getEmpInfo(empName);
-		
-		System.out.println("empName : " + empName);
-		
-		for(int i=0; i<vo.size(); i++) {
-			System.out.println("vo : " + vo.get(i).getEmpName() );
-		}
-		
+		// empName에 해당하는 직원 정보를 vo로 리턴해준다 
 		model.addAttribute("vo", vo);
 		
 	}
 
-	// 선택한 직원 정보 가져오는 메서드 - 이철한 
-	@Override
-	public void selectEmp(HttpServletRequest req, Model model) {
-		
-		
-		
-	}
-	
-	
 	
 	
 	

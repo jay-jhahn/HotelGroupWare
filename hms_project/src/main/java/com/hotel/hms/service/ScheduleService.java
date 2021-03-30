@@ -28,8 +28,8 @@ public interface ScheduleService {
 	// 직원조회하기 - 이철한
 	public void getEmpInfo(HttpServletRequest req, Model model);
 	
-	// 선택한 직원 정보 가져오는 메서드 - 이철한 
-	public void selectEmp(HttpServletRequest req, Model model);
+	
+	
 	
 	
 }

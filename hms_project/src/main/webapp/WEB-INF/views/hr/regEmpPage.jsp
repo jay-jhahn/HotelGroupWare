@@ -242,18 +242,34 @@
 </body>
 
 <script src="${path}js/jayScript.js"></script>
+
 <script type="text/javascript">
 $("#sbmBtn").click(function(){
-	alert("gogo")
-	
-	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
-	var td = tr.find("td");		 // 한 행의 td
-	var i = 1;
-	td.each(function(){
-		alert($(this).text()+i);
-		console.log(td.text());
-		i++;
-	});
+   var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
+   var trlen = tr.length;      // 행의 갯수
+   
+   var famMemArray = [];   // 가족구성원 한명의 정보를 담을 배열
+   var famArray = [];      // 가족구성원 모두의 정보를 담을 배열
+   
+   var relation = $("input[name='relation']").val();
+   var faMemName = $("input[name='faMemName']").val();
+   var faMemAge = $("input[name='faMemAge']").val();
+   var isLiveTogt = $("input[name='isLiveTogt']").val();
+
+   for(var i=1;i<trlen; i++){
+      for(var j=1;j<5;j++){
+         famMemArray.push(relation+j);
+         famMemArray.push(faMemName+j);
+         famMemArray.push(faMemAge+j);
+         famMemArray.push(isLiveTogt+j);
+      }
+      famArray.push(famMemArray);
+   }
+   
+   $(".femMemArr").val(famArray);
+//    $("#regEmpForm").submit();   
+});
+
 	
 // 	var len = td.length;		 // 한 행의 td의 갯수
 	
@@ -297,6 +313,5 @@ $("#sbmBtn").click(function(){
 // 	});
 // 	$(".femMemArr").val(famArray);
 // 	$("#regEmpForm").submit();	
-});
 </script>
 </html>
