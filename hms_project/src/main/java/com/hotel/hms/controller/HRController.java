@@ -1,20 +1,15 @@
 package com.hotel.hms.controller;
 
-import java.io.File;
-import java.nio.file.Files;
 import java.text.ParseException;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hotel.hms.service.HRService;
@@ -70,25 +65,12 @@ public class HRController {
 			throws ParseException {
 		logger.info("regEmpAction.al");
 		service.registerEmpAction(multi, model);
-		
-		return "/hr/regEmpAction";
+		return "/hr/empDetail";
 	}
 	
 	// 메인페이지 증명사진 이미지 로드
-	@Resource(name = "uploadPath")
-	private String uploadPath;
 	@RequestMapping("imgLoad.al")
-	public void imgLoad(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String fileDir = req.getParameter("fileDir");
-		String fileName = req.getParameter("empImg");
-		
-		System.out.println("imgLoad.alimgLoad.alimgLoad.alimgLoad.al");
-		String path = uploadPath + "\\" + fileDir;
-		File file = new File(path, fileName);
-		
-		res.setHeader("Content-Length", String.valueOf(file.length()));
-		res.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
-		Files.copy(file.toPath(), res.getOutputStream());
+	public void imgLoad(MultipartFile file, Model model) throws Exception {
 	}
 	
 	

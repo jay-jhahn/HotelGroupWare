@@ -1,74 +1,96 @@
 package com.hotel.hms.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.annotation.Resource;
+
+import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.hotel.hms.controller.HRController;
 import com.hotel.hms.persistence.HRDAO;
 import com.hotel.hms.vo.EmployeeVO;
 import com.hotel.hms.vo.FamilyVO;
 
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import net.sf.json.JSONArray;
 
 @Service
 public class HRServiceImpl implements HRService {
 	
+	private static final Logger logger = LoggerFactory.getLogger(HRController.class);
+	
 	@Autowired
 	HRDAO dao;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	// 업로드 외부 경로맵핑
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void registerEmpAction(MultipartHttpServletRequest multi, Model model) {
+	public void registerEmpAction(MultipartHttpServletRequest req, Model model) {
 		//////////////////증명사진 파일업로드 시작 /////////////////////////////////////////
-		//MultipartFile file = multi.getFile("imgInput");
-		//
-		//String path = "";
-		//String original = file.getOriginalFilename(); // 업로드하는 파일 name
-		//String uploadPath = "";
-		//
-		//System.out.println("!!!!!!!!!" + file);
-		//System.out.println("!!!!!!!!!" + original);
-		//System.out.println("!!!!!!!!!" + file.getSize());
-		//
-		//uploadPath = path + original;
+		MultipartFile file = req.getFile("empImg");
 		
-		//try {
-		//	file.transferTo(new File(uploadPath));
-		//} catch (IllegalStateException e) {
-		//	e.printStackTrace();
-		//} catch (IOException e) {
-		//	e.printStackTrace();
-		//}
-		//service.registerEmpAction(multi, model);
+		System.out.println("file ==> "+file);
+		logger.info("originalName: " + file.getOriginalFilename());
+		
+		logger.info("size: " + file.getSize());
+		logger.info("contentType: " + file.getContentType());
+		String savedName = "";
+		try {
+			UUID uid = UUID.randomUUID();
+			savedName = uid.toString() + "_" + file.getOriginalFilename();
+			System.out.println("savedName ==> " + savedName);
+			File target = new File(uploadPath, savedName);
+			FileCopyUtils.copy(file.getBytes(), target);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		////////////////// 증명사진 파일업로드 끝 /////////////////////////////////////////
 		
 		////////////////// 개인정보 입력창 값 받아오기 시작 /////////////////////////////////////////
-		String empCode = multi.getParameter("empCode");		// 사번
+		String empCode = req.getParameter("empCode");		// 사번
 		String empPwd = empCode;		// 초기 비밀번호는 사번과 동일하다.
-		String empName = multi.getParameter("empName");		// 성명
+		String encryptPassword = passwordEncoder.encode(empCode);
+		String empName = req.getParameter("empName");		// 성명
 		
 		String empJumin = "";								// 주민번호
-		String empJumin1 = multi.getParameter("empJumin1");
-		String empJumin2 = multi.getParameter("empJumin2");
+		String empJumin1 = req.getParameter("empJumin1");
+		String empJumin2 = req.getParameter("empJumin2");
 		if(empJumin1 != null && empJumin2 != null) {
 			empJumin = empJumin1 + "-" + empJumin2;
 		}
 		System.out.println("empName ==> " + empName);
 		System.out.println("empJumin ==> " + empJumin);
 		
-		String gender = multi.getParameter("gender");		//성별
-		String empBirth = multi.getParameter("empBirth");	// 생일
-		String solarOrLunar = multi.getParameter("solarOrLunar");	// 양/음력
+		String gender = req.getParameter("gender");		//성별
+		String empBirth = req.getParameter("empBirth");	// 생일
+		String solarOrLunar = req.getParameter("solarOrLunar");	// 양/음력
 		
 		String empHomePhone = "";	// 자택 전화번호
-		String homePhone1 = multi.getParameter("homePhone1");
-		String homePhone2 = multi.getParameter("homePhone2");
-		String homePhone3 = multi.getParameter("homePhone3");
+		String homePhone1 = req.getParameter("homePhone1");
+		String homePhone2 = req.getParameter("homePhone2");
+		String homePhone3 = req.getParameter("homePhone3");
 		if (homePhone1 != null && homePhone2 != null && homePhone3 != null) {
 			empHomePhone = homePhone1 + "-" + homePhone2 + "-" + homePhone3;
 		} else {
@@ -76,9 +98,9 @@ public class HRServiceImpl implements HRService {
 		}
 		
 		String empPhone = "";	// 핸드폰
-		String empPhone1 = multi.getParameter("empPhone1");
-		String empPhone2 = multi.getParameter("empPhone2");
-		String empPhone3 = multi.getParameter("empPhone3");
+		String empPhone1 = req.getParameter("empPhone1");
+		String empPhone2 = req.getParameter("empPhone2");
+		String empPhone3 = req.getParameter("empPhone3");
 		if (empPhone1 != null && empPhone2 != null && empPhone3 != null) {
 			empPhone = empPhone1 + "-" + empPhone2 + "-" + empPhone3;
 		} else {
@@ -86,37 +108,42 @@ public class HRServiceImpl implements HRService {
 		}
 		
 		String empEmail = "";	// 이메일
-		String empEmail1 = multi.getParameter("empEmail1");
-		String empEmail2 = multi.getParameter("empEmail2");
+		String empEmail1 = req.getParameter("empEmail1");
+		String empEmail2 = req.getParameter("empEmail2");
 		if (empEmail1 != null && empEmail2 != null) {
 			empEmail = empEmail1 + "@" + empEmail2;
 		} else {
 			empEmail = "없음";
 		}
 		
-		String postCode = multi.getParameter("postCode");			// 우편번호
-		String roadAddress = multi.getParameter("roadAddress");		// 도로명주소
-		String jibunAddress = multi.getParameter("jibunAddress");	// 지번주소
-		String detailAddress = multi.getParameter("detailAddress");	// 상세주소
-		String extraAddress = multi.getParameter("extraAddress");	// 참고항목
+		String postCode = req.getParameter("postCode");			// 우편번호
+		String roadAddress = req.getParameter("roadAddress");		// 도로명주소
+		String jibunAddress = req.getParameter("jibunAddress");	// 지번주소
+		String detailAddress = req.getParameter("detailAddress");	// 상세주소
+		String extraAddress = req.getParameter("extraAddress");	// 참고항목
 		
-		String deptCode = multi.getParameter("dept");				// 부서코드
-		String payConStand = multi.getParameter("payConStand");		// 급여계약기준
-		String enterDate = multi.getParameter("enterDate");			// 입사일자
+		String deptCode = req.getParameter("dept");				// 부서코드
+		String payConStand = req.getParameter("payConStand");		// 급여계약기준
+		String enterDate = req.getParameter("enterDate");			// 입사일자
 		
-		int levelCode = Integer.parseInt(multi.getParameter("level"));	// 직위코드
-		String isProbation = multi.getParameter("isProbation");		// 수습여부
-		String proRate = multi.getParameter("rate");				// 적용률	
+		int levelCode = Integer.parseInt(req.getParameter("level"));	// 직위코드
+		String isProbation = req.getParameter("isProbation");		// 수습여부
+		// 체크가 되지 않은 체크박스의 value는 null이 넘어오므로 null일 경우엔 N으로 초기화해준다.
+		if(isProbation == null) {
+			isProbation = "N";
+		}
+		System.out.println("isProbation ==> " + isProbation);
+		String proRate = req.getParameter("rate");				// 적용률	
 		int rate = 0;
 		if(!proRate.equals("")) {
 			rate = Integer.parseInt(proRate);
 		}
-		String resignDate = multi.getParameter("resignDate");	// 퇴사일자
+		String resignDate = req.getParameter("resignDate");	// 퇴사일자
 		
-		String dutyCode = multi.getParameter("duty");			// 직책코드
-		String empState = multi.getParameter("empState");		// 재직구분
+		String dutyCode = req.getParameter("duty");			// 직책코드
+		String empState = req.getParameter("empState");		// 재직구분
 		
-		String empNotes = multi.getParameter("notes");		// 비고
+		String empNotes = req.getParameter("notes");		// 비고
 		
 		System.out.println("enterDate ==> " + enterDate);
 		System.out.println("empPhone ==> " + empPhone); 
@@ -159,7 +186,7 @@ public class HRServiceImpl implements HRService {
 		empVo.setDeptCode(deptCode);
 		empVo.setLevelCode(levelCode);
 		empVo.setDutyCode(dutyCode);
-		empVo.setEmpPwd(empPwd);
+		empVo.setEmpPwd(encryptPassword);
 		empVo.setEmpName(empName);
 		empVo.setEmpJumin(empJumin);
 		empVo.setGender(gender);
@@ -180,18 +207,20 @@ public class HRServiceImpl implements HRService {
 		empVo.setResignDate(resignDate);
 		empVo.setEmpNotes(empNotes);
 		empVo.setEmpAuthority(empAuthority);
-		empVo.setEmpImg("");
+		empVo.setEmpImg(savedName);
 		
-		dao.insertEmpInfo(empVo);
+		int insertEmpCnt = dao.insertEmpInfo(empVo);
 		////////////////// 개인정보 입력창 값 받아오기 끝 /////////////////////////////////////////
 		
 		////////////////// 가족사항 입력창 값 받아오기 시작 /////////////////////////////////////////
-		String famMem = multi.getParameter("femMems");
+		String famMem = req.getParameter("femMems");
 		
 		List<Map<String, Object>> famMap = new ArrayList<Map<String,Object>>();
 		famMap = JSONArray.fromObject(famMem);
 		
 		FamilyVO famVo = new FamilyVO();
+		
+		int insertFamCnt = 0;
 		for(Map<String, Object> map : famMap) {
 			famVo.setEmpCode(empCode);
 			famVo.setRelation((String)map.get("relation"));
@@ -199,9 +228,34 @@ public class HRServiceImpl implements HRService {
 			famVo.setFaMemAge((String)map.get("faMemAge"));
 			famVo.setIsLiveTogt((String)map.get("isLiveTogt"));
 			
-			dao.insertFamMem(famVo);
+			insertFamCnt = dao.insertFamMem(famVo);
 		}
-
 		////////////////// 가족사항 입력창 값 받아오기 끝 /////////////////////////////////////////
+		
+		String api_key = "NCSVCHFM3EJ6LS11";
+		String api_secret = "S59P6KLXU4JIF8F6TDW0R3BGQA9ITRWA";
+		Message coolsms = new Message(api_key, api_secret);
+		
+		// 4 params(to, from, type, text) are mandatory. must be filled
+		HashMap<String, String> params = new HashMap<String, String>();
+		String smsPhone = empPhone1+empPhone2+empPhone3;
+		params.put("to", smsPhone);
+		params.put("from", "01044591537");
+		params.put("type", "LMS");
+		params.put("text", empName+"님의 입사를 환영합니다.\n귀하의 사번은 '"+empCode+"'이며, HGW시스템 아이디는 사번이고 초기 비밀번호는 동일합니다.\n반드시 비밀번호 변경 후 이용해주세요.\n감사합니다.");
+		params.put("app_version", "test app 1.2"); // application name and version
+		
+		try {
+		  JSONObject obj = (JSONObject) coolsms.send(params);
+		  System.out.println(obj.toString());
+		} catch (CoolsmsException e) {
+		  System.out.println(e.getMessage());
+		  System.out.println(e.getCode());
+		}
+		System.out.println("메시지 전송 성공!");
+		
+		model.addAttribute("insertEmpCnt", insertEmpCnt);
+		model.addAttribute("insertFamCnt", insertFamCnt);
 	}
+
 }
