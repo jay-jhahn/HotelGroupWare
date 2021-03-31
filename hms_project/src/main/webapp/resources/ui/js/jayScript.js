@@ -150,7 +150,7 @@ function setThumbnail(input) {
     }
 }
 
-$("#imgInput").change(function() {
+$("#empImg").change(function() {
 	setThumbnail(this);
 });
 
