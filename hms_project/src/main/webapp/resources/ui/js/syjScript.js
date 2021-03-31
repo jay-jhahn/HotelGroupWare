@@ -1,23 +1,48 @@
 /*
  * 설예진 자바스크립트
  */
-// room 자바스크립트
-function chekIn(){
-   
-   var url = "checkIn.al";
-   window.open(url, "checkIn", "menubar=no, width=700, height=600");
+
+
+//=====================================================================================
+// 방 상태 변경창 오픈
+function roomStateChange(roomNum){
+
+	var url = "emptyRoomStateChange.al?roomNum="+roomNum;
+	window.open(url, "stateChange", "menubar=no, width=700, height=600");
 }
 
+// 체크인
+function chekIn(roomNum){
+	location.href="checkIn.al?roomNum="+roomNum;
+}
+
+// 수리중
+function repair(roomNum){
+	location.href="repair.al?roomNum="+roomNum;
+}
+
+//청소중
+function cleaning(roomNum){
+	location.href="cleaning.al?roomNum="+roomNum;
+}
+
+// 창 끄기
 function checkInExit(){
    window.close();
 }
 
+//=====================================================================================
+
+// 체크인 된 방 상세정보
 function roomDetail(){
    
    var url = "roomDetail.al";
    window.open(url, "roomDetail", "menubar=no, width=700, height=600");
 }
 
+//=====================================================================================
+
+// 방 리스트
 function checkList(){
 	$.ajax({
 		// sendRequest(콜백함수명, url, method, params)
@@ -32,6 +57,8 @@ function checkList(){
 		}
 	});
 }
+
+//=====================================================================================
 
 //게시글 목록
 function boardList(){
@@ -80,3 +107,5 @@ function mainCount(){
 		}
 	});
 }
+
+//=====================================================================================
