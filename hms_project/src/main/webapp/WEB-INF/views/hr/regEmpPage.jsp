@@ -91,13 +91,13 @@
 									<tr>
 										<th><span class="redStar"> * </span> 자택주소 </th>
 										<td colspan="3"> 
-											<input type="text" class="addrPostCode" id="postCode" placeholder="우편번호">
+											<input type="text" class="addrPostCode" name="postCode" id="postCode" placeholder="우편번호">
 											<input type="button" class="searchPostBtn" onclick="daumPostcode()" value="우편번호 찾기">
-											<input type="text" class="roadAddrInput" id="roadAddress" placeholder="도로명주소"><br>
-											<input type="hidden" class="addr" id="jibunAddress" placeholder="지번주소">
+											<input type="text" class="roadAddrInput" name="roadAddress" id="roadAddress" placeholder="도로명주소"><br>
+											<input type="hidden" class="addr" name="jibunAddress" id="jibunAddress" placeholder="지번주소">
 											<span id="guide" style="color:#999;display:none"></span>
-											<input type="text" class="addr" id="detailAddress" placeholder="상세주소">
-											<input type="text" class="addr" id="extraAddress" placeholder="참고항목">
+											<input type="text" class="addr" name="detailAddress" id="detailAddress" placeholder="상세주소">
+											<input type="text" class="addr" name="extraAddress" id="extraAddress" placeholder="참고항목">
 										</td>
 									</tr>
 								</table>
@@ -147,7 +147,7 @@
 									</td>
 									<th> 수습여부/적용률 </th>
 									<td> 
-										<input type="checkbox" class="probationCheck" name="isProbation">&nbsp;&nbsp;
+										<input type="checkbox" class="probationCheck" name="isProbation" value="N" onclick="changeVal();">&nbsp;&nbsp;
 										<input type="text" class="form-control-check" name="rate" id="rate" placeholder="%"> 
 									</td>
 									<th> 퇴사일자 </th>
@@ -170,9 +170,9 @@
 									<td>
 										<select name="empState" id="empState" class="select">
 											<option value="#"> == 재직구분 == </option>
-											<option value="재직"> 재직 </option>
-											<option value="휴직"> 휴직 </option>
-											<option value="퇴사"> 퇴사 </option>
+											<option value="1"> 재직 </option>
+											<option value="2"> 휴직 </option>
+											<option value="0"> 퇴사 </option>
 										</select> 
 									</td>
 									<th colspan="2"></th>
@@ -188,6 +188,7 @@
 					<div class="tab-pane fade" id="famHistory">
 						<div class="perFamDataDiv">
 							<div>
+								<input type="hidden" class="num" value="2" >
 								<div class="addMemberBtnDiv">
 									<input type="button" class="addMemberBtn" value="十 구성원 추가" onclick="addRow();">
 								</div>
@@ -201,32 +202,11 @@
 											<th> 동거여부 </th>
 										</tr>
 										<tr>
-											<td> <input type="text" class="form-control" name="relation" value=""> </td>
-											<td> <input type="text" class="form-control" name="faMemName" value=""> </td>
-											<td> <input type="text" class="form-control" name="faMemAge" value=""> </td>
-											<td> <input type="text" class="form-control" name="isLiveTogt" value=""> </td>
+											<td> <input type="text" class="form-control" name="relation1" value=""> </td>
+											<td> <input type="text" class="form-control" name="faMemName1" value=""> </td>
+											<td> <input type="text" class="form-control" name="faMemAge1" value=""> </td>
+											<td> <input type="text" class="form-control" name="isLiveTogt1" value=""> </td>
 										</tr>
-										
-<!-- 										<tr> -->
-<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
-<!-- 										</tr> -->
-										
-<!-- 										<tr> -->
-<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
-<!-- 										</tr> -->
-										
-<!-- 										<tr> -->
-<!-- 											<td> <input type="text" class="form-control" name="relation"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemName"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="faMemAge"> </td> -->
-<!-- 											<td> <input type="text" class="form-control" name="isLiveTogt"> </td> -->
-<!-- 										</tr> -->
 								</table>
 								<div class="faMemBtnDiv">
 									<input type="reset" class="faMemBtn" value="초기화">
@@ -240,63 +220,5 @@
 		</div>
 	</div>
 </body>
-
 <script src="${path}js/jayScript.js"></script>
-<script type="text/javascript">
-$("#sbmBtn").click(function(){
-	alert("gogo")
-	
-	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
-	var td = tr.find("td");		 // 한 행의 td
-	var i = 1;
-	td.each(function(){
-		alert($(this).text()+i);
-		console.log(td.text());
-		i++;
-	});
-	
-// 	var len = td.length;		 // 한 행의 td의 갯수
-	
-// 	var famMemArray = [];	// 가족구성원 한명의 정보를 담을 배열
-// 	var famArray = [];		// 가족구성원 모두의 정보를 담을 배열
-	
-// 	tr.each(function(){
-// 	var trim = $.trim(td.text());	// 공백 제거한 td
-// 		if(trim == ""){
-// 			len=0;
-// 		} else {
-// 			for(var i=0;i<len;i++){
-// 				famMemArray.push(td.eq(i).text());
-// 			}
-// 			famArray.push(famMemArray);
-// 		}
-// 	});
-// 	alert(len);
-	
-// 	// 행을 돌면서
-// 	tr.each(function(){
-// 		// 첫 행의 td가 비어있지 않으면
-// 		if(td.text().trim() != "") {
-// 			// 행의 td수만큼 돌면서
-// 			for(var i=0;i<len;i++){
-// 				// td의 text를 famMemArray에 push
-// 				famMemArray.push(td.eq(i).text());
-// 			}
-// 			// 한 행의 td의 정보가 담긴 famMemArray를 famArray에 push
-// 			famArray.push(famMemArray);
-// 			alert(famArray);
-// 		// 첫 행의 td가 비어있으면 
-// 		} else if(td.text().trim() == ""){
-// 			// length는 0
-// 			len = 0;
-// 			alert(len);
-// 			// each문 탈출
-// 			return false;
-// 		}
-// 		alert(len);
-// 	});
-// 	$(".femMemArr").val(famArray);
-// 	$("#regEmpForm").submit();	
-});
-</script>
 </html>

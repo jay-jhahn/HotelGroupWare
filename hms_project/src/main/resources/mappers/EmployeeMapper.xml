@@ -11,6 +11,22 @@
 	</select>
 	
 	<!-- 회원가입 -->
+	<insert id="insertEmpInfo" parameterType="com.hotel.hms.vo.EmployeeVO">
+		INSERT INTO emp_tbl
+		(empCode, deptCode, levelCode, dutyCode, empPwd, empName, empJumin, gender, empBirth,
+		 solarOrLunar, empHomePhone, empPhone, empEmail, postCode, roadAddress, detailAddress,
+		 extraAddress, payConStand, isProbation, rate, empState, enterDate, empNotes, empAuthority, empImg)
+		VALUES
+		(#{empCode}, #{deptCode}, #{levelCode}, #{dutyCode}, #{empPwd}, #{empName}, #{empJumin}, #{gender}, #{empBirth},
+		 #{solarOrLunar}, #{empHomePhone}, #{empPhone}, #{empEmail}, #{postCode}, #{roadAddress}, #{detailAddress},
+		 #{extraAddress}, #{payConStand}, #{isProbation}, #{rate}, #{empState}, #{enterDate}, #{empNotes}, #{empAuthority}, #{empImg})
+	</insert>
+	
+	<insert id="insertFamMem" parameterType="com.hotel.hms.vo.FamilyVO">
+		INSERT INTO fam_tbl(empCode, relation, faMemName, faMemAge, isLiveTogt) 
+		VALUES (#{empCode}, #{relation}, #{faMemName}, #{faMemAge}, #{isLiveTogt})
+	</insert>
+	
 	<insert id="insertMember" parameterType="com.hotel.hms.vo.EmployeeVO">
 		insert into emp_tbl (empCode, empName, empPwd, empEmail, empKey) 
 		VALUES (#{empCode}, #{empName}, #{empPwd}, #{empEmail}, #{empKey})
