@@ -9,6 +9,14 @@
 	<select id="roomList" resultType="com.hotel.hms.vo.RoomVO">
 			select * from room_tbl
 	</select>
+
+	<update id="repair" parameterType="String">
+			update room_tbl set roomState=3 where roomNum = #{roomNum}
+	</update>
+
+	<update id="cleaning" parameterType="String">
+			update room_tbl set roomState=2 where roomNum = #{roomNum}
+	</update>
 	
 </mapper> 
     

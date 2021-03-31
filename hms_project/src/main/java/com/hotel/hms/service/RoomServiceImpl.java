@@ -24,4 +24,24 @@ public class RoomServiceImpl implements RoomService {
 		
 		model.addAttribute("list", list);
 	}
+
+	@Override
+	public void repair(HttpServletRequest req, Model model) {
+		// 객실 수리중으로 상태변화
+		String roomNum = req.getParameter("roomNum");
+		
+		int updateCnt = dao.repair(roomNum);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void cleaning(HttpServletRequest req, Model model) {
+		// 객실 청소중으로 상태변화
+		String roomNum = req.getParameter("roomNum");
+		
+		int updateCnt = dao.cleaning(roomNum);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
 }
