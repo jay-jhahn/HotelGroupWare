@@ -17,24 +17,33 @@ function holidayType(obj) {
 	
 }
 
-/* 직원 조회하는 스크립트 */
-function searchEmp(empName) {
+/* 스케줄 조회 직원 조회하는 스크립트 */
+function searchEmp(empName, selectCode) {
 	
-	var popUrl = "searchEmp.al?empName=" + empName;
-	
+	var popUrl = "searchEmp.al?empName=" + empName + "&selectCode=" + selectCode;
 	var popOption = "width=800, height=800, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 		window.open(popUrl, "", popOption); 
-	
 	
 }
 
 /* 직원조회하여 맞는 직원 선택하는 스크립트 */
-function giveEmpInfo () {
+function giveEmpInfo(selectCode) {
 
 	alert("선택 되었습니다.");
-	opener.parent.location.replace("insertSchedule.al?empName=" + document.getElementById('empName').value + "&empCode=" + document.getElementById('empCode').value );
-	self.close();
 	
+	/* selectCode 페이지 이동시 사용 */
+	if(selectCode==1) {
+		// monthSchedule.al 페이지로 이동 
+		opener.parent.location.replace("monthSchedule.al?empName=" + document.getElementById('empName').value + "&empCode=" + document.getElementById('empCode').value );
+	} else if(selectCode ==2) {
+		// insertSchedule.al 페이지로 이동 
+		opener.parent.location.replace("insertSchedule.al?empName=" + document.getElementById('empName').value + "&empCode=" + document.getElementById('empCode').value );
+	} else {
+		// selectCode 가 불분명할 시 main.al 로 이동
+		opener.parent.location.replace("main.al");
+	}
+	
+	self.close();
 }	
 
 
