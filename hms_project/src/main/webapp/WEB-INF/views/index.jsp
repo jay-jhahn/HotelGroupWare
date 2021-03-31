@@ -5,6 +5,7 @@
    <!-- ======= Header ======= -->
    <jsp:include page="${jspPath}common/header.jsp" flush="false" />
 
+<<<<<<< HEAD
    <!-- ======= Hero Section ======= -->
    <section id="hero">
       <div class="hero-container">
@@ -66,6 +67,63 @@
       </div>
    </section>
    <!-- End Hero -->
+=======
+	<!-- ======= Hero Section ======= -->
+	<section id="hero">
+		<div class="hero-container">
+			<div id="heroCarousel" class="carousel">
+				<!-- c태그 붙이기 -->
+				<div class="carousel-item active" style="background-image: url('${path}img/main/main.png');">
+					<div class="carousel-container">
+						<!-- 로그인 되기 전 -->
+						<c:if test="${sessionScope.empCode == null}">
+							<div class="carousel-content container">
+								<h2 class="animate__animated animate__fadeInDown">
+									Welcome to <span>Hotel</span>
+								</h2>
+								<div class="col-lg-6 form-group">
+									<form action="loginAction.al" method="post" name="loginform" onsubmit="return loginCheck();">
+										<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+										<input type="text" class="animate__animated animate__fadeInUp form-control input mb-2" 
+											name="empCode" id="id" placeholder="id">
+										<input type="password" class="animate__animated animate__fadeInUp form-control input mb-2" 
+											name="empPwd" id="pwd" placeholder="password">
+										<input type="submit" class="animate__animated animate__fadeInUp btn-get-started scrollto" value="login">
+									</form>
+								</div>
+							</div>
+						</c:if>
+						
+						<!-- 로그인 되었을 때 -->
+						<c:if test="${sessionScope.empCode != null}">
+						   <div class="carousel-content container">
+						      <h2 class="animate__animated animate__fadeInDown">
+						         Welcome to <span>Hotel</span>
+						      </h2>
+						      <div class="col-lg-6 form-group animate__animated animate__fadeInUp">
+						         <form>
+						            <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+						            <div class="media">
+										<img class="mr-3 image_section" alt="증명사진 이미지" src="<c:url value="/uploadPath/${empVo.getEmpImg()}"/>"/>
+										<div class="media-body">
+											<h3 class="mt-0" style="color: white;"><b>${empVo.getEmpName()}</b></h3>
+											<h6 style="color: white;">사번 : ${empVo.getEmpCode()}</h6>
+											<h6 style="color: white;">부서 : ${empVo.getDeptName()}</h6>
+											<h6 style="color: white;">EMAIL : ${empVo.getEmpEmail()}</h6>
+											<h6 style="color: white;">PHONE : ${empVo.getEmpPhone()}</h6>
+						               </div>
+						            </div>
+						         </form>
+						      </div>
+						   </div>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Hero -->
+>>>>>>> main
 
    <main id="main">
       <!-- ======= Our Team Section ======= -->
@@ -116,10 +174,18 @@
                   </div>
                </div>
 
+<<<<<<< HEAD
                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                   <div class="member">
                      <div class="pic">
                         <img src="imgLoad.al?fileDir=" style="width: 600px; height: 300px;" class="img-fluid">
+=======
+<<<<<<< HEAD
+               <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                  <div class="member">
+                     <div class="pic">
+                        <img src="${path}img/employee/pse.png" style="width: 600px; height: 300px;" class="img-fluid">
+>>>>>>> main
                      </div>
                      <div class="member-info">
                         <h4>Park Sung Eon</h4>
@@ -133,6 +199,28 @@
                      </div>
                   </div>
                </div>
+<<<<<<< HEAD
+=======
+=======
+					<div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+						<div class="member">
+							<div class="pic">
+								<img src="${path}img/employee/pse.png" style="width: 600px; height: 300px;" class="img-fluid">
+							</div>
+							<div class="member-info">
+								<h4>Park Sung Eon</h4>
+								<span>객실팀</span>
+								<div class="social">
+									<a href="#"><i class="icofont-twitter"></i></a> 
+									<a href="#"><i class="icofont-facebook"></i></a> 
+									<a href="#"><i class="icofont-instagram"></i></a> 
+									<a href="#"><i class="icofont-linkedin"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+>>>>>>> main
+>>>>>>> main
 
                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up"
                   data-aos-delay="300">

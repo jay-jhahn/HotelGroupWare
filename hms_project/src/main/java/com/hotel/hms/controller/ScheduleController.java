@@ -92,14 +92,14 @@ public class ScheduleController {
 		return "schedule/reqModifyScdList";
 	}
 	
-	// 근무 신청변경폼 ajax 로 변경하기
+	// 휴무신청페이지에서 휴무종류 폼 정리 - 이철한 
 	@RequestMapping("/dayOffTypeForm.al")
 	public String dayOffTypeForm (HttpServletRequest req, Model model) {
 		
 		return "schedule/dayOffTypeForm";
 	}
 	
-	// 근무조회에서 직원찾는 메서드 - 이철한
+	// 스케줄조회 / 근무편성 에서 직원찾는 메서드 - 이철한
 	@RequestMapping("/searchEmp.al")
 	public String searchEmp(HttpServletRequest req, Model model) {
 		service.getEmpInfo(req, model);
@@ -113,14 +113,6 @@ public class ScheduleController {
 		return "schedule/scdModifyList";
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
