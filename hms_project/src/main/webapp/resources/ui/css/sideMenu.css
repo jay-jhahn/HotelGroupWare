@@ -1,0 +1,16 @@
+.subMenuLi {
+	width: 70%!important;
+	margin: 0 auto!important;
+	background: transparent!important;
+	color: white!important;
+	padding: 0!important;
+}
+
+.remuneration, .scheduleList {
+	width: 70%;
+	margin: 0 auto;
+	background: transparent;
+	color: white;
+	padding: 0;
+}
+
