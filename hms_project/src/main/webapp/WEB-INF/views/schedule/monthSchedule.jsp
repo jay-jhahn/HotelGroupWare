@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					   <table class="table"> 
 						  <tr>  										
 							  <td>직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력"></td>
-							  <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 
-							  <td ><input type="button" class="btn" value="직원조회" class="btn" style="background-color: #55789B; border-radius: 0rem;" onclick="searchEmp(empName.value)" ></td>  
+							  <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 																<!-- selectCode Javascript 페이지 이동 시 분류  0:  1:insertSchedule.al   -->		
+							  <td ><input type="button" class="btn" value="직원조회" class="btn" style="background-color: #55789B; border-radius: 0rem;" onclick="searchEmp(empName.value, 1)" ></td>  
 							  <td>소속부서
 							  <input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
 						</tr> 

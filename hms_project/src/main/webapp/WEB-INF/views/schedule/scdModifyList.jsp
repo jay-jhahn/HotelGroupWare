@@ -93,11 +93,11 @@
 			
 			<tr>
 				<th> 변경사유</th>
-				<td><textarea type="text" name=""  value="변경사유 값" readonly></textarea> </td>
+				<td><textarea type="text" class="modalTextarea"  value="변경사유 값" readonly></textarea> </td>
 			
 			</tr>
 			<tr class="text-center">
-			    <td>
+			    <td colspan="2">
 		      	  <input type="submit" class="btn" style="background-color: #516375; border-radius: 0rem;" data-dismiss="modal" value="승인"> 
 		      	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="반려"> 
 		     	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;" onclick="self.close()" value="닫기"> 
