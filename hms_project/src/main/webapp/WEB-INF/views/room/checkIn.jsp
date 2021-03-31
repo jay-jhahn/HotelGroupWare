@@ -66,8 +66,8 @@
       </table>
    </div>
    <div align="center" >
-         <input type="submit" value="확인">
-         <input type="button" value="취소" onclick="checkInExit()">
+         <input type="submit" value="확인" class="updateBtn">
+         <input type="button" value="취소" class="updateBtn" onclick="checkInExit()">
       </div>
 </form>
 </div>

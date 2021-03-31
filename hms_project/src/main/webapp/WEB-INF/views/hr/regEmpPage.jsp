@@ -12,7 +12,7 @@
 				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#famHistory" onclick="return registerChk();"> 가족사항 </a></li>
 			</ul>
 			<form action="regEmpAction.al?${_csrf.parameterName}=${_csrf.token}" method="post" name="regEmpForm" 
-				id="regEmpForm"	enctype="multipart/form-data">
+				id="regEmpForm"	enctype="multipart/form-data" >
 			<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="personalData">
@@ -147,7 +147,7 @@
 									</td>
 									<th> 수습여부/적용률 </th>
 									<td> 
-										<input type="checkbox" class="probationCheck" name="isProbation" value="N" onclick="changeVal();">&nbsp;&nbsp;
+										<input type="checkbox" class="probationCheck" name="isProbation" value="Y">&nbsp;&nbsp;
 										<input type="text" class="form-control-check" name="rate" id="rate" placeholder="%"> 
 									</td>
 									<th> 퇴사일자 </th>
