@@ -26,7 +26,9 @@
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table text-center">
-										<tr class="text-center backgray">									
+									<!-- selectCode 페이지이동을 위한 코드 0:직원 근무 입력    1:직원 스케줄 조회 -->
+									<input type="hidden" id="selectCode" value="${selectCode}">
+										<tr class="text-center backgray">		
 											<th> 이름 </th>
 											<th> 소속부서 </th>
 											<th> 직급 </th>
@@ -41,7 +43,7 @@
 											<td> 객실부서 </td>
 											<td> 지배인 </td>
 											<td> ${list.empPhone} </td>
-											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="giveEmpInfo();"></th>
+											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="giveEmpInfo(selectCode.value);"></th>
 										</tr>
 									</c:forEach>
 									

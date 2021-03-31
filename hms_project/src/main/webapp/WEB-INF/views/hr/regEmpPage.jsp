@@ -9,7 +9,7 @@
 		<div class="card-body">
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personalData"> 인적사항 </a></li>
-				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#famHistory"> 가족사항 </a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#famHistory" onclick="return registerChk();"> 가족사항 </a></li>
 			</ul>
 			<form action="regEmpAction.al?${_csrf.parameterName}=${_csrf.token}" method="post" name="regEmpForm" 
 				id="regEmpForm"	enctype="multipart/form-data" >
@@ -36,13 +36,13 @@
 									<tr>
 										<th><span class="redStar"> * </span> 주민번호  </th>
 										<td>
-											<input type="text" class="form-control-jumin" name="empJumin1" maxlength="6">&nbsp;-&nbsp;
-											<input type="password" class="form-control-jumin" name="empJumin2" maxlength="7">
+											<input type="text" class="form-control-jumin" id="empJumin1" name="empJumin1" maxlength="6">&nbsp;-&nbsp;
+											<input type="password" class="form-control-jumin" id="empJumin2" name="empJumin2" maxlength="7">
 										</td>
 										<th> 성별  </th>
 										<td>
-											<input type="radio" value="male" name="gender">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" value="female" name="gender">&nbsp;&nbsp;여자
+											<input type="radio" value="male" id="male" name="gender">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="female" id="female" name="gender">&nbsp;&nbsp;여자
 										</td>
 									</tr>
 	
@@ -51,7 +51,7 @@
 										<td><input type="date" class="form-control" name="empBirth" id="empBirth"></td>
 										<th><span class="redStar"> * </span> 양력&nbsp;음력 </th>
 										<td>
-											<input type="radio" value="양력" name="solarOrLunar">&nbsp;&nbsp;양력&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" value="양력" name="solarOrLunar" checked>&nbsp;&nbsp;양력&nbsp;&nbsp;&nbsp;&nbsp;
 											<input type="radio" value="음력" name="solarOrLunar">&nbsp;&nbsp;음력
 										</td>
 									</tr>
@@ -125,7 +125,7 @@
 											<option value="시급"> 시급 </option>
 										</select> 
 									</td>
-									<th> 입사일자 </th>
+									<th><span class="redStar"> * </span> 입사일자 </th>
 									<td> <input type="date" class="form-control" name="enterDate" id="enterDate"> </td>
 								</tr>
 	
