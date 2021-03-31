@@ -1,0 +1,39 @@
+/*--------------------------------------------------------------
+# 자제 CSS
+--------------------------------------------------------------*/
+.input{
+   border-radius : 0!important;
+   border-color: none!important;
+}
+
+.input3 {
+   border-radius : 0;
+   width:120px;
+}
+
+.mb-2 {
+   margin-bottom: 4px;
+}
+
+/****** 테이블CSS ******/
+.backgray {
+   background-color: #EBECF1;
+}
+
+.goBack{
+   background-color: #55789B; 
+   border-radius: 0rem;
+}
+
+/****** 사이드바 글씨크기CSS ******/
+.sidebar .sidebar-wrapper .nav .dpMenu a,
+.sidebar .sidebar-wrapper .nav .dpMenu ul li a,
+.sidebar .sidebar-wrapper .nav li a{
+   font-size: 14px;
+}
+
+.holidayListIframe {
+	border: none;
+	width: 100%;
+	height: 100vh;
+}
