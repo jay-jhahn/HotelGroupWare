@@ -93,43 +93,6 @@
 }
 
 .perDataSection{
-<<<<<<< HEAD
-   height: 240px;
-   width: 88%;
-   float: left;
-}
-
-.perFamDataDiv{
-   margin-top:10px;
-   padding-left: 10px;
-   padding-right: 10px;
-   border: 1px solid black;
-}
-
-.famMemTbl{
-   margin-top: 10px;
-}
-
-.famMemTbl th{
-   background-color: #EBECF1;
-   width: 12%;
-}
-
-.faMemBtnDiv {
-   text-align: right;
-}
-
-.famMemHead{
-   width: 5%!important;
-}
-
-.addMemberBtnDiv{
-   text-align: right;   
-}
-
-.faMemBtn{
-   text-align:center;
-=======
 	height: 240px;
 	width: 88%;
 	float: left;
@@ -165,7 +128,6 @@
 
 .faMemBtn{
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -185,11 +147,7 @@
 }
 
 .addMemberBtn{
-<<<<<<< HEAD
-   text-align:center;
-=======
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -209,30 +167,6 @@
 }
 
 .notes{
-<<<<<<< HEAD
-   resize: none;
-}
-
-.perDataTab th{
-   background-color: #EBECF1;
-   width: 12%;
-}
-
-.mb-10{
-   margin-bottom: 10px;
-}
-
-.mt-10{
-   margin-top: 10px;
-}
-
-.probationCheck{
-   cursor: pointer;
-}
-
-.searchPostBtn{
-   text-align:center;
-=======
 	resize: none;
 }
 
@@ -255,7 +189,6 @@
 
 .searchPostBtn{
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -275,110 +208,6 @@
 }
 
 .form-control-check{
-<<<<<<< HEAD
-   width: 15%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control-jumin{
-   width: 40%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control3-phone {
-   width: 25%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-control2 {
-   width: 15%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.roadAddrInput{
-   width: 37%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.addrPostCode {
-   width: 10%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.addr{
-   width: 30%;
-   height: calc(1.5em + 0.75rem + 2px);
-   padding: 0.375rem 0.75rem;
-   font-size: 1rem;
-   font-weight: 400;
-   line-height: 1.5;
-   color: #495057;
-   background-color: #fff;
-   background-clip: padding-box;
-   border: 1px solid #ced4da;
-   border-radius: 0;
-   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-=======
 	width: 15%;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem;
@@ -481,71 +310,10 @@
 	border: 1px solid #ced4da;
 	border-radius: 0;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
->>>>>>> main
 }
 
 /* empList */
 .empListTbl th {
-<<<<<<< HEAD
-   text-align: center;
-}
-
-.noData{
-   text-align: center;
-}
-
-.searchDiv{
-   background-color: #EBECF1;
-   margin-bottom: 10px;
-   height: 60px;
-   padding-left: 10px;
-   padding-top: 10px;
-}
-
-.searchWord{
-   margin-right: 20px;
-}
-
-.include {
-   font-size: 9pt;
-   padding-left: 3px;
-}
-
-.check {
-   margin-right: 5px;
-   margin-left: 30px;
-}
-
-.searchInput .searchKind{
-   border-radius: 0;
-   width: 150px;
-}
-
-.searchKind{
-   width: 150px;
-   padding: .3em .5em;
-   border: 1px solid #999;
-   font-family: inherit;
-   background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
-   border-radius: 0px;
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-}
-
-.searchKind::-ms-expand {
-   display: none;
-}
-
-.innerWrapper {
-   margin-top: 5px;
-   margin-bottom:5px;
-   vertical-align: middle;
-}
-
-.searchBtn {
-   text-align:center;
-=======
 	text-align: center;
 }
 
@@ -604,7 +372,6 @@
 
 .searchBtn {
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -626,17 +393,9 @@
 
 /* 연회장예약 페이지 CSS */
 .perDataDivEx {
-<<<<<<< HEAD
-   margin-top:10px;
-   padding-left: 10px;
-   padding-right: 10px;
-   border: 1px solid white;
-}
-=======
 	margin-top:10px;
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 1px solid white;
 }
 
->>>>>>> main

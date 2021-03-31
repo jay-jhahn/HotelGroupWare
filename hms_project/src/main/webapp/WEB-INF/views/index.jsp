@@ -110,7 +110,6 @@
                   </div>
                </div>
 
-<<<<<<< HEAD
                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                   <div class="member">
                      <div class="pic">
@@ -128,25 +127,6 @@
                      </div>
                   </div>
                </div>
-=======
-					<div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-						<div class="member">
-							<div class="pic">
-								<img src="${path}img/employee/pse.png" style="width: 600px; height: 300px;" class="img-fluid">
-							</div>
-							<div class="member-info">
-								<h4>Park Sung Eon</h4>
-								<span>객실팀</span>
-								<div class="social">
-									<a href="#"><i class="icofont-twitter"></i></a> 
-									<a href="#"><i class="icofont-facebook"></i></a> 
-									<a href="#"><i class="icofont-instagram"></i></a> 
-									<a href="#"><i class="icofont-linkedin"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
->>>>>>> main
 
                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up"
                   data-aos-delay="300">
