@@ -1,15 +1,26 @@
 package com.hotel.hms.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hotel.hms.service.RoomService;
 
 // 객실 컨트롤러
 @Controller
 public class RoomController {
+	
+	@Autowired
+	RoomService room;
 
 	// 객실 - 설예진
 	@RequestMapping("roomMain.al")
-	public String roomMain() {
+	public String roomMain(HttpServletRequest req, Model model) {
+		room.roomList(req, model);
+		
 		return "room/roomMain";
 	}
 

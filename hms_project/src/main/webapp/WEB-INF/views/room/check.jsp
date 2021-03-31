@@ -6,7 +6,7 @@
 <!--    </div> -->
 <!-- ======= Main ======= -->
    
-   <table>
+   <!-- <table>
       <tr>
          <td><a href="#1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;♡101~107</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
          <td><a href="#2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;♡201~207</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -14,13 +14,32 @@
          <td><a href="#4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;♡401~407</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
          <td><a href="#5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;♡501~507</a></td>
       </tr>
-   </table>
-<div class="content">
-<form style="padding-left: 5%; padding-right: 5%">
-<!-- 고객이름 검색하면 그 고객이 있는 객실로 찾아가기 -->
-<!-- 객실 호 검색하면 찾아가기 -->
+   </table> -->
+	<div class="content">
+		<form style="padding-left: 5%; padding-right: 5%">
+		<!-- 고객이름 검색하면 그 고객이 있는 객실로 찾아가기 -->
+		<!-- 객실 호 검색하면 찾아가기 -->
+			 <div class="card">
+			 
+			 	<table class="table">
+					<c:forEach var="list" items="${list }">
+						<c:if test="${fn:substring(list.roomNum,0,2) == '100' }">
+				        	<c:if test="${list.roomState == '1' }">
+								<td align="center"><div class="roomMainInput"><b class="fontCo">${list.roomNum }</b>
+				               	<br><b class="backCo">${list.roomState }</b>
+				               	<br><a href="#" class="textDa" onclick="roomDetail()">예약자 : 이름</a></div>
+				               
+				              	<br><a href="#" class="textDa" onclick="roomDetail()">예약자 : 없음</a></div>
+				                <br><input type="button" value="수정버튼" onclick="chekIn()" class="updateBtn"/></td>
+				             </c:if>
+				        </c:if>
+					</c:forEach>
+				</table>
+				
+				
+			</div>
 
-<h5><a href="#0"><b id="1" style="color: #516375;">1층</b></a></h5>   
+<!-- <h5><a href="#0"><b id="1" style="color: #516375;">1층</b></a></h5>   
    <div class="card">
       <table class="table">
          <tr>
@@ -202,7 +221,7 @@
                <br><input type="button" value="수정버튼" onclick="chekIn()" class="updateBtn"/></td>
          </tr>
       </table>
-   </div>
+   </div> -->
       
 
 </form>

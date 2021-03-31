@@ -21,6 +21,7 @@ public class RoomServiceImpl implements RoomService {
 	public void roomList(HttpServletRequest req, Model model) {
 		// 객실 리스트 가져오기
 		List<RoomVO> list = dao.roomList();
+		
 		model.addAttribute("list", list);
 	}
 }
