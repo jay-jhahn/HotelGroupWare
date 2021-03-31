@@ -90,4 +90,11 @@ public class HRController {
 		res.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
 		Files.copy(file.toPath(), res.getOutputStream());
 	}
+	
+	
 }
+
+
+
+
+

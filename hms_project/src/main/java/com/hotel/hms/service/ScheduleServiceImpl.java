@@ -181,10 +181,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 		
 		
 		String empName = req.getParameter("empName");
+		// selectCode 페이지 이동을 위해 설정  1:monthSchedule.al 2: insertSchedule.al
+		int selectCode = Integer.parseInt(req.getParameter("selectCode"));
+		System.out.println("selectCode : " + selectCode);
 		// empName 으로 직원 찾는 부분
 		List<EmployeeVO> vo = dao.getEmpInfo(empName);
 		// empName에 해당하는 직원 정보를 vo로 리턴해준다 
 		model.addAttribute("vo", vo);
+		model.addAttribute("selectCode" , selectCode);
 		
 	}
 
