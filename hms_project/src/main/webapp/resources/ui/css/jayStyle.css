@@ -95,9 +95,19 @@
 	border: 1px solid black;
 }
 
-.perDataImg{
+#image_section {
 	height: 151.181102362px;
 	width: 113.385826772px;
+}
+
+.image_section{
+	height: 151.181102362px;
+	width: 113.385826772px;
+}
+
+.perDataImg{
+	height: 153.181102362px;
+	width: 115.385826772px;
 	margin-right: 10px;
 	float: left;
 }

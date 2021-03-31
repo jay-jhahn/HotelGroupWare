@@ -73,16 +73,10 @@
 				<div class="carousel-item active" style="background-image: url('${path}img/main/main.png');">
 					<div class="carousel-container">
 						<!-- 로그인 되기 전 -->
-						<% 
-						String path = "/temp";
-						ServletContext context = request.getSession().getServletContext();
-						String realPath = context.getRealPath(path); 
-						%>
-						<%=realPath%>
 						<c:if test="${sessionScope.empCode == null}">
 							<div class="carousel-content container">
 								<h2 class="animate__animated animate__fadeInDown">
-									Welcome to <span>Hotel<%=realPath%></span>
+									Welcome to <span>Hotel</span>
 								</h2>
 								<div class="col-lg-6 form-group">
 									<form action="loginAction.al" method="post" name="loginform" onsubmit="return loginCheck();">
@@ -107,7 +101,7 @@
 						         <form>
 						            <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 						            <div class="media">
-										<img class="mr-3" alt="증명사진 이미지" src="imgLoad.al?fileDir=D:\Dev76\workspace_project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\hms_project\temp&fileName=${empVo.getEmpImg()}"             />
+										<img class="mr-3 image_section" alt="증명사진 이미지" src="<c:url value="/uploadPath/${empVo.getEmpImg()}"/>"/>
 										<div class="media-body">
 											<h3 class="mt-0" style="color: white;"><b>${empVo.getEmpName()}</b></h3>
 											<h6 style="color: white;">사번 : ${empVo.getEmpCode()}</h6>
@@ -199,7 +193,7 @@
 					<div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
 						<div class="member">
 							<div class="pic">
-								<img src="imgLoad.al?fileDir=" style="width: 600px; height: 300px;" class="img-fluid">
+								<img src="${path}img/employee/pse.png" style="width: 600px; height: 300px;" class="img-fluid">
 							</div>
 							<div class="member-info">
 								<h4>Park Sung Eon</h4>

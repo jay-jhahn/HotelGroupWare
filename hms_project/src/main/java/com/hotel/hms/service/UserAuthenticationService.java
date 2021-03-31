@@ -63,8 +63,7 @@ public class UserAuthenticationService implements UserDetailsService{
 		 * 비밀번호가 불일치시 LoginFailure, 일치시 LoginSuccess
 		 * 테이블의 암호화된 비밀번호와 사용자가 입력한 비밀번호를 내부로직으로 비교처리
 		 */
-		return new UserVO(vo.getEmpCode(),vo.getEmpPwd(),vo.getEmpEnabled().equals("1"),
+		return new UserVO(vo.getEmpCode(),vo.getEmpPwd(),vo.getEmpEnabled().equals("0"),
 				true,true,true,authority);
 	}
-
 }

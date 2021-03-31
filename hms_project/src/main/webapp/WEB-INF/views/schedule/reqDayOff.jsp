@@ -92,7 +92,7 @@
  											</c:if>
  										</td>
  										
- 										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="상세보기 " ></td>
+ 										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" data-toggle="modal" data-target="#detailModal" value="상세보기 " ></td>
  									</tr>
 								</c:forEach>
  								</table> 
@@ -100,8 +100,9 @@
  						</div> 
  					</div> 
  				</div> 
- 			</div> 
-	    		<div class="row">
+ 			</div>
+ 			 
+	    	<div class="row">
  				<div class="col-md-12"> 
  					<div class="card">
  					  <div class="card-header"> 
@@ -143,8 +144,57 @@
  					</div> 
  				</div> 
  			</div> 
-	</div>
+		</div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> 상세보기 </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action ="#" method="post">
+      <input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <table class="table text-center">
+			<tr>
+				<th> 신청자 </th>
+				<td><input type="text" name="empName"  value="${empCode}" readonly></td>
+			</tr>
+			<tr>	
+				<th> 휴무 희망일  </th>
+				<td><input type="text" name=""  value="희망 휴무 일 " readonly></td>
+			</tr>
+			<tr>	
+				<th> 휴무 타입 </th>
+				<td ><input type="text" name=""  value="희망 휴무 값 " readonly></td>
+				
+			</tr>
+			
+			<tr>
+				<th> 신청사유 </th>
+				<td><textarea type="text" name="" class="modalTextarea" value="신청사유 값" readonly></textarea> </td>
+			
+			</tr>
+			<tr class="text-center">
+			    <td colspan="2">
+		      	  <input type="submit" class="btn" style="background-color: #516375; border-radius: 0rem;" data-dismiss="modal" value="승인"> 
+		      	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;"  value="반려"> 
+		     	  <input type="button" class="btn" style="background-color: #516375; border-radius: 0rem;" onclick="self.close()" value="닫기"> 
+			    </td>
+			</tr>
+        </table>
+       </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
