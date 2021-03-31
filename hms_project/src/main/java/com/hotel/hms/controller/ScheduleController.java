@@ -114,12 +114,14 @@ public class ScheduleController {
 		
 	}
 	
-	// 조회한 직원 선택하는 메서드 (스케줄 입력 페이지에서) - 이철한
-	@RequestMapping("/selectEmp.al")
-	public String selectEmp(HttpServletRequest req, Model model) {
-		
-		return "";
-	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -20,8 +20,8 @@
 							<div class="perDataImg mt-10"> 
 								<img id="image_section" alt="" src="http://placehold.it/300x400">
 								<div class="filebox">
-									<label for="imgInput">증명사진</label>	
-									<input type="file" id="imgInput" accept="image/*" onchange="setThumbnail(event);">
+									<label for="empImg">증명사진</label>	
+									<input type="file" id="empImg" name="empImg" accept="image/*" onchange="setThumbnail(event);">
 								</div>
 							</div>
 							<div class="perDataSection">

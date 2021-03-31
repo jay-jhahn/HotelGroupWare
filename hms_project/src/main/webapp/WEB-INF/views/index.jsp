@@ -13,16 +13,10 @@
 				<div class="carousel-item active" style="background-image: url('${path}img/main/main.png');">
 					<div class="carousel-container">
 						<!-- 로그인 되기 전 -->
-						<% 
-						String path = "/temp";
-						ServletContext context = request.getSession().getServletContext();
-						String realPath = context.getRealPath(path); 
-						%>
-						<%=realPath%>
 						<c:if test="${sessionScope.empCode == null}">
 							<div class="carousel-content container">
 								<h2 class="animate__animated animate__fadeInDown">
-									Welcome to <span>Hotel<%=realPath%></span>
+									Welcome to <span>Hotel</span>
 								</h2>
 								<div class="col-lg-6 form-group">
 									<form action="loginAction.al" method="post" name="loginform" onsubmit="return loginCheck();">

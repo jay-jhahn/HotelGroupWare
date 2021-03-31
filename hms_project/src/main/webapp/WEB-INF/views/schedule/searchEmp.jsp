@@ -34,12 +34,14 @@
 											<th> 선택 </th>
 										</tr>
 									<c:forEach var="list" items="${vo}">
+									<input type="hidden"  id="empCode" value="${list.empCode}">
+									<input type="hidden"  id="empName" value="${list.empName}">
 										<tr>
-											<td> ${list.empName}  </td>
+											<td> ${list.empName }</td>
 											<td> 객실부서 </td>
 											<td> 지배인 </td>
 											<td> ${list.empPhone} </td>
-											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="selectEmp.al?empName=${list.empName}"></th>
+											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="giveEmpInfo();"></th>
 										</tr>
 									</c:forEach>
 									
