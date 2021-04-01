@@ -50,11 +50,12 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		} else {
 			gradeCnt = 0;
 		}
+		
 		request.setAttribute("msg", msg);
 		request.getSession().setAttribute("empCode", authentication.getName());
 		request.getSession().setAttribute("grade", gradeCnt);
 		System.out.println("gradeCnt>>>>>>>"+gradeCnt);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/main.al");
 		rd.forward(request, response);
 	}
 }

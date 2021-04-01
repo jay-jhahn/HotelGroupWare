@@ -81,7 +81,7 @@ public class RoomController {
 		
 		return "room/checkInInsertAction";
 	}
-
+  
 	// 예약자 이름 클릭 > 상세정보 - 설예진
 	@RequestMapping("roomDetail.al")
 	public String roomDetail() {

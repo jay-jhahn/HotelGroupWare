@@ -1,6 +1,112 @@
 /* 안재효 스타일시트 */
 @charset "UTF-8";
 
+/* pages */
+.pages{
+	text-align: center;
+}
+/* 사원명부 CSS */
+.empListTbl{
+	table-layout: fixed;
+}
+
+.empListTbl td {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.empListTbl th {
+	text-align: center;
+}
+
+.noData{
+	text-align: center;
+}
+
+.searchDiv{
+	background-color: #EBECF1;
+	margin-bottom: 10px;
+	height: 60px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.searchWord{
+	margin-right: 20px;
+}
+
+.include {
+	font-size: 9pt;
+	padding-left: 3px;
+}
+
+.check {
+	margin-right: 5px;
+	margin-left: 30px;
+}
+
+.searchInput .searchKind{
+	border-radius: 0;
+	width: 150px;
+}
+
+.searchKind{
+	width: 150px;
+	padding: .3em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.solting{
+	padding: .3em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100px;
+	border-radius: 0;
+}
+
+.searchKind::-ms-expand {
+	display: none;
+}
+
+.innerWrapper {
+	margin-top: 5px;
+	margin-bottom:5px;
+	vertical-align: middle;
+}
+
+.searchBtn {
+	text-align:center;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 0;
+    transition: 0.5s;
+    line-height: 1;
+    color: #fff;
+    width: 120px;
+    hight: 31px;
+    margin-right:10px;
+    margin-bottom: 20px;
+    animation-delay: 0.8s;
+    border: 0;
+    background: #55789B;    
+}
 /* 인사정보 등록 페이지 CSS */
 .redStar{
 	color: red;	
@@ -312,85 +418,6 @@
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* empList */
-.empListTbl th {
-	text-align: center;
-}
-
-.noData{
-	text-align: center;
-}
-
-.searchDiv{
-	background-color: #EBECF1;
-	margin-bottom: 10px;
-	height: 60px;
-	padding-left: 10px;
-	padding-top: 10px;
-}
-
-.searchWord{
-	margin-right: 20px;
-}
-
-.include {
-	font-size: 9pt;
-	padding-left: 3px;
-}
-
-.check {
-	margin-right: 5px;
-	margin-left: 30px;
-}
-
-.searchInput .searchKind{
-	border-radius: 0;
-	width: 150px;
-}
-
-.searchKind{
-	width: 150px;
-	padding: .3em .5em;
-	border: 1px solid #999;
-	font-family: inherit;
-	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
-	border-radius: 0px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-.searchKind::-ms-expand {
-	display: none;
-}
-
-.innerWrapper {
-	margin-top: 5px;
-	margin-bottom:5px;
-	vertical-align: middle;
-}
-
-.searchBtn {
-	text-align:center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 12px;
-    border-radius: 0;
-    transition: 0.5s;
-    line-height: 1;
-    color: #fff;
-    width: 120px;
-    hight: 31px;
-    margin-right:10px;
-    margin-bottom: 20px;
-    animation-delay: 0.8s;
-    border: 0;
-    background: #55789B;    
-}
-
 /* 연회장예약 페이지 CSS */
 .perDataDivEx {
 	margin-top:10px;
@@ -398,4 +425,5 @@
 	padding-right: 10px;
 	border: 1px solid white;
 }
+
 

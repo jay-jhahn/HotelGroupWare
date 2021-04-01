@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="common/setting.jsp"%>
 <body>
+	<c:if test="${errMsg != null}">
+		<script type="text/javascript">
+			alert(${errMsg});
+		</script>
+	</c:if>
 	<!-- ======= Header ======= -->
 	<jsp:include page="${jspPath}common/header.jsp" flush="false" />
 
@@ -194,9 +199,6 @@
 			</div>
 		</section>
 		<!-- End Counts Section -->
-
-
-
 
 		<!-- ======= Contact Us Section ======= -->
 		<section id="contact" class="contact section-bg">
