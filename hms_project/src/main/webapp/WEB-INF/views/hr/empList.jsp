@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
 <body>
+	<script type="text/javascript">
+		getEmpInnderList();
+	</script>
 	<div class="card-header">
 		<h4 class="card-title">사원명부</h4>
 	</div>
@@ -10,6 +13,14 @@
 		<div class="searchDiv">
 			<div class="d-flex">
 				<div class="p-2">
+					<select name="solting" id="solting" class="solting">
+						<option value="#">정렬</option>
+						<option value="empCode">사번</option>
+						<option value="empName">성명</option>
+						<option value="deptName">부서</option>
+						<option value="levelName">직위</option>
+						<option value="enterDate">입사날짜</option>
+					</select>&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="searchWord">검색옵션</span> 
 					<select name="searchKind" id="searchKind" class="searchKind">
 						<option value="empCode">사원번호</option>
@@ -29,41 +40,9 @@
 		</div>
 
 		<div class="empListDiv">
-			<table class="table table-bordered empListTbl">
-				<tr>
-					<th style="width: 5%;">사번</th>
-					<th style="width: 10%;">성명</th>
-					<th style="width: 10%;">직책</th>
-					<th style="width: 10%;">부서</th>
-					<th style="width: 10%;">입사일자</th>
-					<th style="width: 10%;">퇴사일자</th>
-					<th style="width: 10%;">핸드폰</th>
-					<th style="width: 15%;">E-MAIL</th>
-					<th style="width: 20%;">주소</th>
-				</tr>
-
-				<c:if test="${empList != null}">
-					<c:forEach var="list" items="${empList}">
-						<tr>
-							<td>${list.empCode}</td>
-							<td>${list.empName}</td>
-							<td>${list.duty.dutyName}</td>
-							<td>${list.dept.deptName}</td>
-							<td>${list.enterDate}</td>
-							<td>${list.resignDate}</td>
-							<td>${list.empPhone}</td>
-							<td>${list.empEmail}</td>
-							<td>${list.empAddr1}&nbsp;${list.empAddr2}&nbsp;${list.empAddr3}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-				<c:if test="${empList == null}">
-					<tr>
-						<td colspan="9" class="noData">사원이 존재하지 않습니다.</td>
-					</tr>
-				</c:if>
-			</table>
+			<!-- 사원리스트 출력될 곳 -->
 		</div>
+		
 	</div> <!-- close card-body -->
 </body>
 </html>

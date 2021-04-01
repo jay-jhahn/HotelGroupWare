@@ -27,13 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
     		url : 'getWork.al',
     		color : '#58FAAC',
     		textColor : 'black'
-    	}
+
+    	},
+    	
     ],
   
    	  dateClick: function() {
    		var date = calendar.getDate();
    		
-  	  	alert("The current date of the calendar is " + date.toISOString());
+  	  alert("The current date of the calendar is " + date.toISOString() );
   		var popUrl = "detailSchedule.al";	//팝업창에 출력될 페이지 URL
   		var popOption = "width=800, height=800, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
   			window.open(popUrl, "", popOption); 

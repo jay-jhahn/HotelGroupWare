@@ -27,7 +27,7 @@ function loginCheck() {
 }
 
 /* 인사정보 페이지 상위 탭 ajax 시작 */
-/* 사원명부 */
+/* 사원명부 페이지 가는 AJAX */
 function getEmpList(){
 	$.ajax({
 		url: 'empList.ad',	
@@ -35,6 +35,21 @@ function getEmpList(){
 		dataType: 'html',	
 		success: function(content){	
 			$('.result').html(content);
+		},
+		error: function(){
+			alert('오류');
+		}
+	});
+};
+
+/* 사원명부 리스트 테이블 가져오는 AJAX */
+function getEmpInnderList() {
+	$.ajax({
+		url: 'getEmpList.ad',	
+		type: 'GET',	
+		dataType: 'html',	
+		success: function(content){	
+			$('.empListDiv').html(content);
 		},
 		error: function(){
 			alert('오류');
@@ -298,6 +313,25 @@ $('#empJumin2').focusout(function(){
 		$('#empBirth').val(fullYear+"-"+mm+"-"+dd);
 	}
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
