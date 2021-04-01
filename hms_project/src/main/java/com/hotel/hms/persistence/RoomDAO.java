@@ -14,4 +14,7 @@ public interface RoomDAO {
 	
 	// 수리중으로 상태변경
 	public int repair(String roomNum);
+	
+	// 체크인 인서트
+	public int checkInInsert(String roomNum);
 }
