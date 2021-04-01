@@ -7,6 +7,7 @@
 	</div>
 	
 	<div class="card-body">
+		<form>
 		<div class="table-responsive">
 
 			<table class="table">
@@ -16,14 +17,14 @@
 						<div class="d-flex">
 							<div class="p-2">
 								<div class="form-group">
-									<label for="name">직원코드</label> <input type="text"
-										class="form-control" id="name" placeholder="코드">
+									<label for="empCode">직원코드</label> <input type="text"
+										class="form-control" id="empCode" name="empCode" placeholder="코드">
 								</div>
 							</div>
 							<div class="p-2">
 								<div class="form-group">
-									<label for="name">직원명</label> <input type="text"
-										class="form-control" id="name" placeholder="성명" readOnly>
+									<label for="empName">직원명</label> <input type="text"
+										class="form-control" id="empName" name="empName" placeholder="성명" readonly>
 								</div>
 							</div>
 						</div>
@@ -36,19 +37,19 @@
 					<td><br> <br>
 					<br>
 						<div class="form-group">
-							<label for="amount">가족수</label> <input type="number"
+							<label for="family">가족수</label> <input type="number"
 								class="form-control" value="1" min="1" max="6" step="1"
-								id="amount" name="amount">
+								id="family" name="family">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">상여금</label> <input
+							<label for="bonus">상여금</label> <input
 								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="10000" id="amount" name="amount">
+								max="1000000" step="5000" id="bonus" name="bonus">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">기타</label> <input
+							<label for="etc">기타</label> <input
 								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="10000" id="amount" name="amount">
+								max="1000000" step="5000" id="etc" name="etc">
 						</div></td>
 
 					<td style="width: 2.5%; border-right: 1px solid #dee2e6;" />
@@ -57,19 +58,19 @@
 					<td><br> <br>
 					<br>
 						<div class="form-group">
-							<label for="exampleInputPassword1">식대</label> <input
+							<label for="meals">식대</label> <input
 								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="10000" id="amount" name="amount">
+								max="1000000" step="5000" id="meals" name="meals">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">자가운전보조금</label> <input
+							<label for="selfDrive">자가운전보조금</label> <input
 								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="10000" id="amount" name="amount">
+								max="1000000" step="5000" id="selfDrive" name="selfDrive">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">출산/보육수당</label> <input
+							<label for="welfare">출산/보육수당</label> <input
 								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="10000" id="amount" name="amount">
+								max="1000000" step="5000" id="welfare" name="welfare">
 						</div></td>
 
 					<td style="width: 5%;" />
@@ -84,6 +85,7 @@
 			</div>
 			
 		</div><!-- <div class="table-responsive"> -->
+		</form>
 	</div><!-- <div class="card-body"> -->
 	
 </body>
