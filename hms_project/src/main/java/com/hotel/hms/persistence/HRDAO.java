@@ -15,7 +15,7 @@ public interface HRDAO {
 	public int insertFamMem(FamilyVO famVo);
 	
 	// 사원명부 리스트 SELECT
-	public List<EmployeeVO> getEmpList(Map<String, Object> map);
+	public List<EmployeeVO> getEmpList();
 	
 	// 총 사원수 조회
 	public int empCount();
@@ -28,5 +28,16 @@ public interface HRDAO {
 	
 	// empEnabled 업데이트
 	public int updateEnabled(String key);
-
+	
+	// 직원 개인 상세정보
+	public EmployeeVO empDetail(String empCode);
+	
+	// 직원 가족사항 정보
+	public List<FamilyVO> empFamMemList(String empCode);
+	
+	// 직원 개인정보 업데이트
+	public int updateEmpInfo(EmployeeVO empVo);	
+	
+	// 직원 가족사항 업데이트
+	public int updateFamInfo(FamilyVO famVo);
 }
