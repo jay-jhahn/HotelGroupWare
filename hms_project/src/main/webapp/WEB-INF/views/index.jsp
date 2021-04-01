@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="common/setting.jsp"%>
 <body>
+	<c:if test="${errMsg != null}">
+		<script type="text/javascript">
+			alert(${errMsg});
+		</script>
+	</c:if>
 	<!-- ======= Header ======= -->
 	<jsp:include page="${jspPath}common/header.jsp" flush="false" />
 
@@ -41,7 +46,7 @@
 						         <form>
 						            <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 						            <div class="media">
-										<img class="mr-3" alt="증명사진 이미지" src="imgLoad.al?fileDir=D:\Dev76\workspace_project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\hms_project\temp&fileName=${empVo.getEmpImg()}"             />
+										<img class="mr-3 image_section" alt="증명사진 이미지" src="<c:url value="/uploadPath/${empVo.getEmpImg()}"/>"/>
 										<div class="media-body">
 											<h3 class="mt-0" style="color: white;"><b>${empVo.getEmpName()}</b></h3>
 											<h6 style="color: white;">사번 : ${empVo.getEmpCode()}</h6>
@@ -113,7 +118,7 @@
 					<div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
 						<div class="member">
 							<div class="pic">
-								<img src="imgLoad.al?fileDir=" style="width: 600px; height: 300px;" class="img-fluid">
+								<img src="${path}img/employee/pse.png" style="width: 600px; height: 300px;" class="img-fluid">
 							</div>
 							<div class="member-info">
 								<h4>Park Sung Eon</h4>
@@ -194,9 +199,6 @@
 			</div>
 		</section>
 		<!-- End Counts Section -->
-
-
-
 
 		<!-- ======= Contact Us Section ======= -->
 		<section id="contact" class="contact section-bg">

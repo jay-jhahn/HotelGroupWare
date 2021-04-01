@@ -42,7 +42,6 @@ public class UserAuthenticationService implements UserDetailsService{
 		// id와 패스워드가 불일치시 null이 넘어오고, 일치시 계정이 넘어온다.
 		// 비밀번호 체크로직은 스프링 시큐리티안에 숨어있다.
 		EmployeeVO vo = sqlSession.selectOne("com.hotel.hms.persistence.EmployeeDAO.readMember", empCode);
-		System.out.println("로그인 체크 == >" + vo);
 		
 		// 인증 실패시 인위적으로 예외 발생
 		if(vo == null) throw new UsernameNotFoundException(empCode);
@@ -66,5 +65,4 @@ public class UserAuthenticationService implements UserDetailsService{
 		return new UserVO(vo.getEmpCode(),vo.getEmpPwd(),vo.getEmpEnabled().equals("1"),
 				true,true,true,authority);
 	}
-
 }

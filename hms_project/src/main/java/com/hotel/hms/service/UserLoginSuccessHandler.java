@@ -12,12 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.hotel.hms.persistence.LoginDAO;
+import com.hotel.hms.vo.EmployeeVO;
 import com.hotel.hms.vo.UserVO;
 
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
+	
+	@Autowired
+	LoginDAO dao;
 	
 	public UserLoginSuccessHandler(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
@@ -35,6 +40,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		System.out.println("아이디 ==> " + authentication.getName());
 		
 		String grade = sqlSession.selectOne("com.hotel.hms.persistence.EmployeeDAO.gradeCheck", authentication.getName());
+		
 		int gradeCnt = 0;
 		
 		if(grade.equals("ROLE_EMPL")) {
@@ -44,12 +50,12 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		} else {
 			gradeCnt = 0;
 		}
+		
 		request.setAttribute("msg", msg);
 		request.getSession().setAttribute("empCode", authentication.getName());
 		request.getSession().setAttribute("grade", gradeCnt);
 		System.out.println("gradeCnt>>>>>>>"+gradeCnt);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/main.al");
 		rd.forward(request, response);
 	}
 }

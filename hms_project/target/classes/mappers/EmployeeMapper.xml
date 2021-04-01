@@ -15,30 +15,17 @@
 		INSERT INTO emp_tbl
 		(empCode, deptCode, levelCode, dutyCode, empPwd, empName, empJumin, gender, empBirth,
 		 solarOrLunar, empHomePhone, empPhone, empEmail, postCode, roadAddress, detailAddress,
-		 extraAddress, payConStand, isProbation, rate, empState, enterDate, empNotes, empAuthority, empImg)
+		 extraAddress, payConStand, isProbation, rate, empState, enterDate, empNotes, empKey, empAuthority, empImg)
 		VALUES
 		(#{empCode}, #{deptCode}, #{levelCode}, #{dutyCode}, #{empPwd}, #{empName}, #{empJumin}, #{gender}, #{empBirth},
 		 #{solarOrLunar}, #{empHomePhone}, #{empPhone}, #{empEmail}, #{postCode}, #{roadAddress}, #{detailAddress},
-		 #{extraAddress}, #{payConStand}, #{isProbation}, #{rate}, #{empState}, #{enterDate}, #{empNotes}, #{empAuthority}, #{empImg})
+		 #{extraAddress}, #{payConStand}, #{isProbation}, #{rate}, #{empState}, #{enterDate}, #{empNotes}, #{empKey}, #{empAuthority}, #{empImg})
 	</insert>
 	
 	<insert id="insertFamMem" parameterType="com.hotel.hms.vo.FamilyVO">
 		INSERT INTO fam_tbl(empCode, relation, faMemName, faMemAge, isLiveTogt) 
 		VALUES (#{empCode}, #{relation}, #{faMemName}, #{faMemAge}, #{isLiveTogt})
 	</insert>
-	
-	<insert id="insertMember" parameterType="com.hotel.hms.vo.EmployeeVO">
-		insert into emp_tbl (empCode, empName, empPwd, empEmail, empKey) 
-		VALUES (#{empCode}, #{empName}, #{empPwd}, #{empEmail}, #{empKey})
-	</insert>
-	
-	<select id = "selectKey" resultType = "int">
-		SELECT COUNT(*) FROM emp_tbl WHERE empKey = #{key}
-	</select>
-	
-	<update id = "updateGrade" parameterType="String">
-		UPDATE emp_tbl SET empEnabled = 1 WHERE empKey = #{key}
-	</update>
 	
 	<select id = "readMember" resultType = "com.hotel.hms.vo.EmployeeVO">
 		SELECT * FROM emp_tbl WHERE empCode = #{empCode}
@@ -65,4 +52,56 @@
 		 WHERE e.deptcode = d.deptcode
            AND e.empCode = #{empCode}
 	</select>
+	
+	<resultMap type="com.hotel.hms.vo.EmployeeVO" id="empMap">
+		<collection column="deptCode"
+					property="deptVo"
+					javaType="com.hotel.hms.vo.DeptVO"
+					select="getDeptInfo"></collection>
+		<collection column="levelCode"
+					property="levelVo"
+					javaType="com.hotel.hms.vo.LevelVO"
+					select="getLevelInfo"></collection>					
+	</resultMap>
+	
+	<!-- 부서정보 가져오기 -->
+	<select id="getDeptInfo" resultType="com.hotel.hms.vo.DeptVO" parameterType="String">
+		SELECT * FROM dept_tbl WHERE deptCode=#{deptCode}
+	</select>
+	
+	<!-- 직위정보 가져오기 -->
+	<select id="getLevelInfo" resultType="com.hotel.hms.vo.LevelVO" parameterType="int">
+		SELECT * FROM level_tbl WHERE levelCode=#{levelCode}
+	</select>
+	
+	<!-- 사원명부 가져오기 ㄱ,ㄴ,ㄷ 순 -->
+	<select id="getEmpList" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, E.* 
+					FROM (
+							SELECT empCode, deptCode, levelCode, dutyCode
+								 , empName, enterDate, resignDate, empPhone
+								 , empEmail, postCode, roadAddress, detailAddress 
+							FROM emp_tbl 
+							ORDER BY empName
+							) E
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 총 사원수 조회 -->
+	<select id="empCount" resultType="int">
+		SELECT COUNT(*) FROM emp_tbl
+	</select>
+	
+	<!-- 이메일 인증 키 조회 -->
+	<select id="selectKey" resultType="int">
+		SELECT COUNT(*) FROM emp_tbl WHERE empKey = #{key}
+	</select>
+	
+	<!-- empEnabled -->
+	<update id="updateEnabled" parameterType="String">
+		UPDATE emp_tbl SET empEnabled = 1 WHERE empKey = #{key}
+	</update>
 </mapper>
