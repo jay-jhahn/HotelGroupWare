@@ -1,9 +1,4 @@
 Manifest-Version: 1.0
 Built-By: std06
 Build-Jdk: 1.8.0_261
-<<<<<<< HEAD
 Created-By: Maven Integration for Eclipse
-
-=======
-Created-By: Maven Integration for Eclipse
->>>>>>> main
