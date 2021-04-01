@@ -35,9 +35,19 @@
 	border: 1px solid black;
 }
 
-.perDataImg{
+#image_section {
 	height: 151.181102362px;
 	width: 113.385826772px;
+}
+
+.image_section{
+	height: 151.181102362px;
+	width: 113.385826772px;
+}
+
+.perDataImg{
+	height: 153.181102362px;
+	width: 115.385826772px;
 	margin-right: 10px;
 	float: left;
 }
@@ -83,43 +93,6 @@
 }
 
 .perDataSection{
-<<<<<<< HEAD
-   height: 240px;
-   width: 88%;
-   float: left;
-}
-
-.perFamDataDiv{
-   margin-top:10px;
-   padding-left: 10px;
-   padding-right: 10px;
-   border: 1px solid black;
-}
-
-.famMemTbl{
-   margin-top: 10px;
-}
-
-.famMemTbl th{
-   background-color: #EBECF1;
-   width: 12%;
-}
-
-.faMemBtnDiv {
-   text-align: right;
-}
-
-.famMemHead{
-   width: 5%!important;
-}
-
-.addMemberBtnDiv{
-   text-align: right;   
-}
-
-.faMemBtn{
-   text-align:center;
-=======
 	height: 240px;
 	width: 88%;
 	float: left;
@@ -155,7 +128,6 @@
 
 .faMemBtn{
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -175,11 +147,7 @@
 }
 
 .addMemberBtn{
-<<<<<<< HEAD
-   text-align:center;
-=======
 	text-align:center;
->>>>>>> main
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 14px;
@@ -430,3 +398,4 @@
 	padding-right: 10px;
 	border: 1px solid white;
 }
+

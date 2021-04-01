@@ -8,7 +8,7 @@
 	
 	<!-- 근무 정보 가져오는 메서드 -->
 	<select id="getWork" parameterType="java.util.Map" resultType="com.hotel.hms.vo.WorkVO" >
-		SELECT skdworkd, empCode FROM work_tbl_test WHERE skdMonth=#{skdMonth} AND empCode = #{empCode}
+		SELECT skdwork, empCode FROM work_tbl WHERE skdMonth=#{skdMonth} AND empCode = #{empCode}
 	</select>
 	
 	<!-- 직원정보 가져오는 메서드  -->
@@ -38,6 +38,7 @@
 	<select id="getEmpInfo" parameterType="String" resultType="com.hotel.hms.vo.EmployeeVO">
 		SELECT * FROM emp_tbl WHERE empName = #{empName}
 	</select>
+	
 	
 	
 </mapper> 

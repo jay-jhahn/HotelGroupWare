@@ -72,4 +72,11 @@ public class HRController {
 	@RequestMapping("imgLoad.al")
 	public void imgLoad(MultipartFile file, Model model) throws Exception {
 	}
+	
+	
 }
+
+
+
+
+
