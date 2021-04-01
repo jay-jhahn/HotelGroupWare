@@ -1,8 +1,9 @@
 /* 설예진 스타일시트 */
+
 .roomMainInput{
    background-color: #EBECF1; 
    height: 100px; 
-   width: 130px;
+   width: 100px;
    color: #516375;
 }
 .fontCo{
@@ -10,6 +11,11 @@
 }
 .backCo{
    background-color: #EBECF1;
+   color: #55789B;
+}
+.redFont{
+	background-color: #EBECF1;
+   	color: red;
 }
 .textDa{
    text-decoration: none;
