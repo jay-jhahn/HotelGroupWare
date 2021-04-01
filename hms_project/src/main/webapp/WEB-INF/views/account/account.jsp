@@ -58,6 +58,7 @@
 								    <tr>
 								      <th scope="col">월</th>
 								      <th scope="col">총 매출액</th>
+								      <th scope="col">손실</th>
 								      <th scope="col">순이익</th>
 								    </tr>
 								  </thead>
@@ -65,10 +66,12 @@
 								    <tr class="table-active">
 								      <th scope="row">1월</th>
 								      <td>-</td>
+								      <td>-</td>								   
 								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">2월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>
@@ -76,9 +79,11 @@
 								      <th scope="row">3월</th>
 								      <td>-</td>
 								      <td>-</td>
+								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">4월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>
@@ -86,9 +91,11 @@
 								      <th scope="row">5월</th>
 								      <td>-</td>
 								      <td>-</td>
+								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">6월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>
@@ -96,9 +103,11 @@
 								      <th scope="row">7월</th>
 								      <td>-</td>
 								      <td>-</td>
+								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">8월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>
@@ -106,9 +115,11 @@
 								      <th scope="row">9월</th>
 								      <td>-</td>
 								      <td>-</td>
+								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">10월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>
@@ -116,9 +127,11 @@
 								      <th scope="row">11월</th>
 								      <td>-</td>
 								      <td>-</td>
+								      <td>-</td>
 								    </tr>
 								    <tr>
 								      <th scope="row">12월</th>
+								      <td>-</td>
 								      <td>-</td>
 								      <td>-</td>
 								    </tr>

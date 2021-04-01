@@ -10,21 +10,6 @@ function errorAlert(errorMsg) {
 	window.history.back();	// 이전 페이지로 이동
 }
 
-/* 가족사항 테이블 열 추가 */
-function addRow() {
-	var num = $('.num').val();
-	var i = parseInt(num);
-	
-	const table = document.getElementById('famMemTbl');
-	const newRow = table.insertRow();
-	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>";
-	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>";
-	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>";
-	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td>";
-	
-	$('.num').val(i+1);
-}
-
 /* 로그인 페이지 */
 function idFocus() {
 	document.loginform.memId.focus();
@@ -41,7 +26,7 @@ function loginCheck() {
 	}
 }
 
-/* 인사정보 페이지 상위 탭 ajax */
+/* 인사정보 페이지 상위 탭 ajax 시작 */
 /* 사원명부 */
 function getEmpList(){
 	$.ajax({
@@ -71,6 +56,7 @@ function getInsertEmp() {
 		}
 	});
 };
+/* 인사정보 페이지 상위 탭 ajax 끝 */
 
 /* 부서 선택하면 사원번호 생성 */
 function makeEmpCode() {
@@ -154,25 +140,14 @@ $("#empImg").change(function() {
 	setThumbnail(this);
 });
 
-/* 인사정보등록 페이지 */
+/* 인사정보등록 페이지 로드시 이름 input에 포커스 */
 function regiFocus() {
 	document.regEmpForm.empName.focus();
 }
 
-function selectRegComEmailChk() {
-	var form = document.regEmpForm;
-	
-	if(form.empComEmail3.value == '0'){
-		form.empComEmail2.value = "";
-		form.empComEmail2.focus();
-	} else {
-		form.empComEmail2.value = form.empComEmail3.value;
-	}
-}
-
+/* 인사정보등록 페이지 이메일 select로 입력 */
 function selectRegEmailChk() {
 	var form = document.regEmpForm;
-	
 	if(form.empEmail3.value == '0'){
 		form.empEmail2.value = "";
 		form.empEmail2.focus();
@@ -181,6 +156,7 @@ function selectRegEmailChk() {
 	}
 }
 
+/* 인사정보등록 페이지 저장 버튼 클릭시 발생 이벤트 */
 $("#sbmBtn").click(function(){
 	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
 	var trlen = tr.length;		// 행의 갯수
@@ -204,9 +180,76 @@ $("#sbmBtn").click(function(){
 		var famJson = JSON.stringify(famJsonArray);
 	}
 	$(".femMemArr").val(famJson);
-	$("#regEmpForm").submit();	
+	$("#regEmpForm").submit();
 });
 
+function registerChk(){
+	var form = document.regEmpForm;
+	if(!form.empName.value) {
+		alert("이름을 입력하세요.");
+		form.empName.focus();
+		return false;
+	}
+	if(!form.empJumin1.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin1.focus();
+		return false;
+	}
+	if(!form.empJumin2.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin2.focus();
+		return false;
+	}
+	if(!form.empBirth.value) {
+		alert("생년월일을 입력하세요.");
+		return false;
+	}
+	if(!form.empPhone1.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone1.focus();
+		return false;
+	}
+	if(!form.empPhone2.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone2.focus();
+		return false;
+	}
+	if(!form.empPhone3.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone3.focus();
+		return false;
+	}
+	if(!form.empEmail1.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail1.focus();
+		return false;
+	}
+	if(!form.empEmail2.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail2.focus();
+		return false;
+	}
+	if(!form.postCode.value) {
+		alert("자택주소를 입력하세요.");
+		return false;
+	}
+	if(!form.empCode.value) {
+		alert("부서를 선택하세요.");
+		form.dept.focus();
+		return false;
+	}
+	if(!form.enterDate.value) {
+		alert("입사일을 선택하세요.");
+		return false;
+	}
+	if(!form.level.value) {
+		alert("직위를 선택하세요.");
+		return false;
+	}
+	return true;
+};
+
+/* 인사정보등록 페이지 수습여부 체크박스 */
 function changeVal() {
 	if($('.probationCheck').prop('checked')) {
 		$('.probationCheck').val('Y');
@@ -215,67 +258,55 @@ function changeVal() {
 	}
 }
 
-
-
-
-
-
-function signInCheck() {
-	var form = document.joinform;
+/* 가족사항 테이블 열 추가 */
+function addRow() {
+	var num = $('.num').val();
+	var i = parseInt(num);
 	
-	if(!form.id.value){
-		alert("아이디를 입력하세요.");
-		form.id.focus();
-		return false;
-	} 
-	if(!form.pwd.value){
-		alert("비밀번호를 입력하세요.");
-		form.pwd.focus();
-		return false;
-	} 
-	if(!form.repwd.value){
-		alert("비밀번호를 확인하세요.");
-		form.repwd.focus();
-		return false;
-	} 
-	if(form.pwd.value != form.repwd.value){
-		alert("비밀번호가 일치하지 않습니다.");
-		form.repwd.focus();
-		return false;
-	} 
-	if(!form.name.value){
-		alert("이름을 입력하세요.");
-		form.name.focus();
-		return false;
-	} 
-	if(!form.jumin1.value){
-		alert("주민번호를 입력하세요.");
-		form.jumin1.focus();
-		return false;
-	} 
-	if(!form.jumin2.value){
-		alert("주민번호 뒷자리를 입력하세요.");
-		form.jumin2.focus();
-		return false;
-	}
-	if(!form.email1.value){
-		alert("이메일을 입력하세요.");
-		form.email1.focus();
-		return false;
-	} 
-	if(!form.email2.value || form.email2.value == "0"){
-		alert("이메일을 형식에 일치하지 않습니다.");
-		form.email2.focus();
-		return false;
-	}
-	// 2. 중복확인 버튼을 클릭하지 않은 경우 "중복확인을 해주세요."
-	// 중복확인 버튼 클릭여부 체크(0:클릭안함 , 1:클릭함) => signIn.jsp - hiddenId
-	// 먼저 <input type="hidden" name="hiddenId" value="0">
-	if(form.hiddenId.value == "0") {
-		alert("중복확인을 해주세요.");
-		return false;
-	} 
+	const table = document.getElementById('famMemTbl');
+	const newRow = table.insertRow();
+	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>";
+	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>";
+	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>";
+	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td>";
+	
+	$('.num').val(i+1);
 }
+
+/* 인사정보등록 페이지 주민번호 쓰면 자동으로 생년월일, 성별 입력 */
+$('#empJumin2').focusout(function(){
+	var jumin2 = $('#empJumin2').val();
+	var gender = jumin2.charAt(0);
+
+	var jumin1 = $('#empJumin1').val();
+	var year = jumin1.substring(0, 2);
+	var mm = jumin1.substring(2, 4);
+	var dd = jumin1.substring(4, 6);
+	var fullYear = "";
+	
+	if(gender == '1' || gender == '3'){
+		$('#male').attr('checked', true);
+	} else if(gender=='2'||gender=='4'){
+		$('#female').attr('checked', true);
+	}
+	
+	if(gender == '1' || gender =='2') {
+		fullYear = "19"+year;
+		$('#empBirth').val(fullYear+"-"+mm+"-"+dd);
+	} else if(gender == '3' || gender == '4') {
+		fullYear = "20"+year;
+		$('#empBirth').val(fullYear+"-"+mm+"-"+dd);
+	}
+});
+
+
+
+
+
+
+
+
+
 
 function confirmId() {
 	var form = document.joinform;
@@ -287,20 +318,6 @@ function confirmId() {
 	} 
 	var url = "confirmId.al?id=" + form.id.value;
 	window.open(url, "confirm", "menubar=no, width=300, height=150");
-}
-
-// 중복확인창 포커스
-function confirmIdFocus() {
-	document.confirmform.id.focus();
-}
-
-//중복확인창에서 id 입력 여부
-function confirmIdCheck() {
-	if(!document.confirmform.id.value) {
-		alert("아이디를 입력하세요.");
-		document.confirmform.id.focus();
-		return false;
-	} 
 }
 
 function setId(id) {

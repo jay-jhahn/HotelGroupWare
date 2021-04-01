@@ -20,4 +20,24 @@ public class RoomDAOImpl implements RoomDAO {
 		List<RoomVO> list = sqlSession.selectList("com.hotel.hms.persistence.RoomDAO.roomList");
 		return list;
 	}
+
+	@Override
+	public int repair(String roomNum) {
+		// 수리중으로 상태변경
+		int updateCnt = sqlSession.update("com.hotel.hms.persistence.RoomDAO.repair", roomNum);
+		return updateCnt;
+	}
+
+	@Override
+	public int cleaning(String roomNum) {
+		// 청소중으로 상태변경
+		int updateCnt = sqlSession.update("com.hotel.hms.persistence.RoomDAO.cleaning", roomNum);
+		return updateCnt;
+	}
+
+	@Override
+	public int checkInInsert(String roomNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
