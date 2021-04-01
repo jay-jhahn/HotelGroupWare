@@ -32,17 +32,17 @@
       <table class="table">
          <tr align="center">
          	<td>
-            	<input type="button" value="체크인" onclick="chekIn(${roomNum})" class="updateBtn">
+            	<input type="button" value="체크인" onclick="chekIn('${roomNum}','${roomKind }', '${roomPrice }')" class="updateBtn">
             </td>
          </tr>
          <tr align="center">
            	<td>
-            	<input type="button" value="청소중" onclick="cleaning(${roomNum})" class="updateBtn">
+            	<input type="button" value="청소중" onclick="cleaning('${roomNum}')" class="updateBtn">
             </td>
          </tr>
          <tr align="center">
           	<td>
-            	<input type="button" value="수리중" onclick="repair(${roomNum})" class="updateBtn"> 
+            	<input type="button" value="수리중" onclick="repair('${roomNum}')" class="updateBtn"> 
             </td>
          </tr>
         

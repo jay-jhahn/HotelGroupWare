@@ -9,14 +9,18 @@ import lombok.Setter;
 @Setter
 public class WorkVO {
 
-	String empCode;
-	int skdMonth;
-	String skdWorkd; // SQL은 VARCHAR2 로 저장되어있음 이것만 왜 출력 ??? !!!!!
-	// int realDay;	 // String 을 split 한 후 int에 담는다.
+	String empCode;		// 사원 코드	
+	int skdMonth;		// 근무 코드 나타냄 ( 코드 아직 정하지 않음 )
+	String skdWorkd; 	// SQL은 VARCHAR2 로 저장되어있음 이것만 왜 출력 ??? !!!!!
 	
-	String title; 	 // event 표시될 타이틀
-	String start;
-	String end;
+	String title; 		 // 풀캘린더 타이틀
+	String start;		 // event 시작 일	
+	String end;			 // event 종료 일 
+	
+	String color ; 		 // 풀캘린더 배경 색 
+	String textColor; 	 // 풀캘린더 클자 색 
+	
+	
 	
 	
 	

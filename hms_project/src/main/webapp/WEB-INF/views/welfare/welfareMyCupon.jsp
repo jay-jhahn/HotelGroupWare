@@ -20,12 +20,46 @@
 							</div>
 							<div class="card-body">
 								<form>
-									<table>
-										<tr>
-											<th>
-												 Hello, World!
-											</th>
+									<table class="table table-hover text-center">
+										<tr class="backgray">
+											<th>No</th>
+											<th>쿠폰이름</th>
+											<th>객실종류</th>
+											<th>조식포함여부</th>
+											<th>쿠폰상세</th>
+											<th>구매가격</th>
+											<th>사용여부</th>
 										</tr>
+
+										<c:forEach var="vo" items="${list}">
+											<tr>
+												<td>${vo.welfareCode}</td>
+												<td>${vo.prodName}</td>
+												<td>${vo.roomKind}</td>
+												<td>${vo.isBreakfast}</td>
+												<td>
+													<c:if test="${vo.prodContents2 != null && vo.prodContents3 != null}">
+														${vo.prodContents1}, ${vo.prodContents2}, ${vo.prodContents3}
+													</c:if>
+													<c:if test="${vo.prodContents2 != null && vo.prodContents3 == null}">
+														${vo.prodContents1}, ${vo.prodContents2}
+													</c:if>
+													<c:if test="${vo.prodContents2 == null && vo.prodContents3 == null}">
+														${vo.prodContents1}
+													</c:if>
+												</td>
+												<td>${vo.dcPrice}</td>
+												<td>
+													<c:if test="${vo.isUsed == 0}">
+														미사용
+													</c:if>
+													<c:if test="${vo.isUsed != 0}">
+														사용
+													</c:if>
+												</td>
+											</tr>
+										</c:forEach>
+
 									</table>
 								</form>
 							</div>

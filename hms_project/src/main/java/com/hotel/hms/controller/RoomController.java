@@ -36,14 +36,25 @@ public class RoomController {
 	@RequestMapping("emptyRoomStateChange.al")
 	public String emptyRoomStateChange(HttpServletRequest req, Model model) {
 		String roomNum = req.getParameter("roomNum");
+		String roomKind = req.getParameter("roomKind");
+		String roomPrice = req.getParameter("roomPrice");
 		model.addAttribute("roomNum", roomNum);
+		model.addAttribute("roomKind", roomKind);
+		model.addAttribute("roomPrice", roomPrice);
 		
 		return "room/emptyRoomStateChange";
 	}
 	
 	// 상태 수정 버튼 > 체크인 - 설예진
 	@RequestMapping("checkIn.al")
-	public String checkIn() {
+	public String checkIn(HttpServletRequest req, Model model) {
+		String roomNum = req.getParameter("roomNum");
+		String roomKind = req.getParameter("roomKind");
+		String roomPrice = req.getParameter("roomPrice");
+		model.addAttribute("roomNum", roomNum);
+		model.addAttribute("roomKind", roomKind);
+		model.addAttribute("roomPrice", roomPrice);
+		
 		return "room/checkIn";
 	}
 	
@@ -62,7 +73,15 @@ public class RoomController {
 		
 		return "room/stateRepairAction";
 	}
-
+	
+	// 체크인서트 - 설예진
+	@RequestMapping("checkInInsert.al")
+	public String checkInInsert(HttpServletRequest req, Model model) {
+		room.checkInInsert(req, model);
+		
+		return "room/checkInInsertAction";
+	}
+  
 	// 예약자 이름 클릭 > 상세정보 - 설예진
 	@RequestMapping("roomDetail.al")
 	public String roomDetail() {
