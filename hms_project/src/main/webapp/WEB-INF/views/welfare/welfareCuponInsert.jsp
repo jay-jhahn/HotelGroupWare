@@ -149,7 +149,7 @@
 												<!-- 처음[◀◀] / 이전블록[◀] -->
 												<c:if test="${startPage > pageBlock}">
 													<li class="page-item"><a class="page-link" href="welfareCuponList.al">«</a></li>
-													<li class="page-item"><a class="page-link" href="welfareCuponList.al?pageNum=${startPage - pageBlock}">Prev<a></li>
+													<li class="page-item"><a class="page-link" href="welfareCuponList.al?pageNum=${startPage - pageBlock}">Prev</a></li>
 												</c:if>
 												
 												<!-- 블록내의 페이지 번호 -->

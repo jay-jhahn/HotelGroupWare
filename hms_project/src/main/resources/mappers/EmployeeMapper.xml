@@ -22,10 +22,25 @@
 		 #{extraAddress}, #{payConStand}, #{isProbation}, #{rate}, #{empState}, #{enterDate}, #{empNotes}, #{empKey}, #{empAuthority}, #{empImg})
 	</insert>
 	
+	<update id="updateEmpInfo" parameterType="com.hotel.hms.vo.EmployeeVO">
+		UPDATE emp_tbl
+		   SET levelCode=#{levelCode}, dutyCode=#{dutyCode}, empJumin=#{empJumin}, gender=#{gender}, empBirth=#{empBirth}
+		     , solarOrLunar=#{solarOrLunar}, empHomePhone=#{empHomePhone}, empPhone=#{empPhone}, empEmail=#{empEmail}, postCode=#{postCode}
+		     , roadAddress=#{roadAddress}, detailAddress=#{detailAddress}, extraAddress=#{extraAddress}, payConStand=#{payConStand}
+		     , isProbation=#{isProbation}, rate=#{rate}, empState=#{empState}, enterDate=#{enterDate}, empNotes=#{empNotes}
+		     , empAuthority=#{empAuthority}, empImg=#{empImg}
+		 WHERE empCode=#{empCode}
+	</update>
+	
 	<insert id="insertFamMem" parameterType="com.hotel.hms.vo.FamilyVO">
 		INSERT INTO fam_tbl(empCode, relation, faMemName, faMemAge, isLiveTogt) 
 		VALUES (#{empCode}, #{relation}, #{faMemName}, #{faMemAge}, #{isLiveTogt})
 	</insert>
+	
+	<update id="updateFamInfo" parameterType="com.hotel.hms.vo.FamilyVO">
+		UPDATE fam_tbl SET relation=#{relation}, faMemName=#{faMemName}, faMemAge=#{faMemAge}, isLiveTogt=#{isLiveTogt} 
+		 WHERE empCode=#{empCode}
+	</update>
 	
 	<select id = "readMember" resultType = "com.hotel.hms.vo.EmployeeVO">
 		SELECT * FROM emp_tbl WHERE empCode = #{empCode}
@@ -76,18 +91,11 @@
 	
 	<!-- 사원명부 가져오기 ㄱ,ㄴ,ㄷ 순 -->
 	<select id="getEmpList" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap">
-		SELECT * 
-			FROM (
-				SELECT ROWNUM RN, E.* 
-					FROM (
-							SELECT empCode, deptCode, levelCode, dutyCode
-								 , empName, enterDate, resignDate, empPhone
-								 , empEmail, postCode, roadAddress, detailAddress 
-							FROM emp_tbl 
-							ORDER BY empName
-							) E
-					)
-		WHERE RN BETWEEN #{start} AND #{end}
+		SELECT empCode, deptCode, levelCode, dutyCode
+			 , empName, enterDate, resignDate, empPhone
+			 , empEmail, postCode, roadAddress, detailAddress 
+		FROM emp_tbl 
+		ORDER BY empName
 	</select>
 	
 	<!-- 총 사원수 조회 -->
@@ -100,8 +108,18 @@
 		SELECT COUNT(*) FROM emp_tbl WHERE empKey = #{key}
 	</select>
 	
-	<!-- empEnabled -->
+	<!-- empEnabled 업데이트 -->
 	<update id="updateEnabled" parameterType="String">
 		UPDATE emp_tbl SET empEnabled = 1 WHERE empKey = #{key}
 	</update>
+	
+	<!-- 개인정보 상세 -->
+	<select id="empDetail" resultType="com.hotel.hms.vo.EmployeeVO" parameterType="String">
+		SELECT * FROM emp_tbl WHERE empCode =#{empCode}
+	</select>
+	
+	<!-- 직원 가족사항 정보 -->
+	<select id="empFamMemList" resultType="com.hotel.hms.vo.FamilyVO" parameterType="String">
+		SELECT * FROM fam_tbl WHERE empCode = #{empCode}
+	</select>
 </mapper>

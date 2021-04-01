@@ -4,7 +4,7 @@
 <body>
 	<c:if test="${errMsg != null}">
 		<script type="text/javascript">
-			alert(${errMsg});
+			alert('${errMsg}');
 		</script>
 	</c:if>
 	<!-- ======= Header ======= -->
