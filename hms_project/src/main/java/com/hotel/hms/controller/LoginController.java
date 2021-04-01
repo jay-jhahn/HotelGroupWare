@@ -25,28 +25,4 @@ public class LoginController {
 		return "index";
 	}
 	
-	// 로그인페이지 - 안재효
-	@RequestMapping("loginPage.al")
-	public String login() {
-		return "client/loginPage";
-	}
-	
-	// 임시 회원가입 시작 ------------------------------------------------------------
-	@RequestMapping("joinPage.al")
-	public String joinPage() {
-		return "login/joinPage";
-	}
-	
-	@RequestMapping("joinAction.al")
-	public String joinAction(HttpServletRequest req, Model model) {
-		service.joinAction(req, model);
-		return "login/joinAction";
-	}
-	
-	@RequestMapping("emailChk.al")
-	public String emailChk(HttpServletRequest req, Model model) {
-		service.emailChk(req, model);
-		return "index";
-	}
-	// 임시 회원가입 끝 ------------------------------------------------------------
 }

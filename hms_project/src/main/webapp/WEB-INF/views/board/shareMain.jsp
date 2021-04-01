@@ -11,9 +11,11 @@
 		<!-- ======= Header ======= -->
 		<jsp:include page="${jspPath}common/header.jsp" flush="false" />
 		
+
 		<div id="result">
 	   
-	   </div>
+		</div>
+			
 	</div> <!-- close main-panel -->
 </div> <!-- close wrapper -->
 	<!-- ======= Footer ======= -->
