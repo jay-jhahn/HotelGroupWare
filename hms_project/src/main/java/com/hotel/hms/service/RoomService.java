@@ -15,4 +15,7 @@ public interface RoomService {
 	// 수리중으로 상태변화
 	public void repair(HttpServletRequest req, Model model);
 	
+	// 체크인 인서트
+	public void checkInInsert(HttpServletRequest req, Model model);
+	
 }

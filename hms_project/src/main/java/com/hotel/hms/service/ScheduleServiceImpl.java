@@ -33,35 +33,41 @@ public class ScheduleServiceImpl implements ScheduleService {
 		String empCode = (String)req.getSession().getAttribute("empCode");
 		// 현재 월 구하기 
 		Calendar cal = Calendar.getInstance();
-		 
-		map.put("skdMonth", cal.get(Calendar.MONTH) +1);
+		int month = cal.get(Calendar.MONTH) ;
+		map.put("skdMonth", month+1  ); // month 에서 +1 을 해주어야 현재 월 출력 month 0부터 시작 함 
+		System.out.println("cal.get(Calendar.MONTH) +1 : " + (month+1)  );
 		map.put("empCode", empCode);
 		List<WorkVO> work = dao.getWork(map);
 		WorkVO vo = null;
-
-		// 1/0/1/0/1/0/1/1/1/ㅊㅇ1/1/1/1/0/0/1/0/1/0/1/1/1/0/0/0/1/1/0/1 1: 근무 0: 휴가
+		
+		// 1/0/1/0/1/0/1/1/1/1/1/1/1/0/0/1/0/1/0/1/1/1/0/0/0/1/1/0/1  1:근무 0: 휴가
 		String[] day = work.get(0).getSkdWorkd().split("/");
 		work.clear();
 
+		if(day != null ) {
 		for (int i = 0; i < day.length; i++) {
 			vo = new WorkVO();
 			if (Integer.parseInt(day[i]) == 1) {
 				vo.setTitle("주간근무");
+				vo.setColor("#00FF00");
 			} else if (Integer.parseInt(day[i]) == 0) {
 				vo.setTitle(" 휴무");
+				vo.setColor("#FF0000 ");
 			} else {
 				vo.setTitle("입력 오류");
 			}
 			// 10일보다 작을 시 일 앞에 0 이 없으므로 0 붙여주기 
 			if( i+1 < 10) {
 				vo.setStart("2021-03-0" + (i+1));
-				vo.setEnd("2021-03-0" +(i+1));
+				vo.setEnd("2021-03-0" + (i+1));
 			} else {
 				vo.setStart("2021-03-" + (i+1));
-				vo.setEnd("2021-03-" +(i+1));
+				vo.setEnd("2021-03-" + (i+1));
 			}
-			
 			work.add(vo);
+		}
+		} else {
+			System.out.println("day 데이터 없음 !!!");
 		}
 		return work;
 	}
@@ -178,7 +184,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 	// 직원조회하는 메서드 - 이철한
 	@Override
 	public void getEmpInfo(HttpServletRequest req, Model model) {
-		
 		
 		String empName = req.getParameter("empName");
 		// selectCode 페이지 이동을 위해 설정  1:monthSchedule.al 2: insertSchedule.al

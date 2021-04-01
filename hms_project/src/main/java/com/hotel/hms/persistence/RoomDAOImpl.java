@@ -34,4 +34,10 @@ public class RoomDAOImpl implements RoomDAO {
 		int updateCnt = sqlSession.update("com.hotel.hms.persistence.RoomDAO.cleaning", roomNum);
 		return updateCnt;
 	}
+
+	@Override
+	public int checkInInsert(String roomNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
