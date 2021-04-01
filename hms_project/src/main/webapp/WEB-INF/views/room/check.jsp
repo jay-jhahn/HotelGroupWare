@@ -33,7 +33,8 @@
 						<td align="center"><div class="roomMainInput">
 								<b class="fontCo">${list.roomNum }</b> <br> <b
 									class="redFont">공실</b> <br> 
-									</div><br><input type="button" value="변경" onclick="roomStateChange(${list.roomNum })"
+									</div><br><input type="button" value="변경" 
+									onclick="roomStateChange('${list.roomNum }','${list.roomKind}','${list.roomPrice}')"
 									class="updateBtn" /></td>
 					</c:if>
 					<c:if test="${list.roomState eq '1'.charAt(0) }">

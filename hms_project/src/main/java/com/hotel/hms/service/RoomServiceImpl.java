@@ -44,4 +44,25 @@ public class RoomServiceImpl implements RoomService {
 		
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
+	@Override
+	public void checkInInsert(HttpServletRequest req, Model model) {
+		// 체크인 인서트
+		String roomNum = req.getParameter("roomNum");
+		String empCode = req.getParameter("empCode");
+		String roomKind = req.getParameter("roomKind");
+		String roomPrice = req.getParameter("roomPrice");
+		
+		String guestName = req.getParameter("guestName");
+		String guestPhone = req.getParameter("guestName");
+
+		
+		
+		
+		
+		int insertCnt = dao.checkInInsert(roomNum);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
 }
