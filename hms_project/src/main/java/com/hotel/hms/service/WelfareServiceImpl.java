@@ -43,7 +43,7 @@ public class WelfareServiceImpl implements WelfareService {
 		page.setPageBlock(3);		// 한 블럭당 페이지 개수
 		page.setPageNum(pageNum);	// 페이지 번호
 		
-		// 1. 카테고리에 따른 상품 개수 구하기
+		// 쿠폰 개수 구하기
 		page.setCnt(dao.welfareCuponCount());	// 쿠폰개수
 		int cnt = page.getCnt();
 		
@@ -71,33 +71,33 @@ public class WelfareServiceImpl implements WelfareService {
 	public void welfareCuponInsert(HttpServletRequest req) {
 		// 값 가져오기
 		String prodName = req.getParameter("prodName");
+		int dcPrice = 0;
 		int realPrice = Integer.parseInt(req.getParameter("realPrice"));
 		int dcRate = Integer.parseInt(req.getParameter("dcRate"));
-		int dcPrice = realPrice * ((100-dcRate)/100);
-		System.out.println("dbPrice >> " + dcPrice);
+		float rate = 100-dcRate;
+		dcPrice = (int)(realPrice * rate/100);
 		
 		String roomKind = "";
 		String roomClass = req.getParameter("roomClass");
 		String roomType = req.getParameter("roomType");
-		if (roomClass != null && roomType != null) {
+		String isBreakfast = req.getParameter("isBreakfast");
+		if (roomClass.equals("등급") || roomType.equals("객실")) {
+			roomKind = "";
+			isBreakfast = "조식지원x";
+		} else {
 			roomKind = roomClass + " " + roomType;
 		}
-
-		System.out.println("roomKind >> " + roomKind);
-		
-		String isBreakfast = req.getParameter("isBreakfast");
 		
 		String prodContents1 = req.getParameter("prodContents1");
-		String prodContents2 = req.getParameter("prodContents2");
-		if (prodContents2 == null) {prodContents2 = "";}
-		String prodContents3 = req.getParameter("prodContents3");
-		if (prodContents3 == null) {prodContents3 = "";}
-		System.out.println("prodContents1 >> " + prodContents1);
+		String prodContents2 = "" ;
+		if (req.getParameter("prodContents2") != null) {prodContents2 = req.getParameter("prodContents2");}
+		String prodContents3 = "";
+		if (req.getParameter("prodContents3") != null) {prodContents3 = req.getParameter("prodContents3");}
 		
 		// 복지쿠폰 입력
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("prodName", prodName);
-		map.put("dcPrice", realPrice);
+		map.put("realPrice", realPrice);
 		map.put("dcPrice", dcPrice);
 		map.put("roomKind", roomKind);
 		map.put("isBreakfast", isBreakfast);
@@ -105,6 +105,5 @@ public class WelfareServiceImpl implements WelfareService {
 		map.put("prodContents2", prodContents2);
 		map.put("prodContents3", prodContents3);
 		dao.welfareCuponInsert(map);
-
 	}
 }

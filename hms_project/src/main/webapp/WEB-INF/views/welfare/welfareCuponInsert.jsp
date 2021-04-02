@@ -15,13 +15,14 @@
 				<div class="row">
 					<div class="col-md-12">
 					
-					<div class="card">
+					<div class="card cardPadding">
 						<div class="card-header">
 							<h4 class="card-title">쿠폰 입력</h4>
 						</div>
 						<div class="card-body">
-							<form action="welfareCuponInsert.al" style="text-align:center" method="post" name="cuponInsertForm">
-								<table class="table" style="width:50%">
+							<form action="welfareCuponInsert.oa" style="text-align:center" method="post" name="cuponInsertForm">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+								<table class="table" style="width:50%;">
 									<tr>
 										<th class="backgray">쿠폰명<span class="redStar"> * </span></th>
 										<td colspan="2"><input type="text" class="form-control" name="prodName"/></td>
@@ -76,11 +77,11 @@
 									<tr>
 									<tr>
 										<th class="backgray">상세내용2</th>
-										<td colspan="2"><input type="text" class="form-control" name="prodContents1" placeholder="ex:맥주 무제한"/></td>
+										<td colspan="2"><input type="text" class="form-control" name="prodContents2" placeholder="ex:맥주 무제한"/></td>
 									<tr>
 									<tr>
 										<th class="backgray">상세내용3</th>
-										<td colspan="2"><input type="text" class="form-control" name="prodContents1" placeholder=""/></td>
+										<td colspan="2"><input type="text" class="form-control" name="prodContents3" placeholder=""/></td>
 									<tr>
 								</table>
 								
@@ -90,12 +91,12 @@
 						</div>
 					</div>
 					
-					<div class="card">
+					<div class="card cardPadding">
 						<div class="card-header">
 							<h4 class="card-title">쿠폰 목록</h4>
 						</div>
 						<div class="card-body">
-
+							<form><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"></form>
 								<input type="hidden" value="${pageNum}" name="pageNum"/>
 								<table class="table table-hover text-center">
 									<tr class="backgray">
@@ -106,12 +107,13 @@
 										<th>쿠폰상세</th>
 										<th>실가격</th>
 										<th>구매가격</th>
+										<th>등록일</th>
 										<th>사용여부</th>
 									</tr>
 
 									<c:forEach var="vo" items="${list}">
 										<tr>
-											<td>${vo.welfareCode}</td>
+											<td>${vo.rNum}</td>
 											<td>${vo.prodName}</td>
 											<td>${vo.roomKind}</td>
 											<td>${vo.isBreakfast}</td>
@@ -126,8 +128,9 @@
 													${vo.prodContents1}
 												</c:if>
 											</td>
-											<td>${vo.realPrice}</td>
-											<td>${vo.dcPrice}</td>
+											<td><fmt:formatNumber type="number" pattern="#,##0" value="${vo.realPrice}"/>원</td>
+											<td><fmt:formatNumber type="number" pattern="#,##0" value="${vo.dcPrice}"/>원</td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.regDate}"/></td>
 											<td>
 												<c:if test="${vo.isUsed == 0}">
 													미사용
@@ -159,15 +162,15 @@
 													</c:if>
 													
 													<c:if test="${i != currentPage}">
-														<li class="page-item"><a class="page-link" href="welfareCuponList.al?pageNum=${i}"> ${i} </a></li>
+														<li class="page-item"><a class="page-link" href="welfareCuponList.oa?pageNum=${i}"> ${i} </a></li>
 													</c:if>
 													
 												</c:forEach>
 												
 												<!-- 다음블록[▶] / 마지막[▶▶] -->
 												<c:if test="${endPage < pageCount}">
-													<li class="page-item"><a class="page-link" href="welfareCuponList.al?pageNum=${startPage + pageBlock}">Next</a></li>
-													<li class="page-item"><a class="page-link" href="welfareCuponList.al?pageNum=${pageCount}">»</a></li>
+													<li class="page-item"><a class="page-link" href="welfareCuponList.oa?pageNum=${startPage + pageBlock}">Next</a></li>
+													<li class="page-item"><a class="page-link" href="welfareCuponList.oa?pageNum=${pageCount}">»</a></li>
 												</c:if>
 											</c:if>
 										</ul>

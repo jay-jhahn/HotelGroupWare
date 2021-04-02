@@ -41,7 +41,7 @@
             <!-- ====== Card ===== -->
             <div class="row">
             <div class="col-md-12">
-               <div class="card" style="padding: 5px 15px;">
+               <div class="card cardPadding">
                    <div class="card-header">
                        <h4 class="card-title"></h4>
                    </div>
@@ -95,31 +95,31 @@
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">급여</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">식대</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">연장수당</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">자가운전보조금</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">휴일수당</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">출산/보육수당</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">상여금</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">기타</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">지급합계</th>
-                                         <td colspan="3">100,0000</td>
+                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                    </table>
                                    
@@ -133,38 +133,38 @@
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">소득세</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">고용보험</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">주민세</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">국민연금</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">기타</th>
-                                         <td>0</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                          <th class="backgray">장기요양</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray"></th>
                                          <td></td>
                                          <th class="backgray">건강보험</th>
-                                         <td>100,0000</td>
+                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                       <tr class="text-center">
                                          <th class="backgray">공제합계</th>
-                                         <td colspan="3">100,0000</td>
+                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                    </table>
                                    
                                    <table class="table table-bordered" style="font-size:14px;">
                                       <tr class="text-center">
                                          <th class="backgray">차감수령액</th>
-                                         <td colspan="3">100,0000</td>
+                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
                                       </tr>
                                    </table>
                                 </div>
