@@ -37,8 +37,8 @@ public class HRDAOImpl implements HRDAO {
 	}
 
 	@Override
-	public List<EmployeeVO> getEmpList(Map<String, Object> map) {
-		List<EmployeeVO> empList = sqlSession.selectList("com.hotel.hms.persistence.EmployeeDAO.getEmpList", map);
+	public List<EmployeeVO> getEmpList() {
+		List<EmployeeVO> empList = sqlSession.selectList("com.hotel.hms.persistence.EmployeeDAO.getEmpList");
 		return empList;
 	}
 
@@ -77,6 +77,30 @@ public class HRDAOImpl implements HRDAO {
 	@Override
 	public int updateEnabled(String key) {
 		int updateCnt = sqlSession.update("com.hotel.hms.persistence.EmployeeDAO.updateEnabled", key);
+		return updateCnt;
+	}
+
+	@Override
+	public EmployeeVO empDetail(String empCode) {
+		EmployeeVO empVo = sqlSession.selectOne("com.hotel.hms.persistence.EmployeeDAO.empDetail", empCode);
+		return empVo;
+	}
+
+	@Override
+	public List<FamilyVO> empFamMemList(String empCode) {
+		List<FamilyVO> empFamMemList = sqlSession.selectList("com.hotel.hms.persistence.EmployeeDAO.empFamMemList", empCode);
+		return empFamMemList;
+	}
+
+	@Override
+	public int updateEmpInfo(EmployeeVO empVo) {
+		int updateCnt = sqlSession.update("com.hotel.hms.persistence.EmployeeDAO.updateEmpInfo", empVo);
+		return updateCnt;
+	}
+
+	@Override
+	public int updateFamInfo(FamilyVO famVo) {
+		int updateCnt = sqlSession.update("com.hotel.hms.persistence.EmployeeDAO.updateFamInfo", famVo);
 		return updateCnt;
 	}
 	

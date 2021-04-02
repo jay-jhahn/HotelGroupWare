@@ -3,7 +3,7 @@
 <%@ include file="../common/setting.jsp"%>
 <body>
 	<script type="text/javascript">
-		getEmpInnderList();
+		getEmpInnerList();
 	</script>
 	<div class="card-header">
 		<h4 class="card-title">사원명부</h4>

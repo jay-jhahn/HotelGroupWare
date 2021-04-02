@@ -1,15 +1,6 @@
 /**
  * 안재효 자바스크립트
  */
-var invalidIdError = "아이디가 존재하지 않습니다.\n확인 후 다시 시도하세요.";
-var passwordError = "비밀번호가 일치하지 않습니다.\n확인 후 다시 시도하세요.";
-
-/* 에러메시지 */
-function errorAlert(errorMsg) {
-	alert(errorMsg);
-	window.history.back();	// 이전 페이지로 이동
-}
-
 /* 로그인 페이지 */
 function idFocus() {
 	document.loginform.memId.focus();
@@ -43,9 +34,9 @@ function getEmpList(){
 };
 
 /* 사원명부 리스트 테이블 가져오는 AJAX */
-function getEmpInnderList() {
+function getEmpInnerList() {
 	$.ajax({
-		url: 'getEmpList.ad',	
+		url: 'getEmpList.ad?',	
 		type: 'GET',	
 		dataType: 'html',	
 		success: function(content){	
@@ -83,7 +74,6 @@ function makeEmpCode() {
 	// 사번 input 태그에 부서 약자 + 6자리 난수 자동 입력
 	$("#empCode").val($("#dept").val() + ranNum);
 }
-
 
 /* 우편번호/도로명주소 검색 */
 function daumPostcode() {
@@ -275,17 +265,12 @@ function changeVal() {
 
 /* 가족사항 테이블 열 추가 */
 function addRow() {
-	var num = $('.num').val();
-	var i = parseInt(num);
-	
-	const table = document.getElementById('famMemTbl');
-	const newRow = table.insertRow();
-	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>";
-	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>";
-	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>";
-	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td>";
-	
-	$('.num').val(i+1);
+	const table = $('#famMemTbl');
+	var i = table.find("tr").length;
+	table.append("<tr><td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td></tr>");
 }
 
 /* 인사정보등록 페이지 주민번호 쓰면 자동으로 생년월일, 성별 입력 */
@@ -314,14 +299,148 @@ $('#empJumin2').focusout(function(){
 	}
 });
 
+/* 개인정보 상세 페이지 */
+function empDetails(dept, level, duty, gender, state, payConStand, probation) {
+	$('#dept').val(dept).attr("selected", true);
+	$('#level').val(level).attr("selected", true);
+	$('#duty').val(duty).attr("selected", true);
+	$('input:radio[name=gender]:input[value='+ gender +']').attr("checked", true);
+	$('#empState').val(state).attr("selected", true);
+	$('#payConStand').val(payConStand).attr("selecter", true);
+}
+
+/* 인사 정보 상세 페이지 가져오는 AJAX */
+function empDetail(empCode) {
+	$.ajax({
+		url: 'empDetail.oa?empCode='+empCode,	
+		type: 'GET',	
+		dataType: 'html',	
+		success: function(content){	
+			$('.detailDiv').html(content);
+		},
+		error: function(){
+			alert('오류');
+		}
+	});
+}
+
+/* 인사정보 상세 띄워주는 DIV */
+function displayDetail(empCode) {
+	empDetail(empCode);
+	$('.detailDiv').show();
+	location.href="#personalData";
+}
 
 
+/* 인사정보 상세 div 닫기 버튼 */
+$('#closeMdfBtn').click(function(){
+	$('.detailDiv').hide();
+});
 
+/* 인사정보 상세 div CSS 시작 */
+/* 인사정보등록 페이지 이메일 select로 입력 */
+function selectMdfEmailChk() {
+	var form = document.modifyForm;
+	if(form.empEmail3.value == '0'){
+		form.empEmail2.value = "";
+		form.empEmail2.focus();
+	} else {
+		form.empEmail2.value = form.empEmail3.value;
+	}
+}
 
+function modifyChk(){
+	var form = document.modifyForm;
+	if(!form.empName.value) {
+		alert("이름을 입력하세요.");
+		form.empName.focus();
+		return false;
+	}
+	if(!form.empJumin1.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin1.focus();
+		return false;
+	}
+	if(!form.empJumin2.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin2.focus();
+		return false;
+	}
+	if(!form.empBirth.value) {
+		alert("생년월일을 입력하세요.");
+		return false;
+	}
+	if(!form.empPhone1.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone1.focus();
+		return false;
+	}
+	if(!form.empPhone2.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone2.focus();
+		return false;
+	}
+	if(!form.empPhone3.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone3.focus();
+		return false;
+	}
+	if(!form.empEmail1.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail1.focus();
+		return false;
+	}
+	if(!form.empEmail2.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail2.focus();
+		return false;
+	}
+	if(!form.postCode.value) {
+		alert("자택주소를 입력하세요.");
+		return false;
+	}
+	if(!form.empCode.value) {
+		alert("부서를 선택하세요.");
+		form.dept.focus();
+		return false;
+	}
+	if(!form.enterDate.value) {
+		alert("입사일을 선택하세요.");
+		return false;
+	}
+	if(!form.level.value) {
+		alert("직위를 선택하세요.");
+		return false;
+	}
+	return true;
+};
 
+/* 인사정보등록 페이지 저장 버튼 클릭시 발생 이벤트 */
+$("#mdfBtn").click(function(){
+	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
+	var trlen = tr.length;		// 행의 갯수
+	
+	var famJson = new Object();		// 가족구성원 한명의 정보를 담을 JSON Object
+	var famJsonArray = new Array();	// 가족구성원 모두의 정보를 담을 Array
 
-
-
+	for(var i=1;i<trlen; i++){
+		var relation = $("input[name='relation"+i+"']").val();
+		var faMemName = $("input[name='faMemName"+i+"']").val();
+		var faMemAge = $("input[name='faMemAge"+i+"']").val();
+		var isLiveTogt = $("input[name='isLiveTogt"+i+"']").val();
+		// JSON Object에 배열로 한명의 정보 담음
+		famJson = {
+				relation : relation,
+				faMemName : faMemName,
+				faMemAge : faMemAge,
+				isLiveTogt : isLiveTogt
+		};
+		famJsonArray.push(famJson);
+		var famJson = JSON.stringify(famJsonArray);
+	}
+	$(".femMemArr").val(famJson);
+	$("#modifyForm").submit();
+});
 
 
 
