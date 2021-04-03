@@ -47,9 +47,9 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 
 	// 직원이 휴무신청한 내역 가져오기 - 이철한
 	@Override
-	public List<HolidayVO> getLogDayOff(String empCode) {
+	public List<HolidayVO> getLogDayOff(Map <String , Object> map) {
 		
-		return sqlSession.selectList("com.hotel.hms.persistence.ShareDAO.getLogDayOff" , empCode);
+		return sqlSession.selectList("com.hotel.hms.persistence.ShareDAO.getLogDayOff" , map);
 		
 	}
 
@@ -65,6 +65,28 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	public List<EmployeeVO> getEmpInfo(String empName) {
 		
 		return sqlSession.selectList("com.hotel.hms.persistence.ShareDAO.getEmpInfo", empName);
+	}
+
+	// 휴무 잔여일 가져오는 메서드 - 이철한 
+	@Override
+	public int getHolidayDays(String empCode) {
+		
+		return sqlSession.selectOne("com.hotel.hms.persistence.ShareDAO.getHolidayDays", empCode);
+		
+	}
+
+	// 직원 근무정보 뿌리기 위한 메서드 - 이철한
+	@Override
+	public WorkVO getWorkDayInfo(Map < String , Object > map) {
+		
+		return sqlSession.selectOne("com.hotel.hms.persistence.ShareDAO.getWorkDayInfo" , map);
+	}
+
+	// 휴가 신청 상태 분류하는 메서드 - 이철한
+	@Override
+	public List<HolidayVO> getHolidayState(int state) {
+		
+		return sqlSession.selectList("com.hotel.hms.persistence.ShareDAO.getHolidayState", state);
 	}
 	
 	

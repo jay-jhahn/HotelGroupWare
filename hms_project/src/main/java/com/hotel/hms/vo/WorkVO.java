@@ -5,13 +5,13 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class WorkVO {
 
 	String empCode;		// 사원 코드	
-	int skdMonth;		// 근무 코드 나타냄 ( 코드 아직 정하지 않음 )
-	String skdWorkd; 	// SQL은 VARCHAR2 로 저장되어있음 이것만 왜 출력 ??? !!!!!
+	int scdMonth;		// 근무 코드 나타냄 ( 코드 아직 정하지 않음 )
+	String scdWork; 	// 근무 (0: 근무선택 / 1:오전근무 / 2: 오후근무 / 3: 야간근무 / 7: 휴무 )
 	
 	String title; 		 // 풀캘린더 타이틀
 	String start;		 // event 시작 일	

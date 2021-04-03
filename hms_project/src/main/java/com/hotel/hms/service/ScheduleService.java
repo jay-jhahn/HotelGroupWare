@@ -28,6 +28,13 @@ public interface ScheduleService {
 	// 직원조회하기 - 이철한
 	public void getEmpInfo(HttpServletRequest req, Model model);
 	
+	// 휴무 잔여일 가져오는 메서드 - 이철한 
+	public void getHolidayDays(HttpServletRequest req, Model model);
+	
+	// 직원 근무정보 뿌리는 메서드 - 이철한
+	public void getWorkDayInfo(HttpServletRequest req, Model model);
+	
+	
 	
 	
 	

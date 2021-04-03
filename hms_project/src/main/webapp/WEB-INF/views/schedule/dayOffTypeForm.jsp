@@ -23,24 +23,27 @@
 							<div class="table-responsive" id="form1">
 								<table class="table"> 
 									<tr>
-										<td> 잔여일 수 </td>
-										<td>	<input type="text" value="잔여일 수 ">
+										<td> 발생일 수 </td>
+										<td><input type="text" value="${available}">
 										</td>
 										<td> 사용일 수 </td>
-										<td>	<input type="text" value="사용한 휴가 일 ">
+										<td>	<input type="text" value="${usedCount}">
 										</td>
 										<td> 사용가능일 수 </td>
 										<td>	
-											<input type="text" value="사용가능 일 수 " >
+											<input type="text" value="${available - usedCount}" >
 										 </td>
 									</tr>
 									
 									<tr>		
 										<td> 시작일자 </td> 
- 										<td><input type="date" name="startDate"  value="시작일자 값 받기"></td> 
+ 										<td><input type="date" name="startDate" required></td> 
  									 										
-										<td > 종료일자</td> 
- 										<td><input type="date" name="endDate"  value="종료일자 값 받기"></td> 
+										<td > 종료일자 </td> 
+ 										<td><input type="date" name="endDate" onchange="calculateDay();" required></td> 
+ 										
+ 										<td > 사용일 수</td> 
+ 										<td><input type="text" name="endDate" value="endDate-startDate" readonlys></td> 
  									</tr> 
  									
  									<tr>
@@ -55,31 +58,31 @@
 							<div class="table-responsive" id="form2">
 								<table class="table"> 
 									<tr>
-										<td> 잔여일 수 </td>
-										<td>	<input type="text" value="잔여일 수 ">
+										<td> 발생일 수 </td>
+										<td><input type="text" value="${available}">
 										</td>
 										<td> 사용일 수 </td>
-										<td>	<input type="text" value="사용한 휴가 일 ">
+										<td>	<input type="text" value="${usedCount}">
 										</td>
 										<td> 사용가능일 수 </td>
 										<td>	
-											<input type="text" value="사용가능 일 수 " >
+											<input type="text" value="${available - usedCount}" >
 										 </td>
 									</tr>
 									
 									<tr>		
 										<td> 시작일자 </td> 
- 										<td><input type="date" name="startDate"  value="시작일자 값 받기"></td> 
+ 										<td><input type="date" name="startDate"  value="시작일자 값 받기" required></td> 
  									 										
 										<td> 종료일자</td> 
- 										<td><input type="date" name="endDate"  value="종료일자 값 받기"></td> 
+ 										<td><input type="date" name="endDate"  value="종료일자 값 받기" required></td> 
  										<td> 반차선택</td> 
  										<td>
  										<select name="halfDayOff" id="selectOff">
  										<!-- 반차 선택시 시간 나오게 하기  -->
 											<option value=""> 반차선택  </option>
-											<option value="1"> 오전 반차 	 </option>
-											<option value="2"> 오후 반차      </option>
+											<option value="5"> 오전 반차 	 </option>
+											<option value="6"> 오후 반차      </option>
 										</select>	
  										</td>
  									</tr> 
@@ -96,24 +99,24 @@
 							<div class="table-responsive" id="form3">
 								<table class="table"> 
 									<tr>
-										<td> 잔여일 수 </td>
-										<td>	<input type="text" value="잔여일 수 ">
+										<td> 발생일 수 </td>
+										<td><input type="text" value="${available}">
 										</td>
 										<td> 사용일 수 </td>
-										<td>	<input type="text" value="사용한 휴가 일 ">
+										<td><input type="text" value="${usedCount}">
 										</td>
 										<td> 사용가능일 수 </td>
 										<td>	
-											<input type="text" value="사용가능 일 수 " >
+											<input type="text" value="${available - usedCount}" >
 										 </td>
 									</tr>
 									
 									<tr>		
 										<td> 시작일자 </td> 
- 										<td><input type="date" name="startDate"  value="시작일자 값 받기"></td> 
+ 										<td><input type="date" name="startDate"  value="시작일자 값 받기" required></td> 
  									 										
 										<td > 종료일자</td> 
- 										<td><input type="date" name="endDate"  value="종료일자 값 받기"></td> 
+ 										<td><input type="date" name="endDate"  value="종료일자 값 받기" required></td> 
  									</tr> 
  									
  									<tr>
@@ -129,7 +132,6 @@
 				</div> 
 			</div> 
 		</div>
-		
 	</div> <!-- close main-panel -->
 </div> <!-- close wrapper -->
 
