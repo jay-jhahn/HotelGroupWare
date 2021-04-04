@@ -29,9 +29,5 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("deptCode", deptCode);
 		model.addAttribute("empCode", empCode);
 		
-		int cnt = 7;
-		model.addAttribute("cnt", cnt);
-		
-		
 	}
 }
