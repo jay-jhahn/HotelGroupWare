@@ -38,18 +38,18 @@ public class WelfareController {
 	}
 	
 	// 직원복지 입력페이지 - 박상원
-	@RequestMapping("welfareCuponList.al")
+	@RequestMapping("welfareCuponList.oa")
 	public String welfareCuponList(HttpServletRequest req, Model model) {
-		logger.info("welfareCuponList.al");
+		logger.info("welfareCuponList.oa");
 		
 		service.welfareCuponList(req, model);
 		return "/welfare/welfareCuponInsert";
 	}
 	
 	// 직원복지 입력 버튼 - 박상원
-	@RequestMapping("welfareCuponInsert.al")
+	@RequestMapping("welfareCuponInsert.oa")
 	public String welfareCuponInsert(HttpServletRequest req, Model model) {
-		logger.info("welfareCuponInsert.al");
+		logger.info("welfareCuponInsert.oa");
 		
 		service.welfareCuponList(req, model);
 		service.welfareCuponInsert(req);

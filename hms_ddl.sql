@@ -177,19 +177,88 @@ CREATE TABLE board_tbl (
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ---직원상품 테이블-----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- 210402 수정완료
+
+DROP TABLE welfare_tbl;
 CREATE TABLE welfare_tbl (
-   welfareCode     VARCHAR2(20)   PRIMARY KEY,    -- 직원상품코드
-   empCode         VARCHAR2(20)   REFERENCES emp_tbl(empCode) ON DELETE CASCADE,  -- 사원번호
-   prodName        VARCHAR2(100),              -- 상품명
-   realPrice       NUMBER          NOT NULL,   -- 원가
-   dcPrice         NUMBER          NOT NULL,   -- 할인가
-   roomKind        VARCHAR2(30),               -- 객실종류
-   isBreakfast     NUMBER          DEFAULT 1,  -- 조식여부
-   prodContents1   VARCHAR2(3000)  NOT NULL,   -- 상세내용1
-   prodContents2   VARCHAR2(2000),             -- 상세내용2
-   prodContents3   VARCHAR2(2000),             -- 상세내용3
-   prodImg         VARCHAR2(1000)  NOT NULL    -- 상품이미지
+	welfareCode     NUMBER      PRIMARY KEY,    -- 직원상품코드
+	empCode         VARCHAR2(20)	REFERENCES emp_tbl(empCode) ON DELETE CASCADE,  -- 사원번호
+	prodName        VARCHAR2(100)   NOT NULL,   -- 상품명
+	realPrice       NUMBER(8)       NOT NULL,   -- 원가
+	dcPrice         NUMBER(8)       NOT NULL,   -- 할인가
+	roomKind        VARCHAR2(30),               -- 객실종류
+	isBreakfast     VARCHAR2(30)    DEFAULT '조식지원o',  -- 조식여부
+	prodContents1	VARCHAR2(3000)  NOT NULL,   -- 상세내용1
+	prodContents2	VARCHAR2(2000),             -- 상세내용2
+	prodContents3	VARCHAR2(2000),             -- 상세내용3
+	isUsed          NUMBER(1)       DEFAULT 0,  -- 사용여부
+    regDate         TIMESTAMP       DEFAULT sysdate -- 등록일
 );
+
+DROP SEQUENCE welfare_seq;
+CREATE SEQUENCE welfare_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 9999;
+    
+
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardSingle1', 110000, 110000*0.7, '스탠다드 싱글', '조식지원x', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardTwin1', 120000, 120000*0.7, '스탠다드 트윈', '조식지원x', '루프탑 뷔폐 + 바베큐 2인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardSingle2', 130000, 130000*0.7, '스탠다드 싱글', '조식지원x', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardDouble1', 140000, 140000*0.7, '스탠다드 더블', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardTwin2', 150000, 150000*0.7, '스탠다드 트윈', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardSingle3', 160000, 160000*0.7, '스탠다드 싱글', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '생맥주 무제한', '조식지원o');
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardTwin3', 170000, 170000*0.7, '스탠다드 트윈', '조식지원x', '루프탑 뷔폐 + 바베큐 1인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardSingle4', 180000, 180000*0.7, '스탠다드 싱글', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'StendardDouble2', 190000, 190000*0.7, '스탠다드 더블', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTwin1', 200000, 200000*0.7, '슈페리어 트윈', '조식지원x', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTriple1', 210000, 210000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTwin2', 220000, 220000*0.7, '슈페리어 트윈', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorDouble1', 230000, 230000*0.7, '슈페리어 더블', '조식지원x', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTriple2', 240000, 240000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTriple3', 250000, 250000*0.7, '슈페리어 트리플', '조식지원x', '루프탑 뷔폐 + 바베큐 1인세트', '생맥주 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTwin2', 260000, 260000*0.7, '슈페리어 트윈', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorDouble2', 270000, 270000*0.7, '슈페리어 더블', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTwin3', 280000, 280000*0.7, '슈페리어 트윈', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, '', 'SuperiorTriple4', 290000, 290000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '와인 무제한', '', sysdate);
+INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
+VALUES(welfare_seq.nextval, 'H0001', 'SuperiorTriple5', 300000, 300000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+COMMIT;
+SELECT * FROM welfare_tbl;
+
+--
+SELECT * FROM welfare_tbl WHERE empCode is null;
+
+-- welfareCuponList.oa
+SELECT *
+FROM (SELECT rowNum rNum, w.*
+        FROM (SELECT * FROM welfare_tbl WHERE empCode is null ORDER BY roomKind, prodName) w)
+WHERE rNum >= 1 AND rNum <= 5;
+
+-- PCardEmpInsert
+UPDATE welfare_tbl SET empCode = 'back' WHERE welfareCode = 14;
+
+-- welfareCupon.js
+SELECT * FROM welfare_tbl WHERE empCode='back';
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ---결산 테이블---------------------------------------------------------------------------------------------------------------------------------------------
@@ -233,22 +302,22 @@ CREATE TABLE pmt_tbl (
 	empCode	        VARCHAR2(20)	REFERENCES emp_tbl(empCode) ON DELETE CASCADE,      -- 사원번호
 	deptCode	    VARCHAR2(20)	REFERENCES dept_tbl(deptCode) ON DELETE CASCADE,    -- 부서코드
 	dutyCode	    VARCHAR2(20)	REFERENCES duty_tbl(dutyCode) ON DELETE CASCADE,    -- 직책코드
-	salary	        NUMBER          NOT NULL,   -- 급여
-	extension	    NUMBER,     -- 연장수당
-	holiday	        NUMBER,     -- 휴일수당
-	bonus	        NUMBER,     -- 상여금
-	meals	        NUMBER,     -- 식대
-	selfDrive	    NUMBER,     -- 자가운전보조금
-	welfare	        NUMBER,     -- 출산/보육수당
-	etc	            NUMBER,     -- 기타수당
-	taxPmt	        NUMBER      NOT NULL,       -- 과세지급계
-	nonTaxPmt	    NUMBER,                     -- 비과세지급계
-	totalPmt	    NUMBER      NOT NULL,       -- 지급합계
+	salary	        NUMBER      NOT NULL,   -- 급여
+	extension	    NUMBER      DEFAULT 0,  -- 연장수당
+	holiday	        NUMBER      DEFAULT 0,  -- 휴일수당
+	bonus	        NUMBER      DEFAULT 0,  -- 상여금
+	meals	        NUMBER      DEFAULT 0,  -- 식대
+	selfDrive	    NUMBER      DEFAULT 0,  -- 자가운전보조금
+	welfare	        NUMBER      DEFAULT 0,  -- 출산/보육수당
+	etc	            NUMBER      DEFAULT 0,  -- 기타수당
+	taxPmt	        NUMBER      NOT NULL,   -- 과세지급계
+	nonTaxPmt	    NUMBER      DEFAULT 0,  -- 비과세지급계
+	totalPmt	    NUMBER      NOT NULL,   -- 지급합계
 	incTx	        NUMBER      DEFAULT 41630,  -- 소득세
 	rsdtTx	        NUMBER      DEFAULT 4163,   -- 주민세
 	employmentIns	NUMBER      NOT NULL,       -- 고용보험
 	nationalPension	NUMBER      NOT NULL,       -- 국민연금
-	longCareIns	    NUMBER,                     -- 장기요양
+	longCareIns	    NUMBER      DEFAULT 0,      -- 장기요양
 	healthIns	    NUMBER      NOT NULL,       -- 건강보험
 	totalDeduct	    NUMBER      NOT NULL,       -- 공제합계
 	ddctAmount	    NUMBER      NOT NULL,       -- 차감수령액
