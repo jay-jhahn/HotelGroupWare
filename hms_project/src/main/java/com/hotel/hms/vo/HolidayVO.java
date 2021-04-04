@@ -3,7 +3,6 @@ package com.hotel.hms.vo;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import lombok.Getter;
 
@@ -16,6 +15,7 @@ public class HolidayVO {
 	int holidayCode;			// 휴무 코드 (0:연차 / 1:병가  / 2:오전 반차 / 3:오후 반차 )
 	Timestamp startHoliday;		// 휴무 시작 일
 	Timestamp endHoliday;		// 휴무 종료 일 
+<<<<<<< HEAD
 	int state; 					// 휴무 상태 (0:진행중 / 1:승인 / 2:반려 )
 	int kindHoliday;			// 휴무 종류 (0:연차 / 1:병가  / 2:오전 반차 / 3:오후 반차 )
 	int remainHoliday;			// 휴무 잔여 일
@@ -28,4 +28,8 @@ public class HolidayVO {
 	String reasonHoliday;		// 휴무사유
 	
 	
+=======
+	int state; 					// 휴무 상태 (반려 / 승인  나타내는 코드)
+	int kindHoliday;			// 휴무 종류
+>>>>>>> main
 }

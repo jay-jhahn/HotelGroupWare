@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
-<body onload="getEmpList();">
+<body onload="getEmpListDept('${sessionScope.empCode}');">
 	<div class="wrapper">
-		<!-- ====== Side Menu ===== -->
+	<c:if test="${empVo.deptCode eq 'OF'}">
 		<jsp:include page="${jspPath}common/sideMenu/office.jsp" flush="false" />
-
+	</c:if>
+	<c:if test="${empVo.deptCode eq 'RO'}">
+		<jsp:include page="${jspPath}common/sideMenu/room.jsp" flush="false" />
+	</c:if>
 		<div class="main-panel" id="main-panel">
 			<!-- ======= Header ======= -->
 			<jsp:include page="${jspPath}common/header.jsp" flush="false" />
@@ -13,10 +16,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="nav nav-tabs">
-							<li class="nav-item"><a class="nav-link active emplListTab" data-toggle="tab" onclick="getEmpList();"> 사원명부 </a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="getInsertEmp();"> 인사정보등록 </a></li>
+							<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="getInsertEmp();"> 인사고과 </a></li>
 						</ul>
-						<div class="card result">
+						<div class="card ratingResult">
 							
 						</div> <!-- close card -->
 					</div>
