@@ -17,7 +17,7 @@
 
 		<c:if test="${empList != null}">
 			<c:forEach var="empList" items="${empList}">
-				<tr onclick="displayDetail('${empList.empCode}');">
+				<tr>
 					<td>${empList.empCode}</td>
 					<td>${empList.empName}</td>
 					<td>${empList.levelVo.levelName}</td>
@@ -29,8 +29,6 @@
 					<td>${empList.postCode}&nbsp;${empList.roadAddress}&nbsp;${empList.detailAddress}</td>
 				</tr>
 			</c:forEach>
-			<div class="detailDiv" style="display: none;">
-			</div>
 		</c:if>
 		<c:if test="${empList == null}">
 			<tr>
@@ -38,5 +36,39 @@
 			</tr>
 		</c:if>
 	</table>
+	<div class="pages">
+		<!-- 페이징 처리 -->
+		<!-- 게시글이 있으면 -->
+		<c:if test="${cnt > 0}">
+			
+			<!-- 처음[◀◀] / 이전블록[◀] -->
+			<c:if test="${startPage > pageBlock}">
+				<a href="getEmpList.ad">[◀◀]</a> <!-- 첫페이지로 이동 -->
+				<a href="getEmpList.ad?pageNum=${startPage - pageBlock}">[◀]</a> <!-- 이전'블록'으로 이동 -->
+			</c:if>
+			
+			<!-- 블록내의 페이지 번호 -->
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<c:if test="${i == currentPage}">
+					<strong><b>[${i}]</b></strong>
+				</c:if>
+				
+				<c:if test="${i != currentPage}">
+					<a href="getEmpList.ad?pageNum=${i}">[${i}]</a>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음블록[▶] / 마지막[▶▶] -->
+			<c:if test="${pageCount > endPage}">
+				<a href="getEmpList.ad?pageNum=${startPage + pageBlock}">[▶]</a>
+				<a href="getEmpList.ad?pageNum=${pageCount}">[▶▶]</a>
+			</c:if>					
+		</c:if>
+		
+		<!-- 게시글이 없으면 -->
+		<c:if test="${cnt == 0}">
+			
+		</c:if>
+	</div>
 </body>
 </html>

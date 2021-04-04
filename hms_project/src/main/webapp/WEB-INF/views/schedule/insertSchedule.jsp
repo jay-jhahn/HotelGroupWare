@@ -20,25 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
     {
           googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
           className: '대한민국의 휴일',
-          color: '#0000FF', //rgb,#ffffff 등의 형식으로 할 수 있어요.
-          //textColor: 'black' 
+          color: '#0000FF', 
+           
         }
   
-    /*   {
-          googleCalendarId: '여기에 구글 캘린더 ID를 붙여넣기하시면 됩니다.',
-          className: '정보처리기능사',
-            color: '#204051',
-            //textColor: 'black' 
-        },
-      {
-          googleCalendarId: '여기에 구글 캘린더 ID를 붙여넣기하시면 됩니다.',
-          className: '정보처리기사',
-            color: '#3b6978',
-            //textColor: 'black' 
-        } */
+   
     ],
   	  dateClick: function() {
-  		var popUrl = "makeSchedule.al";	//팝업창에 출력될 페이지 URL
+  		var popUrl = "makeSchedule.rs";	//팝업창에 출력될 페이지 URL
   		var popOption = "width=800, height=800, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
   			window.open(popUrl, "" , popOption);
     }
@@ -46,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
   calendar.render();
 });
 
-function makeSchedule() {
-	var popUrl = "makeSchedule.al" ;
+function makeSchedule(empCode) {
+	var popUrl = "makeSchedule.al?empCode="+empCode ;
 	var popOption = "width=800, height=800, resizable=no, scrollbars=no, status=no;"; 
 	window.open(popUrl, "스케줄 입력", popOption);
 }
@@ -80,6 +69,7 @@ function makeSchedule() {
  					<ul class="nav nav-tabs">
 						<li class="nav-item"><a class="nav-link active" 	data-toggle="tab" onclick="window.location='insertSchedule.al'"> 스케줄 입력 </a></li>
 						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='scdModifyList.al'"> 스케줄 수정  </a></li>
+						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='workTimeList.al'"> 직원 근태리스트  </a></li>
 					</ul>  
  					<div class="card"> 
  						<div class="card-header"> 
@@ -88,14 +78,37 @@ function makeSchedule() {
  						<div class="card-body">
  							<div class="table-responsive">
 								<table class="table"> 
-									<tr>  										
-										<td> 직원조회 </td> 
- 										<td><input type="text" name="empName"  value="직원 조회한 이름"></td> 
-										<td><input type="button"  class="btn" style="background-color: #55789B; border-radius: 0rem;" value="조회하기" onclick="searchEmp(empName.value, 2);"></td>
-										<td> 소속부서 </td> 
- 										<td><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td> 
- 										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="입력하기" onclick="makeSchedule();"></td> 
- 									</tr> 
+								<c:if test="${workDay == null }" >
+					 				<tr>
+							 		 <td colspan="4">직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력">
+							 			 <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 										<!-- selectCode Javascript 페이지 이동 시 분류  0:monthSchedule.al  1:insertSchedule.al -->		
+								  		<input type="button" class="btn" value="직원조회" class="btn" style="background-color: #55789B; border-radius: 0rem;" onclick="searchEmp(empName.value, 2)">
+							 		 </td>
+							 		</tr>
+							 	</c:if>	 
+							 	
+							 	 <c:if test="${workDay != null }" >
+							 	 <input type="hidden" name="empCode" value="${vo.empCode}">	 
+							 	 	<tr>
+							 		 <td colspan="4">직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력">
+							 			 <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 										<!-- selectCode Javascript 페이지 이동 시 분류  0:monthSchedule.al  1:insertSchedule.al -->		
+								  		<input type="button" class="btn" value="직원조회" class="btn" style="background-color: #55789B; border-radius: 0rem;" onclick="searchEmp(empName.value, 2)">
+							 		 </td>
+								 		<td colspan="2"><input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td> 
+										<td><input type="button" class="btn" style="background-color: #55789B; border-radius: 0rem;" value="입력하기" onclick="makeSchedule(empCode.value);"></td> 
+						   			</tr>
+						   		
+									 <tr>
+										<td> 연락처  </td>
+										<td><input type="text"  value="${vo.empPhone}"  readonly></td>	 
+										<td> 이메일  </td>
+										<td><input type="text"  value="${vo.empEmail}"  readonly></td>
+										<td> 직급  </td>
+										<td><input type="text"  value="${vo.levelCode}"  readonly></td>
+										<td> 직책  </td>
+										<td><input type="text"  value="${vo.dutyCode}"  readonly></td>
+									</tr>	
+									</c:if>	
  								</table> 
  							</div> 
  						</div> 

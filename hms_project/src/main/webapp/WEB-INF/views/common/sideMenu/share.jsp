@@ -58,8 +58,8 @@ $(function(){
 	             <p> 스케줄 관리 </p>
              </a>
              <ul class="hide list-group list-group-flush text-center" style="display: none;">
-                <li class="list-group-item scheduleList"><a href="reqDayOff.al"> 휴가신청 </a></li>
-                <li class="list-group-item scheduleList"><a href="monthSchedule.al"> 스케줄 근무 조회 </a></li>
+                <li class="list-group-item scheduleList"><a href="reqDayOff.ra"> 휴가신청 </a></li>
+                <li class="list-group-item scheduleList"><a href="monthSchedule.ra"> 스케줄 근무 조회 </a></li>
                 <%-- 객실팀 매니저, 시니어매니저만 보이는 메뉴 --%>
                 <sec:authorize access="hasAnyRole('ROLE_ROM', 'ROLE_ROSM')">
                 	<li class="list-group-item scheduleList"><a href="insertSchedule.al"> 스케줄 입력 </a></li>

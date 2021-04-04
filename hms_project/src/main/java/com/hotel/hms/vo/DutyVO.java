@@ -1,11 +1,9 @@
 package com.hotel.hms.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 // 직책 테이블
-@Getter
-@Setter
+@Data
 public class DutyVO {
 	
 	private String dutyCode;	// 직책코드

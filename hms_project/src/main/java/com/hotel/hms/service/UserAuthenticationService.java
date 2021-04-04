@@ -64,5 +64,9 @@ public class UserAuthenticationService implements UserDetailsService{
 		 */
 		return new UserVO(vo.getEmpCode(),vo.getEmpPwd(),vo.getEmpEnabled().equals("1"),
 				true,true,true,authority);
+		
+		
 	}
+	
+	
 }

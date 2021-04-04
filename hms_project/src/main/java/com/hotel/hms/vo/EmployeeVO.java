@@ -1,10 +1,8 @@
 package com.hotel.hms.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class EmployeeVO {
 	private String empCode;			// 사원번호
 	private String deptCode;		// 부서코드
@@ -39,7 +37,6 @@ public class EmployeeVO {
 	private String empAuthority;	// 권한
 	
 	private String empImg;			// 증명사진
-	private String ratingState;		// 인사고과 평가 상태
 
 	private DeptVO deptVo;			// 부서
 	private LevelVO levelVo;		// 직위 // 인턴, 수습, 사원, 주임 ...

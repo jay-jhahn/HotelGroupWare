@@ -13,16 +13,24 @@
 		
 		<div class="content">
 			<div class="row">
-				<div class="col-md-12"> 
+				<div class="col-md-12">
+				<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link emplListTab" 	data-toggle="tab" onclick="window.location='insertSchedule.al'"> 스케줄 입력 </a></li>
+						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='scdModifyList.al'"> 스케줄 수정  </a></li>
+						<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='workTimeList.al'"> 직원 근태리스트  </a></li>
+					</ul>  
 					<div class="card"> 
 						<div class="card-header">
-							<h4 class="card-title"> 관리자 스케줄 변경 신청자 조회 </h4>  
+							<h4 class="card-title"> 직원 근태 리스트 </h4>  
 						</div> 
 						<div class="card-body">
 							<div class="table-responsive">
-								<iframe src="http://localhost:3000" style="width:1400; height:800; overflow:hidden; border:0;">
+							<% Object empCode = session.getAttribute("empCode"); %>
+							
+								<iframe src="http://localhost:3000/WorkTimeList" style="width:100%; height:800; overflow:hidden; border:0;">
 				
 								</iframe>
+								
 							</div> 
 						</div> 
 					</div> 
@@ -36,9 +44,6 @@
 
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
-	
-	
-	
 	
 	
 </body>

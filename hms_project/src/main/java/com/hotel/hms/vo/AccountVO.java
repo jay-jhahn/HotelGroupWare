@@ -1,12 +1,11 @@
 package com.hotel.hms.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 // 부서테이블
-@Getter
-@Setter
+@Data
 public class AccountVO {
+
 	private int accountCode;	// 결산코드
 	private String resCode;		// 예약코드
 	private String hallCode;	// 연회장코드

@@ -15,8 +15,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="nav nav-tabs">
-						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='monthSchedule.al'"> 스케줄 조회 </a></li>
-						<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='reqModify.al'"> 근무 변경 신청  </a></li>
+						<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='monthSchedule.ra'"> 스케줄 조회 </a></li>
+						<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='reqModify.ra'"> 근무 변경 신청  </a></li>
 					</ul>  
 					<div class="card"> 
 						<div class="card-header">
@@ -24,9 +24,12 @@
 						</div> 
 						<div class="card-body">
 							<div class="table-responsive">
-								<iframe src="http://localhost:3001/Header" style="width:1400; height:800; overflow:hidden; border:0;">
+								<% Object empCode = session.getAttribute("empCode"); %>
+								
+								<iframe src="http://localhost:3000/ReqModify/<%=empCode%>"  style="width:100%; height:600; overflow:hidden; border:0;">
 				
 								</iframe>
+								
 							</div> 
 						</div> 
 					</div> 
