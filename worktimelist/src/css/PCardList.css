@@ -1,0 +1,25 @@
+.root {
+    padding: 15px;
+    max-width: 345;
+}
+.title{
+    max-width : 333px;
+    height:66px;
+    color: #516375;
+    text-overflow:ellipsis; 
+}
+.media {
+    height: 140;
+}
+.descriptions {
+    list-style: none;
+    justify-content: flex-start;
+    text-align: right; 
+    align-items: center;
+}
+.pricing {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #516375;
+}

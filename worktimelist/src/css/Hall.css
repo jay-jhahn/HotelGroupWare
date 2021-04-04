@@ -1,0 +1,83 @@
+button {
+    background-color: #01536e;
+    border: none;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-display: none;
+    color: aliceblue;
+    float: right;
+    margin: 5px;
+
+}
+select{
+    width: 100px;
+    height: 20px;
+}
+
+.backBoard{
+    background-color: #fff;
+}
+.btnC{
+    background-color: #01536e;
+    border: none;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-display: none;
+    color: aliceblue;
+    float: right;
+}
+.btnD{
+    background-color: #01536e;
+    border: none;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-display: none;
+    color: aliceblue;
+}
+
+/* .leftBtn{
+    
+}
+
+.btn{
+   
+} */
+
+textarea{
+   width:500px; 
+   height:100px; 
+    resize:none;
+}
+.Center {
+    text-align: center;
+    font-size: 100px;
+}
+
+.textsize {
+    font-size: 20;
+}
+
+.tdsize{
+    font-size: 10;
+    margin: auto;
+   
+}
+
+.list {
+    margin-top: 20px;
+}
