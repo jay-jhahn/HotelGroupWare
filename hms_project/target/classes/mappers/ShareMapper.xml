@@ -13,7 +13,8 @@
 	
 	<!-- 직원정보 가져오는 메서드  -->
 	<select id="getInfoEmp" parameterType="String" resultType="com.hotel.hms.vo.EmployeeVO">
-		SELECT * FROM emp_tbl WHERE empCode=#{empCode}
+		SELECT e.empname, d.deptname e.empPhone, e.empEmail  FROM emp_tbl e, dept_tbl d WHERE e.deptcode=d.deptcode AND e.empcode= #{empCode}
+
 	</select>
 	
 	<!-- 매니저가 작성한 근무 DB에 넣기 -->

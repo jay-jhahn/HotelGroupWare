@@ -13,12 +13,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
  
+  
   var calendar = new FullCalendar.Calendar(calendarEl, {
     googleCalendarApiKey: 'AIzaSyDHLasQBGd_u8gnZge7HTHig6MUxvgdWBE',
    	themeSystem: 'bootstrap',
-   	header: { 
-   		left: 'prev,next today', center: 'title', right: '' 
-   		},
     eventSources: [
     {
           url : 'ko.south_korea#holiday@group.v.calendar.google.com',
@@ -26,38 +24,35 @@ document.addEventListener('DOMContentLoaded', function() {
           color: '#0000FF', 
          
     },
-   		 {
+   		{
     		url : 'getWork.al',
     		color : '#58FAAC',
     		textColor : 'black'
 
     	},
     	
+    	
+    	{
+    		 
+    		
+    		
+    		
+    		
+    	},
+    	
     ],
     
   });
-	  calendar.render();
   
+  calendar.render();
 });
-
-$('.fc-button-prev span').click(function(){
-	var prevDate = $("#calendar").fullCalendar('getDate').toDate();
-	alert(prevDate); 
-	});
-
- $('.fc-button-next span').click(function(){
-var nextMonthDate = $("#calendar").fullCalendar('getDate').toDate();
-alert(nextMonthDate);
-});
-
+ 
 </script>
-		
 <head>
 <meta charset="UTF-8">
 <title> 스케줄 월별 조회 </title>
 </head>
 <body>
-
 <div class="wrapper">
 <!-- ====== Side Menu ===== -->
 <jsp:include page="${jspPath}common/sideMenu/share.jsp" flush="false" />	
@@ -91,13 +86,13 @@ alert(nextMonthDate);
 					   	</tr>
 					   </c:if>
 					   
-					    <c:if test="${ workDay != null}"> 
+					    <c:if test="${workDay != null}"> 
 						  <tr>
-							  <td colspan="4">직원조회<input type="text" name="empName"  id="empName" value="직원 이름 입력">
+							  <td colspan="4">직원조회<input type="text" name="empName"  id="empName" value="${vo.empName}">
 							  <!-- 조회하기 클릭 시 직원 소속 부서 전화번호까지 나오게 조회하기 --> 										<!-- selectCode Javascript 페이지 이동 시 분류  0:monthSchedule.al  1:insertSchedule.al -->		
 								  <input type="button" class="btn" value="직원조회" class="btn" style="background-color: #55789B; border-radius: 0rem;" onclick="searchEmp(empName.value, 1)">
 							 </td>
-							 <td colspan="4">소속부서<input type="text" name="dayOffDept"  value="조회 한 직원 부서 값 받기" readonly></td>
+							 <td colspan="4">소속부서<input type="text" name="dayOffDept"  value="${vo.deptName}" readonly></td>
 						  </tr> 
 						 </c:if>	
 						  
@@ -150,11 +145,51 @@ alert(nextMonthDate);
   </div>
 </div> <!-- close wrapper -->	
 
+<script type="text/javascript">
+
+$('body').on('click', 'button.fc-prev-button', function() {
+	
+	  /* getWorl.al 을 1씩 줄어들게 만들기  */
+	  var minus = 1;
+	  
+	  alert('prev !!');
+	  
+	  $.ajax({
+	    url: "getWork.al",
+	    data: { "minus" : minus },
+	    type: "GET",
+	    success : function(data){
+	      alert("성공");
+	      $('#calendar').fullCalendar({ events: "getWork.al",});
+	    },
+	    error : function(){
+	      alert("에러");		
+	    }
+	  })
+	  
+});
+
+
+$('body').on('click', 'button.fc-next-button', function() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+
+
+</script>
+
 	<!-- ======= Footer ======= -->
 	<jsp:include page="${jspPath}common/footer.jsp" flush="false" />
 
 
 </body>
 </html>
-
-

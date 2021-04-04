@@ -35,6 +35,7 @@ function giveEmpInfo(empCode, selectCode) {
 	if(selectCode==1) {
 		// monthSchedule.al 페이지로 이동 
 		opener.parent.location.replace("monthSchedule.ra?empCode=" + empCode);
+		location.href="getWork.al?empCode=?" + empCode;
 	} else if(selectCode ==2) {
 		// insertSchedule.al 페이지로 이동 
 		opener.parent.location.replace("insertSchedule.al?empCode="+ empCode);

@@ -56,7 +56,7 @@
 						</div> 
  						<div class="card-body">
  								<ul class="nav nav-tabs">
-									<li class="nav-item"><a class="nav-link active" data-toggle="tab"       onclick="location.href='reqDayOff.ra?state=0'"> 진행중 </a></li>
+									<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab"       onclick="location.href='reqDayOff.ra?state=0'"> 진행중 </a></li>
 									<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab"  onclick="location.href='reqDayOff.ra?state=2'"> 반려함  </a></li>
 									<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab"  onclick="location.href='reqDayOff.ra?state=1'"> 완료함  </a></li>
 								</ul> 

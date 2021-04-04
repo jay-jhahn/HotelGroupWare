@@ -25,9 +25,12 @@
 						</div> 
 						<div class="card-body">
 							<div class="table-responsive">
-								<iframe src="http://localhost:3000/WorkTimeList" style="width:1400; height:800; overflow:hidden; border:0;">
+							<% Object empCode = session.getAttribute("empCode"); %>
+							
+								<iframe src="http://localhost:3000/WorkTimeList" style="width:100%; height:800; overflow:hidden; border:0;">
 				
 								</iframe>
+								
 							</div> 
 						</div> 
 					</div> 

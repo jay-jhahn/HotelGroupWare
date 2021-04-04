@@ -31,13 +31,25 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public List<WorkVO> getWork(HttpServletRequest req, Model model) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		String empCode = (String)req.getSession().getAttribute("empCode");
+		
+		if( req.getParameter("empCode") != null ) {
+			empCode = req.getParameter("empCode");
+		}
 		
 		// 현재 월 구하기 
 		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONDAY) + 2 ;
-		map.put("scdMonth", month); // month 에서 +1 을 해주어야 현재 월 출력 month 0부터 시작 함 
+		int month = cal.get(Calendar.MONTH) + 1;
+		System.out.println("month SVC IMPL :" + month);
 		
+		if( req.getParameter("minus") != null ) {
+			month -= Integer.parseInt(req.getParameter("minus"));
+		}
+		
+		System.out.println("month SVC IMPL :" + month);
+		
+		map.put("scdMonth", month); // month 에서 +1 을 해주어야 현재 월 출력 month 0부터 시작 함 
 		map.put("empCode", empCode);
 		
 		// List 에 담지 않을 시 clear() 를 하지 못 함 
@@ -51,7 +63,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		if(day != null ) {
 			for (int i = 0; i < day.length; i++) {
-				
 				vo = new WorkVO();
 				if( i+1 < 10) {
 					if (Integer.parseInt(day[i]) == 1) {
@@ -223,7 +234,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public void logDayOff(HttpServletRequest req, Model model) {
 
 		String empCode = (String) req.getSession().getAttribute("empCode");
-		
 		Map <String, Object> map = new HashMap <> ();
 		
 		// state 값이 있을 시 if 문 타게 한다.
@@ -239,9 +249,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 			// state (휴무 신청 상태 ) ( 0: 진행중 / 1:승인  / 2: 반려)
 			List <HolidayVO> holiday = dao.getLogDayOff(map);
 			model.addAttribute("logDayOff", holiday);
+			// 직원정보 소속부서 데이터 넘기기
+			EmployeeVO vo = dao.getInfoEmp(empCode);
+			model.addAttribute("vo", vo);
 			
 		} else {
-		
 			// state 없을 시 0 을 주어서 진행중인 휴무를 모두 가져온다
 			map.put("state", 0);
 			map.put("empCode", empCode);
@@ -290,13 +302,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public void getWorkDayInfo(HttpServletRequest req, Model model) {
 		
-		if(req.getParameter("empCode") != null) {
+		if( req.getParameter("empCode") != null ) {
 			
 			String empCode = req.getParameter("empCode");
 			
 			Calendar calendar = Calendar.getInstance();
-			int nextMonth = calendar.get(Calendar.MONTH) + 1;	 // 현재 월 구한다 
-			;			
+			int nextMonth = calendar.get(Calendar.MONTH) + 2;	 // 현재 월 구한다 
+			
 			Map <String , Object> giveInfo = new HashMap<String, Object> ();	// 화면에 값 뿌려지기위해서 정보 담아서 가져온다
 			
 			giveInfo.put("scdMonth", nextMonth);
@@ -319,11 +331,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 			for(int i=0; i<day.length; i++) {
 				if( Integer.parseInt(day[i]) == 1 ) {
 					dayWork += 1;
-				} else if (Integer.parseInt(day[i]) ==2 ) {
+				} else if (Integer.parseInt(day[i]) == 2) {
 					afterWork += 1;
 				} else if (Integer.parseInt(day[i]) == 3) {
 					nightWork += 1;
-				} else if (Integer.parseInt(day[i]) ==7 ) {
+				} else if (Integer.parseInt(day[i]) == 7) {
 					rest += 1;
 				}
 				
