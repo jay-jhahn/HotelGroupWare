@@ -211,18 +211,19 @@ CREATE TABLE mothlySale_tbl (
 ---업무일지 테이블-----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE busiLog_tbl (
-   recordCode      VARCHAR2(20)   PRIMARY KEY,    -- 업무일지 코드
-   empCode         VARCHAR2(20)   REFERENCES emp_tbl(empCode) ON DELETE CASCADE,      -- 직원코드
-   deptCode        VARCHAR2(20)   REFERENCES dept_tbl(deptCode) ON DELETE CASCADE,    -- 부서코드
-   dutyCode        VARCHAR2(20)   REFERENCES duty_tbl(dutyCode) ON DELETE CASCADE,    -- 직책코드
-   writeDate       TIMESTAMP       DEFAULT sysdate,      -- 작성일
-   sales_dis       VARCHAR2(3000)  DEFAULT '내용없음',  -- 객실 종류별 판매실적
-   week_res_dis    VARCHAR2(3000)  DEFAULT '내용없음',  -- 일주일간 예약현황
-   ori_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- 단체객 현황
-   vip_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- vip 현황
-   price_dis       VARCHAR2(3000)  DEFAULT '내용없음',  -- 특별요금 적용 현황
-   res_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- 예약자 명단
-   unique_dis      VARCHAR2(3000)  DEFAULT '내용없음'   -- 특이사항
+    recordCode      VARCHAR2(20)   PRIMARY KEY,    -- 업무일지 코드
+    empCode         VARCHAR2(20)   REFERENCES emp_tbl(empCode) ON DELETE CASCADE,      -- 직원코드
+    deptCode        VARCHAR2(20)   REFERENCES dept_tbl(deptCode) ON DELETE CASCADE,    -- 부서코드
+    dutyCode        VARCHAR2(20)   REFERENCES duty_tbl(dutyCode) ON DELETE CASCADE,    -- 직책코드
+    writeDate       TIMESTAMP       DEFAULT sysdate,      -- 작성일
+    sales_dis       VARCHAR2(3000)  DEFAULT '내용없음',  -- 객실 종류별 판매실적
+    week_res_dis    VARCHAR2(3000)  DEFAULT '내용없음',  -- 일주일간 예약현황
+    ori_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- 단체객 현황
+    res_can_dis     VARCHAR2(3000)  DEFAULT '내용없음',  -- 예약 취소 현황
+    vip_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- vip 현황
+    price_dis       VARCHAR2(3000)  DEFAULT '내용없음',  -- 특별요금 적용 현황
+    res_dis         VARCHAR2(3000)  DEFAULT '내용없음',  -- 예약자 명단
+    unique_dis      VARCHAR2(3000)  DEFAULT '내용없음'   -- 특이사항
 );
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -313,4 +314,38 @@ CREATE TABLE worktime_tbl (
 	dutyCode	    VARCHAR2(20)	REFERENCES duty_tbl(dutyCode) ON DELETE CASCADE,    -- 직책코드
 	startWork	    TIMESTAMP       DEFAULT sysdate,  -- 근무시작 시간
 	endWork	        TIMESTAMP       DEFAULT sysdate   -- 근무끝난 시간		    
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+------- 근무 변경 신청 테이블 생성(2021.04.01) --------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE modifyScd_tbl (
+	modfiyWorkCode	   NUMBER PRIMARY KEY,                                             -- 근무 변경
+    scdCode	           NUMBER REFERENCES work_tbl(scdCode) ON DELETE CASCADE,          -- 스케줄 코드                                          
+	empCode	           VARCHAR2(20)	REFERENCES emp_tbl(empCode) ON DELETE CASCADE,     -- 사원번호
+	deptCode	       VARCHAR2(20)	REFERENCES dept_tbl(deptCode) ON DELETE CASCADE,   -- 부서코드
+	modifyDate	       TIMESTAMP default sysdate,  -- 변경 일    
+	state	           CHAR(1)	default 0,         -- 문서상태 코드
+	remark	           VARCHAR2(500) default '',   -- 비고
+	modifyType	       CHAR(1)	default 0,         -- 변경 근무 타입 
+    reqModifyDate	   TIMESTAMP default sysdate   -- 근무 변경 신청 일
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---고과 테이블--------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE rating_tbl (
+    ratGrade        CHAR(1) PRIMARY KEY,-- 고과등급
+    ratHighScore    NUMBER, -- 등급내 고과 최고점수
+    ratLowScore     NUMBER, -- 등급내 고과 최저점수
+    incentive       NUMBER  -- 인센티브
+);
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---고과 내역 테이블----------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE rating_log_tbl (
+    semiAnnual  VARCHAR2(20)    PRIMARY KEY, -- yy-fh(상반기) , yy-sh(하반기)
+    empCode     REFERENCES emp_tbl(empCode) ON DELETE CASCADE,
+    levelCode   REFERENCES level_tbl(levelCode) ON DELETE CASCADE,
+    deptCode    REFERENCES dept_tbl(deptCode) ON DELETE CASCADE,
+    ratGrade    REFERENCES rating_tbl(ratGrade) ON DELETE CASCADE
 );
