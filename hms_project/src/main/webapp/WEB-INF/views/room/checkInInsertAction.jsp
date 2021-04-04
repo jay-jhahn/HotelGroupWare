@@ -8,15 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${updateCnt == 0}">
+	<c:if test="${insertCnt == 0}">
 			<script type="text/javascript">
-				alert("'수리중'으로 변경 실패");
+				alert("체크인 실패");
 				location.href="check.ra";
 			</script>
 		</c:if>
-		<c:if test="${updateCnt != 0}">	
+		<c:if test="${insertCnt != 0}">	
 			<script type="text/javascript">
-				alert("'수리중'으로 변경 성공");
+				alert("체크인 성공");
 				window.close();
 				window.opener.checkList();
 			</script>

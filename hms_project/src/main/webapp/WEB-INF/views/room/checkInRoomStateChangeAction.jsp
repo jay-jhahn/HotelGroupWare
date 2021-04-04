@@ -10,15 +10,14 @@
 <body>
 	<c:if test="${updateCnt == 0}">
 			<script type="text/javascript">
-				alert("'수리중'으로 변경 실패");
+				alert("'공방'으로 변경 실패");
 				location.href="check.ra";
 			</script>
 		</c:if>
 		<c:if test="${updateCnt != 0}">	
 			<script type="text/javascript">
-				alert("'수리중'으로 변경 성공");
-				window.close();
-				window.opener.checkList();
+				alert("'공방'으로 변경 성공");
+				history.back();
 			</script>
 		</c:if>
 </body>

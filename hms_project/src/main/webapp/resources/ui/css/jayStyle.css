@@ -5,27 +5,9 @@
 .pages{
 	text-align: center;
 }
-
-/* 상세정보  */
-.detail-wrap{
-	border: 1px solid #EBECF1;
-	height: 880px;
-	padding:5px;
-	margin-bottom: 10px;
-}
-
 /* 사원명부 CSS */
-.empListDiv {
-	height: 600px;	
-	overflow-y:scroll;
-}
-
 .empListTbl{
 	table-layout: fixed;
-}
-
-.empListTbl tr {
-	cursor: pointer;	
 }
 
 .empListTbl td {
@@ -37,7 +19,6 @@
 
 .empListTbl th {
 	text-align: center;
-	background: #EBECF1;
 }
 
 .noData{
@@ -126,7 +107,6 @@
     border: 0;
     background: #55789B;    
 }
-
 /* 인사정보 등록 페이지 CSS */
 .redStar{
 	color: red;	
@@ -146,7 +126,7 @@
 }
 
 .perDataDiv {
-	height: 450px;
+	height: 440px;
 	margin-top:10px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -446,72 +426,4 @@
 	border: 1px solid white;
 }
 
-/* 인사고과 평가 버튼 */
-.ratingBtn {
-	text-align:center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 12px;
-    border-radius: 0;
-    transition: 0.5s;
-    line-height: 1;
-    color: #fff;
-    width: 150px;
-    hight: 31px;
-    animation-delay: 0.8s;
-    border: 0;
-    background: #55789B;   
-}
-
-.ratingTbl{
-	table-layout: fixed;
-}
-
-.ratingTbl td {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
-}
-
-.ratingTbl th {
-	text-align: center;
-	background: #EBECF1;
-}
-
-/* 인사고과 평가 창 테이블 */
-.ratingForm {
-	margin-top: 10%;
-}
-
-.ratEmpInfo, .ratingInfo {
-	margin-left: 10%;
-	margin-right:10%;
-	width: 80%;
-	text-align: center;
-	border: 1px solid black;
-}
-
-.ratEmpInfo tr th, .ratingInfo tr th {
-	background: #EBECF1;
-}
-
-.ratEmpInfo tr td, .ratEmpInfo tr th, .ratingInfo tr td, .ratingInfo tr th {
-	border: 1px solid black!important;
-	border-top: 1px solid black!important;
-	border-right: 1px solid black!important;
-}
-
-.ratEmpInfo {
-	margin-bottom: 30px;
-}
-
-.popUp{
-	text-align: center;
-}
-
-/* 인사고과 평가창 버튼 DIV */
 

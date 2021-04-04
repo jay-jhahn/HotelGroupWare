@@ -22,32 +22,13 @@
 		 #{extraAddress}, #{payConStand}, #{isProbation}, #{rate}, #{empState}, #{enterDate}, #{empNotes}, #{empKey}, #{empAuthority}, #{empImg})
 	</insert>
 	
-	<update id="updateEmpInfo" parameterType="com.hotel.hms.vo.EmployeeVO">
-		UPDATE emp_tbl
-		   SET levelCode=#{levelCode}, dutyCode=#{dutyCode}, empJumin=#{empJumin}, gender=#{gender}, empBirth=#{empBirth}
-		     , solarOrLunar=#{solarOrLunar}, empHomePhone=#{empHomePhone}, empPhone=#{empPhone}, empEmail=#{empEmail}, postCode=#{postCode}
-		     , roadAddress=#{roadAddress}, detailAddress=#{detailAddress}, extraAddress=#{extraAddress}, payConStand=#{payConStand}
-		     , isProbation=#{isProbation}, rate=#{rate}, empState=#{empState}, enterDate=#{enterDate}, empNotes=#{empNotes}
-		     , empAuthority=#{empAuthority}, empImg=#{empImg}
-		 WHERE empCode=#{empCode}
-	</update>
-	
 	<insert id="insertFamMem" parameterType="com.hotel.hms.vo.FamilyVO">
-		INSERT INTO fam_tbl(famCode, empCode, relation, faMemName, faMemAge, isLiveTogt) 
-		VALUES (fam_seq.nextval, #{empCode}, #{relation}, #{faMemName}, #{faMemAge}, #{isLiveTogt})
+		INSERT INTO fam_tbl(empCode, relation, faMemName, faMemAge, isLiveTogt) 
+		VALUES (#{empCode}, #{relation}, #{faMemName}, #{faMemAge}, #{isLiveTogt})
 	</insert>
 	
-	<update id="updateFamInfo" parameterType="com.hotel.hms.vo.FamilyVO">
-		UPDATE fam_tbl SET relation=#{relation}, faMemName=#{faMemName}, faMemAge=#{faMemAge}, isLiveTogt=#{isLiveTogt} 
-		 WHERE empCode=#{empCode}
-	</update>
-	
 	<select id = "readMember" resultType = "com.hotel.hms.vo.EmployeeVO">
-		SELECT empCode, deptCode, levelCode, dutyCode, empPwd, empName, empJumin, gender, empBirth
-		 	 , solarOrLunar, empHomePhone, empPhone, empEmail, postCode, roadAddress, detailAddress,extraAddress, payConStand
-		     , isProbation, rate, empState, enterDate, empNotes, empKey, empEnabled, empAuthority, empImg 
-		  FROM emp_tbl 
-		 WHERE empCode = #{empCode}
+		SELECT * FROM emp_tbl WHERE empCode = #{empCode}
 	</select>
 	
 	<!-- 로그인 -->
@@ -65,14 +46,10 @@
 	
 	<!-- 로그인한 회원정보 가져오기 -->
 	<select id="getLoginEmpl" resultType="com.hotel.hms.vo.EmployeeVO" parameterType="String">
-		SELECT e.empcode, e.empname, e.deptCode, e.levelCode, e.dutycode, d.deptname, e.empemail, e.empphone, e.empImg
+		SELECT e.empcode, e.empname, d.deptname, e.empemail, e.empphone, d.deptCode
 		  FROM emp_tbl e
 		     , dept_tbl d
-             , level_tbl l
-             , duty_tbl t
 		 WHERE e.deptcode = d.deptcode
-           AND e.levelcode = l.levelcode
-           AND e.dutycode = t.dutycode
            AND e.empCode = #{empCode}
 	</select>
 	
@@ -84,11 +61,7 @@
 		<collection column="levelCode"
 					property="levelVo"
 					javaType="com.hotel.hms.vo.LevelVO"
-					select="getLevelInfo"></collection>		
-		<collection column="dutyCode"
-					property="dutyVo"
-					javaType="com.hotel.hms.vo.DutyVO"
-					select="getDutyInfo"></collection>									
+					select="getLevelInfo"></collection>					
 	</resultMap>
 	
 	<!-- 부서정보 가져오기 -->
@@ -101,18 +74,20 @@
 		SELECT * FROM level_tbl WHERE levelCode=#{levelCode}
 	</select>
 	
-	<!-- 직책정보 가져오기 -->
-	<select id="getDutyInfo" resultType="com.hotel.hms.vo.DutyVO" parameterType="String">
-		SELECT * FROM duty_tbl WHERE dutyCode=#{dutyCode}
-	</select>
-	
 	<!-- 사원명부 가져오기 ㄱ,ㄴ,ㄷ 순 -->
 	<select id="getEmpList" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap">
-		SELECT empCode, deptCode, levelCode, dutyCode
-			 , empName, enterDate, resignDate, empPhone
-			 , empEmail, postCode, roadAddress, detailAddress 
-		FROM emp_tbl 
-		ORDER BY empName
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, E.* 
+					FROM (
+							SELECT empCode, deptCode, levelCode, dutyCode
+								 , empName, enterDate, resignDate, empPhone
+								 , empEmail, postCode, roadAddress, detailAddress 
+							FROM emp_tbl 
+							ORDER BY empName
+							) E
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 총 사원수 조회 -->
@@ -125,103 +100,8 @@
 		SELECT COUNT(*) FROM emp_tbl WHERE empKey = #{key}
 	</select>
 	
-	<!-- empEnabled 업데이트 -->
+	<!-- empEnabled -->
 	<update id="updateEnabled" parameterType="String">
 		UPDATE emp_tbl SET empEnabled = 1 WHERE empKey = #{key}
 	</update>
-	
-	<!-- 개인정보 상세 -->
-	<select id="empDetail" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap" parameterType="String">
-		SELECT * FROM emp_tbl WHERE empCode =#{empCode}
-	</select>
-	
-	<!-- 직원 가족사항 정보 -->
-	<select id="empFamMemList" resultType="com.hotel.hms.vo.FamilyVO" parameterType="String">
-		SELECT * FROM fam_tbl WHERE empCode = #{empCode}
-	</select>
-	
-	<!-- 인사고과 부서별 사원 리스트 출력 : 로그인한 사람이 매니저일 때 -->
-	<select id="getEmpListDeptMNG" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap" parameterType="java.util.Map">
-		SELECT empCode, deptCode, levelCode, dutyCode, empName, gender, empBirth, enterDate, empAuthority, ratingState 
-		  FROM emp_tbl 
-		 WHERE NOT empCode IN(#{empCode})
-		   AND dutyCode IN('NONE', 'EMP') 
-		   AND deptCode = #{deptCode} 
-		 ORDER BY ratingState, levelCode DESC
-	</select>
-	
-	<!-- 인사고과 부서별 사원 리스트 출력 : 로그인한 사람이 시니어 매니저일 때 -->
-	<!-- 직책이 없거나 일반 사원인 경우 매니저가 먼저 고과평가를 진행했을 경우에만 뜸 -->
-	<select id="getEmpListDeptSMNG" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap" parameterType="java.util.Map">
-		SELECT empCode, deptCode, levelCode, dutyCode, empName, gender, empBirth, enterDate, empAuthority, ratingState
-		  FROM emp_tbl 
-		 WHERE NOT empCode IN(#{empCode})
-		   AND ratingState = (select ratingState from emp_tbl where dutyCode IN('NONE', 'EMP') and ratingState = '2')
-		    OR dutyCode = 'MNG'
-		   AND deptCode = #{deptCode}
-		 ORDER BY ratingState, levelCode DESC
-	</select>
-	
-	<!-- 인사고과 평가창 등급 가져오기 -->
-	<select id="getGrade" resultType="com.hotel.hms.vo.RatingVO" parameterType="float">
-		<![CDATA[
-			SELECT *
-			  FROM rating_tbl
-			 WHERE ratLowScore <= #{avg} 
-			   AND rathighscore >= #{avg}
-		]]>
-   	</select>
-   	
-   	<!-- 인사고과 평가 내용 저장 -->
-   	<insert id="insertRatLog" parameterType="java.util.Map">
-   		INSERT INTO rating_log_tbl (ratLogCode, empCode, levelCode, deptCode, ratGrade, ratDate, ratAvg)
-		VALUES (ratLog_seq.nextval, #{empCode}, #{levelCode}, #{deptCode}, #{ratGrade}, #{ratDate}, #{ratAvg})
-   	</insert>
-	
-	<!-- 인사고과 평가내용 조회 -->
-	<select id="getRatLog" resultType="com.hotel.hms.vo.RatingLogVO" parameterType="java.util.Map">
-		 SELECT ratLogCode, ratDate, empCode, levelCode, deptCode, ratGrade, ratAvg
-		   FROM rating_log_tbl
-		  WHERE empCode = #{empCode}
-		    AND ratDate LIKE '%'||#{year}||'%'
-	</select>
-	
-	<!-- 업데이트 상태변화 -->
-	<update id="updateState" parameterType="java.util.Map">
-		UPDATE emp_tbl 
-		   SET ratingState = #{cnt}
-     	 WHERE empCode = #{empCode}
-	</update>
-	
-	<!-- 고가평가항목별 점수 입력 -->
-	<insert id="insertRatScorePerItem" parameterType="java.util.Map">
-		INSERT INTO ratScorePerItem_tbl (ratItemCode, ratLogCode, empCode, ratDate, ratScore)
-		VALUES (#{ratItemCode}, #{ratLogCode}, #{empCode}, #{ratDate}, #{ratScore})
-	</insert>
-	
-	<!-- 고과내역코드 가져오기 -->
-	<select id="getRatLogCode" resultType="int">
-		SELECT ratLogCode 
-		  FROM rating_log_tbl 
-		 WHERE empCode = #{empCode} 
-		   AND ratDate LIKE '%'||#{year}||'%'
-	</select>
-	
-	<!-- 인사고과 평가 항목 가져오기 -->
-	<select id="getRatingItem" resultType="com.hotel.hms.vo.RatingItemVO">
-		SELECT ratItemCode, ratItem 
-		  FROM ratingItem_tbl 
-	</select>
-	
-	<!-- 고가평가항목 별 점수 가져오기 -->
-	<select id="getRspi" resultType="com.hotel.hms.vo.RatScorePerItemVO">
-		SELECT s.ratItemCode, i.ratItem, s.ratLogCode, s.empCode, s.ratDate, s.ratScore
-		  FROM ratscoreperitem_tbl s
-		     , ratingItem_tbl i
-		 WHERE s.ratItemCode = i.ratItemCode
-		   AND empCode = #{empCode}
-		   AND ratDate LIKE '%'||#{year}||'%'
-		 ORDER BY ratItemCode
-	</select>
-	
 </mapper>
