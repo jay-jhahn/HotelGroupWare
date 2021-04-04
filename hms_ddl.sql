@@ -177,7 +177,6 @@ CREATE TABLE board_tbl (
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 ---직원상품 테이블-----------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
--- 210402 수정완료
 
 DROP TABLE welfare_tbl;
 CREATE TABLE welfare_tbl (
@@ -241,7 +240,7 @@ VALUES(welfare_seq.nextval, '', 'SuperiorTwin3', 280000, 280000*0.7, '슈페리어 �
 INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
 VALUES(welfare_seq.nextval, '', 'SuperiorTriple4', 290000, 290000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 1인세트', '와인 무제한', '', sysdate);
 INSERT INTO welfare_tbl(welfareCode, empCode, prodName, realPrice, dcPrice, roomKind, isBreakfast, prodContents1, prodContents2, prodContents3, regDate)
-VALUES(welfare_seq.nextval, 'H0001', 'SuperiorTriple5', 300000, 300000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
+VALUES(welfare_seq.nextval, '', 'SuperiorTriple5', 300000, 300000*0.7, '슈페리어 트리플', '조식지원o', '루프탑 뷔폐 + 바베큐 2인세트', '와인 무제한', '', sysdate);
 COMMIT;
 SELECT * FROM welfare_tbl;
 
@@ -383,3 +382,5 @@ CREATE TABLE worktime_tbl (
 	startWork	    TIMESTAMP       DEFAULT sysdate,  -- 근무시작 시간
 	endWork	        TIMESTAMP       DEFAULT sysdate   -- 근무끝난 시간		    
 );
+
+
