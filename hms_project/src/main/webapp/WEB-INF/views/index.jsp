@@ -46,7 +46,7 @@
 						         <form>
 						            <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 						            <div class="media">
-										<img class="mr-3 image_section" alt="증명사진 이미지" src="<c:url value="/uploadPath/${empVo.getEmpImg()}"/>"/>
+										<img class="mr-3 image_section" alt="증명사진 이미지" src="<c:url value="uploadPath/${empVo.empImg}" />"/>
 										<div class="media-body">
 											<h3 class="mt-0" style="color: white;"><b>${empVo.getEmpName()}</b></h3>
 											<h6 style="color: white;">사번 : ${empVo.getEmpCode()}</h6>

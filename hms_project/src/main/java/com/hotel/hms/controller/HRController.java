@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hotel.hms.service.HRService;
+import com.hotel.hms.service.LoginService;
 
 // 인사관리 컨트롤러
 @Controller
@@ -25,42 +26,40 @@ public class HRController {
 	@Autowired
 	HRService service;
 	
+	@Autowired
+	LoginService loginService;
+	
 	// 사이드바에서 인사정보 클릭시 인사정보 페이지로 이동 - 안재효
-	@RequestMapping("hrInfo.ad")
-	public String hrInfo(HttpServletRequest req, Model model) {
+	@RequestMapping("hrInfo.oa")
+	public ModelAndView hrInfo(HttpServletRequest req, ModelAndView mav) {
 		logger.info("hrInfo.ad");
-		return "/hr/hrInfo";
+		String requestCnt = req.getParameter("requestCnt");
+		mav.addObject("requestCnt", requestCnt).setViewName("/hr/hrInfo");
+		return mav;
 	}
 
 	// 사원명부 AJAX - 안재효
-	@RequestMapping("empList.ad")
+	@RequestMapping("empList.oa")
 	public String empList(HttpServletRequest req, Model model) {
-		logger.info("empList.ad");
+		logger.info("empList.oa");
+		service.getEmpList(req, model);
 		return "/hr/empList";
 	}
 	
-	// 사원명부 리스트 테이블 가져오는 AJAX
-	@RequestMapping("getEmpList.ad")
-	public String getEmpList(HttpServletRequest req, Model model) {
-		logger.info("getEmpList.ad");
-		service.getEmpList(req, model);
-		return "/hr/empListInner";
-	}
-
 	// 인사정보 등록 페이지 AJAX - 안재효
-	@RequestMapping("regEmpPage.ad")
+	@RequestMapping("regEmpPage.oa")
 	public String regEmpPage() {
-		logger.info("regEmpPage.ad");
+		logger.info("regEmpPage.oa");
 		return "/hr/regEmpPage";
 	}
 
 	// 인사정보 등록 처리 - 안재효
-	@RequestMapping("regEmpAction.al")
+	@RequestMapping("regEmpAction.oa")
 	public String regEmpAction(MultipartHttpServletRequest req, Model model) 
 			throws ParseException {
-		logger.info("regEmpAction.al");
+		logger.info("regEmpAction.oa");
 		service.registerEmpAction(req, model);
-		return "forward:/hrInfo.ad";
+		return "forward:/hrInfo.oa";
 	}
 	
 	// 이메일 인증 체크
@@ -85,12 +84,68 @@ public class HRController {
 	}
 	
 	// 직원정보 수정
-	@RequestMapping("/modifyAction.al")
+	@RequestMapping("/modifyAction.oa")
 	public String modifyAction(MultipartHttpServletRequest req, Model model) {
-		logger.info("modifyAction.al");
+		logger.info("modifyAction.oa");
 		service.modifyAction(req, model);
-		return "forward:/hrInfo.ad";
+		return "forward:/hrInfo.oa";
 	}
+	
+	// 인사고과 페이지 이동 - 객실팀
+	@RequestMapping("/ratingRoList.or")
+	public String ratingRoList(HttpServletRequest req, Model model) {
+		logger.info("ratingRoList.or");
+		return "/room/ratingRoList";
+	}
+	
+	// 인사고과 페이지 이동 - 사무부
+	@RequestMapping("/ratingList.or")
+	public String ratingList(HttpServletRequest req, Model model) {
+		logger.info("ratingList.or");
+		loginService.getLoginEmpl(req, model);
+		return "/hr/ratingList";
+	}
+	
+	// 인사고과 부서별 사원리스트 
+	@RequestMapping("/getEmpListDept.or")
+	public String getEmpListDept(HttpServletRequest req, Model model) {
+		logger.info("getEmpListDept.or");
+		service.getEmpListDept(req, model);
+		return "/hr/empListDept";
+	}
+	
+	// 인사고과 평가창
+	@RequestMapping("goRating.or")
+	public String goRating(HttpServletRequest req, Model model) {
+		logger.info("goRating.or");
+		service.empDetail(req, model);
+		return "/hr/rating";
+	}
+	
+	// 인사고과 평가 확인창
+	@RequestMapping("goRatResult.or")
+	public String goRatResult(HttpServletRequest req, Model model) {
+		logger.info("goRatResult.or");
+		service.getRatingResult(req, model);
+		return "/hr/ratingResult";
+	}
+	
+	// 인사고과 평가창 저장          
+	@RequestMapping("ratingAction.or")
+	public String ratingAction(HttpServletRequest req, Model model) {
+		logger.info("ratingAction.or");
+		service.ratingAction(req, model);
+		return "/hr/rating";
+	}
+	
+	// 인사고과 평가 결재 상태 제출 후 일때 (수정 불가능 페이지)
+	@RequestMapping("updateState.or")
+	public String updateState(HttpServletRequest req, Model model) {
+		logger.info("updateState.or");
+		service.updateState(req, model);
+		return "/hr/ratingResult";
+	}
+	
 }
 
 
