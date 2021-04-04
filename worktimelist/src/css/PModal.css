@@ -1,0 +1,57 @@
+.backModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);   /* 배경 크기: 픽스, 투명도: 0.6*/
+}
+.modal {
+    display: flex;
+    align-items: center;
+    width: 620px;
+    height: 480px;
+    background-color: white;
+    position: relative;
+    box-sizing: border-box;
+    margin: 70px auto;
+    padding: 30px;
+    background: #fff;      /* 로그인 배경이다 */
+}
+.close {
+    float: right;
+    font-size: 25px;
+}
+.modalContents {
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.mTitle{
+    max-width : 333px;
+    height:66px;
+    text-align: center;
+    color: #516375;
+    text-overflow:ellipsis; 
+}
+.mMedia {
+    height: 140;
+}
+.mDescriptions {
+    line-height: 170%;
+    list-style: none;
+    justify-content: flex-start;
+    text-align: center; 
+    align-items: center;
+    margin-left: -34px;
+}
+.mPricing {
+    display: flex;
+    text-align: center; 
+    align-items: center;
+    color: #516375;
+}
