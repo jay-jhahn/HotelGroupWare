@@ -39,32 +39,13 @@
 									<input type="hidden"  id="empCode" value="${list.empCode}">
 									<input type="hidden"  id="empName" value="${list.empName}">
 										<tr>
-											<td> ${list.empName }</td>
-											<td> 객실부서 </td>
-											<td> 지배인 </td>
-											<td> ${list.empPhone} </td>
-											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="giveEmpInfo(selectCode.value);"></th>
+											<td> ${list.empName}</td>
+											<td> ${list.deptName} </td>
+											<td> ${list.levelVo} </td>
+											<td> ${list.dutyCode} </td>
+											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="giveEmpInfo(empCode.value, selectCode.value);"></th>
 										</tr>
 									</c:forEach>
-									
-									<!--  
-										<tr>
-											<td> LEE CHUL HAN </td>
-											<td> 객실부서 </td>
-											<td> 지배인 </td>
-											<td> 010-1111-2222 </td>
-											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="#"></th>
-										</tr>
-
-
-										<tr>
-											<td> LEE CHUL HAN </td>
-											<td> 객실부서 </td>
-											<td> 지배인 </td>
-											<td> 010-1111-2222 </td>
-											<th><input type="button" class="btn" value="선택하기 " style="background-color:#55789B; border-radius: 0rem;" onclick="#"></th>
-										</tr>
-									-->
 									</table>
 								</div>
 							</div>

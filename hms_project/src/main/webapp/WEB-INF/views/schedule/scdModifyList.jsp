@@ -25,6 +25,7 @@
 	 					<ul class="nav nav-tabs">
 							<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='insertSchedule.al'"> 스케줄 입력 </a></li>
 							<li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="window.location='scdModifyList.al'"> 스케줄 수정  </a></li>
+							<li class="nav-item"><a class="nav-link emplListTab" data-toggle="tab" onclick="window.location='workTimeList.al'"> 직원 근태리스트  </a></li>
 						</ul>  
 	 					<div class="card"> 
 	 						<div class="card-header"> 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.hms.persistence.HallDAO">
+	
+<!-- 	<update id="uptime" parameterType="String"> -->
+<!-- 		update res_tbl set timecheck=3 where hallCode = #{hallCode}  -->
+<!-- 	</update> -->
+
+
+<!-- 연회장 목록 -->
+	<select id="hallList" resultType="com.hotel.hms.vo.HallVO">
+		select * from hall_tbl
+	</select>
+	
+<!-- 상태변화   진행중 --> 
+	<update id="yy" parameterType="String">
+		update hall_tbl set state=3 where hallCode = #{hallCode}
+	</update>
+	
+	
+<!-- 홀예약 -->
+	<insert id="hallin" parameterType="java.util.Map">
+		 insert into res_tbl(resCode, hallCode, empCode, guestCode, eventTitle, eventDate,
+		 					 startDate, endDate, resCount, eventMenu, decoration, eventNotes,
+		 					 eventMenu1, eventTableSet, resName, resPhone, resHallPrice)
+						    
+			values(res_seq.nextval, NULL, 'ksw', 2, #{resCount}, #{eventTitle}, #{eventDate}, 
+							#{startDate}, #{endDate}, #{resCount}, #{eventMenu}, #{decoration}, 
+							#{eventNotes}, #{eventMenu1}, #{eventTableSet},
+			   	            #{resName}, #{resPhone}, #{resHallPrice})
+	</insert>	
+	
+<!-- 예약 내용 수정ㄴ-->
+	<update id="update" parameterType="com.hotel.hms.vo.ResVO">
+		update res_tbl set resCount = #{resCount}, guestName = #{guestName}, guestPhone = #{guestPhone},
+						   eventTitle = #{eventTitle}, eventDate = #{eventDate}, eventMenu = #{eventMenu},
+						   eventMenu1 = #{eventMenu1}, eventTableSet = #{eventTableSet}, eventIce = #{eventIce},
+						   eventFlower = #{eventFlower}, eventCake = #{eventCake}, eventMist = #{eventMist},
+						   eventNotes = #{eventNotes}
+						   WHERE resCode = #{resCode}
+	</update>
+	
+<!-- 연회장에서 에약시 연회장  -->	
+	
+<!-- 예약 이용리스트-->
+	<select id="md" resultType="com.hotel.hms.vo.ResVO">
+		select * 
+		  from res_tbl 
+		 where resCode = #{resCode}
+	</select>
+	
+<!-- 	hall, guset 정보	 -->
+<!-- 	<resultMap type="com.hotel.hms.vo.ResVO" id="ResMap"> -->
+<!-- 		<id property="guestName" column="guestName"/> -->
+<!-- 		<collection column="hallCode"  property="hVo" javaType="com.hotel.hms.vo.HallVO" select="hallInfo"/> -->
+<!-- 		<collection column="guestCode"  property="gVo" javaType="com.hotel.hms.vo.GuestVO" select="guestInfo"/> -->
+<!-- 	</resultMap> -->
+	
+<!-- 	홀 정보 -->
+<!-- 	<select id="hallInfo" resultType="com.hotel.hms.vo.HallVO" parameterType="String"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM hall_tbl -->
+<!-- 		WHERE hallCode = #{hallCode}	 -->
+<!--  	</select> -->
+	
+<!-- 	<select id="guestInfo" resultType="com.hotel.hms.vo.GuestVO" parameterType="String"> -->
+<!-- 		SELECT * -->
+<!-- 		  FROM guest_tbl -->
+<!-- 		 WHERE guestCode = #{guestCode}   -->
+<!-- 	</select> -->
+	
+<!-- 이용 내역 리스트 -->	
+
+	<select id="resList" resultType="com.hotel.hms.vo.ResVO">
+		 select * 
+		   from res_tbl r 
+		   join guest_tbl g 
+		     on r.guestCode = g.guestCode  
+		   join hall_tbl h
+		     on h.hallCode = r.hallCode 
+	</select>
+	
+	
+</mapper>

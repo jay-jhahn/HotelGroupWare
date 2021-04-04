@@ -29,10 +29,4 @@ public class AccountController {
 		service.accountByYMD(req, model);
 		return "/account/accountByYMD";
 	}
-
-	// 매출 증감률 예측- 박성언
-	@RequestMapping("prediction.ad")
-	public String prediction(Model model) {		
-		return "/account/prediction";
-	}
 }

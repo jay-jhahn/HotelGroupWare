@@ -19,7 +19,7 @@
       <div class="container">
          <div class="logo float-left">
             <h1 class="text-light">
-               <a href="#"><span>HMS</span></a>
+               <a href="main.al"><span>HMS</span></a>
             </h1>
          </div>
       </div>
@@ -32,17 +32,17 @@
       <table class="table">
          <tr align="center">
          	<td>
-            	<input type="button" value="체크인" onclick="chekIn('${roomNum}','${roomKind }', '${roomPrice }')" class="updateBtn">
+            	<input type="button" value="체크인" onclick="chekIn('${hallCode}','${hallName }', '${price }')" class="updateBtn">
             </td>
          </tr>
          <tr align="center">
            	<td>
-            	<input type="button" value="청소중" onclick="cleaning('${roomNum}')" class="updateBtn">
+            	<input type="button" value="청소중" onclick="cleaning('${hallCode}')" class="updateBtn">
             </td>
          </tr>
          <tr align="center">
           	<td>
-            	<input type="button" value="수리중" onclick="repair('${roomNum}')" class="updateBtn"> 
+            	<input type="button" value="수리중" onclick="repair('${hallCode}')" class="updateBtn"> 
             </td>
          </tr>
         
