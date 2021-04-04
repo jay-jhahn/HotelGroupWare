@@ -34,8 +34,8 @@
 					<li><a href="#team">직원가상품</a></li>
 					<li class="drop-down"><a href="#">부서</a>
 						<ul>
-							<li><a href="shareMain.al">공통</a></li>
-							<li><a href="roomMain.al">객실</a></li>
+							<li><a href="shareMain.lo">공통</a></li>
+							<li><a href="roomMain.ra">객실</a></li>
 							<li><a href="officeMain.ad">경영지원</a></li>
 						</ul></li>
 					<li><a href="#contact">Contact Us</a></li>
