@@ -41,8 +41,8 @@ $(function(){
 						<i class="now-ui-icons users_single-02"></i> 인사관리
 					</a>
 					<ul class="hide list-group list-group-flush text-center" style="display: none;">
-						<li class="subMenuLi list-group-item"><a href="hrInfo.ad">인사정보</a></li>
-						<li class="subMenuLi list-group-item"><a href="#">인사고과</a></li>
+						<li class="subMenuLi list-group-item"><a href="hrInfo.oa">인사정보</a></li>
+						<li class="subMenuLi list-group-item"><a href="ratingList.or">인사고과</a></li>
 					</ul>
 				</li>
 				
@@ -70,7 +70,7 @@ $(function(){
 						<i class="now-ui-icons emoticons_satisfied"></i> 직원 복지
 					</a>
 					<ul class="hide list-group list-group-flush text-center" style="display: none;">
-						<li class="subMenuLi list-group-item"><a href="welfareCuponList.oa">쿠폰 목록 및 입력</a></li>
+						<li class="subMenuLi list-group-item"><a href="welfareCuponList.al">쿠폰 목록 및 입력</a></li>
 					</ul>
 				</li>
 				

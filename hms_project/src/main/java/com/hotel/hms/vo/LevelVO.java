@@ -1,9 +1,11 @@
 package com.hotel.hms.vo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 // 직위테이블
-@Data
+@Getter
+@Setter
 public class LevelVO {
 	
 	private int levelCode;		// 직위코드 // level_seq.nextval
