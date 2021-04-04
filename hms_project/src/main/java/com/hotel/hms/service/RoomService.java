@@ -18,13 +18,4 @@ public interface RoomService {
 	// 체크인 인서트
 	public void checkInInsert(HttpServletRequest req, Model model);
 	
-	// 체크인에서 빈방으로
-	public void checkInRoomStateChange(HttpServletRequest req, Model model);
-	
-	// 빈방으로
-	public void emptyGoRoomStateChange(HttpServletRequest req, Model model);
-	
-	// 체크인 상세정보
-	public void roomDetail(HttpServletRequest req, Model model);
-	
 }

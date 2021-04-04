@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hotel.hms.persistence.WelfareDAO;
-
-import com.hotel.hms.vo.PagingVO;
-
+import com.hotel.hms.vo.Page;
 import com.hotel.hms.vo.WelfareVO;
 
 @Service
@@ -21,22 +19,13 @@ public class WelfareServiceImpl implements WelfareService {
 
 	@Autowired
 	WelfareDAO dao;
-	
-	// 쿠폰 리액트 화면 보여줄때 넘길 직원 정보 - 박상원
-	@Override
-	public void empDetail(HttpServletRequest req, Model model) {
-		// 세션 사번 가져오기
-		String empCode = (String) req.getSession().getAttribute("empCode");
-		EmployeeVO vo = dao.empDetail(empCode);
-		model.addAttribute("vo", vo);
-	}
-	
-	
+
 	// 마이쿠폰 목록 보기 - 박상원
 	@Override
 	public void myCuponList(HttpServletRequest req, Model model) {
 		// 세션 사번 가저요기
 		String empCode = (String) req.getSession().getAttribute("empCode");
+		System.out.println("직원상품 empCode >> " + empCode);
 		List<WelfareVO> list = dao.myCuponList(empCode);
 		model.addAttribute("list", list);
 	}

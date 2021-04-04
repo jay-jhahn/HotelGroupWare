@@ -97,7 +97,7 @@
 						<div class="card-body">
 
 								<input type="hidden" value="${pageNum}" name="pageNum"/>
-								<table class="table table-bordered text-center">
+								<table class="table table-hover text-center">
 									<tr class="backgray">
 										<th>No</th>
 										<th>쿠폰이름</th>

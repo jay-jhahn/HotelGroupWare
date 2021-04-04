@@ -3,7 +3,7 @@
 .roomMainInput{
    background-color: #EBECF1; 
    height: 100px; 
-   width: 120px;
+   width: 100px;
    color: #516375;
 }
 .fontCo{
@@ -25,15 +25,6 @@
    border: #55789B; 
    color: #fff; 
    height: 30px;
-}
-.Btn{
-   background-color: #55789B; 
-   border: #55789B; 
-   color: #fff; 
-   font-size: 18px;
-   width: 200px;
-   height: 60px;
-   margin: 1%;
 }
 .NumberSty{
    background-color: #EBECF1; 

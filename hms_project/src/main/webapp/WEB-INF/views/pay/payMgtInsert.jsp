@@ -1,21 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
-<%@page import="java.io.*, java.util.Date, java.util.Enumeration" %> 
-<%@ page import="java.text.*, java.text.SimpleDateFormat.*,java.text.ParseException.*"%>
 <body>
-<%
-Date date = new Date();
-SimpleDateFormat simpleDate = new SimpleDateFormat ("yyyy-MM");
-String strdate  = simpleDate.format(date);
-%>
 	<div class="card-header">
 		<h4 class="card-title">급여명세서 입력</h4>
 	</div>
 
 	<div class="card-body">
-		<form action="insertPay.ad" method="post" >
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<form>
 		<div class="table-responsive">
 
 			<table class="table">
@@ -25,33 +17,44 @@ String strdate  = simpleDate.format(date);
 						<div class="d-flex">
 							<div class="p-2">
 								<div class="form-group">
-									<label for="empCode">직원코드</label>
-									<input type="text" class="form-control" id="empCode" name="empCode" placeholder="코드" onchange="iSabunChange();">
+									<label for="empCode">직원코드</label> <input type="text"
+										class="form-control" id="empCode" name="empCode" placeholder="코드">
 								</div>
 							</div>
 							<div class="p-2">
 								<div class="form-group">
-									<label for="empName">직원명</label>
-									<input type="text" class="form-control" id="empName" name="empName" placeholder="성명" readonly>
+									<label for="empName">직원명</label> <input type="text"
+										class="form-control" id="empName" name="empName" placeholder="성명" readonly>
 								</div>
 							</div>
 						</div>
 					</td>
 				</tr>
+
 				<tr>
-					<td style="width: 20%;" />
+					<td style="width: 5%;" />
 
 					<td><br> <br> <br>
 						<div class="form-group">
-							<label for="pmtDate">지급일</label>
-							<input type="month" class="form-control" style="width:30%"
-								id="pmtDate" name="pmtDate" min="<%=strdate%>"><!-- 이번달부터만 임력가능 -->
+							<label for="family">가족수</label> <input type="number"
+								class="form-control" value="1" min="1" max="6" step="1"
+								id="family" name="family">
 						</div>
 						<div class="form-group">
-							<label for="bonus">상여금</label>
-							<input type="number" class="form-control" value="0" min="0"
-								id="bonus" name="bonus">
+							<label for="bonus">상여금</label> <input
+								type="number" class="form-control" value="0" min="0"
+								max="1000000" step="5000" id="bonus" name="bonus">
 						</div>
+						<div class="form-group">
+							<label for="etc">기타</label> <input
+								type="number" class="form-control" value="0" min="0"
+								max="1000000" step="5000" id="etc" name="etc">
+						</div></td>
+
+					<td style="width: 2.5%; border-right: 1px solid #dee2e6;" />
+					<td style="width: 2.5%;" />
+
+					<td><br> <br> <br>
 						<div class="form-group">
 							<label for="meals">식대</label> <input
 								type="number" class="form-control" value="0" min="0"
@@ -66,15 +69,9 @@ String strdate  = simpleDate.format(date);
 							<label for="welfare">출산/보육수당</label> <input
 								type="number" class="form-control" value="0" min="0"
 								max="1000000" step="5000" id="welfare" name="welfare">
-						</div>
-						<div class="form-group">
-							<label for="etc">기타</label> <input
-								type="number" class="form-control" value="0" min="0"
-								max="1000000" step="5000" id="etc" name="etc">
-						</div>
-					</td>
+						</div></td>
 
-					<td style="width: 20%;" />
+					<td style="width: 5%;" />
 				</tr>
 			</table>
 

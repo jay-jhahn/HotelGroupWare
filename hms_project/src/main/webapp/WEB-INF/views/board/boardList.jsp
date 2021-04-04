@@ -5,15 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-	
-	<iframe src="http://localhost:3000/yejinComponent/${deptName}/${cnt}" width="100%" height="100%">
-	
+	<iframe src="http://localhost:3000" width="100%" height="100%">
+		
 	</iframe>
-
-
-	
 </body>
 </html>

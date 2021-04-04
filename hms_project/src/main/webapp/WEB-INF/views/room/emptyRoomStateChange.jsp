@@ -19,7 +19,7 @@
       <div class="container">
          <div class="logo float-left">
             <h1 class="text-light">
-               <a href="#"><span>HMS</span></a>
+               <a href="main.al"><span>HMS</span></a>
             </h1>
          </div>
       </div>

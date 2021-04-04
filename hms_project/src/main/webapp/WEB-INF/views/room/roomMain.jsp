@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body onload="checkList()">   
+<body>   
 <!--    </div> -->
 <!-- ======= Main ======= -->
 <div class="main-panel" id="main-panel">

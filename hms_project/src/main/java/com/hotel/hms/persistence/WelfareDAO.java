@@ -3,12 +3,9 @@ package com.hotel.hms.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.hotel.hms.vo.EmployeeVO;
 import com.hotel.hms.vo.WelfareVO;
 
 public interface WelfareDAO {
-
-	EmployeeVO empDetail(String empCode);
 	
 	// 마이쿠폰 목록 조회 - 박상원
 	List<WelfareVO> myCuponList(String empCode);
