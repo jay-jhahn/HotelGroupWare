@@ -2,20 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
 <body>
-	<c:if test="${ insertCnt != 0}">
+	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			setTimeout(function() {
-				alert('예약되었습니다.');
-				window.location='hallList.al'; // 메인으로	
+				alert('변경되었습니다.');
+				window.location='hollList.al'; // 메인으로	
 			}, 1000);
 		</script>
 	</c:if>
 	
-	<c:if test="${ insertCnt == 0}">
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
 			setTimeout(function() {
-				alert('다시 예약해주세요.');
-				window.location='hallInsert.al'; // 수정페이지로	
+				alert('변경 실패.');
+				window.location='hallModify.al'; // 수정페이지로	
 			}, 1000);
 		</script>
 	</c:if>

@@ -47,15 +47,26 @@
 				
 				<li class="dpMenu">
 					<a href="#"> 
+					<!-- <a href="hallList.al" onclick="hallList()"> --> 
 						<i class="now-ui-icons design_app"></i> 연회장
 					</a>
 					<ul class="hide list-group list-group-flush text-center" style="display: none;">
-						<li class="subMenuLi list-group-item">
+ 					<li class="subMenuLi list-group-item"> 
+ 							<!-- <a href="#" onclick="hallList()">연회장 메인</a> -->
+ 							<a href="hallList.al">연회장 메인</a>
+ 						</li> 
+					 <li class="subMenuLi list-group-item"> 
 							<a href="hallInsert.al">연회장 예약 관리</a>
 						</li>
-						<li class="subMenuLi list-group-item">
-							<a href="hallModify.al">연회장 예약 수정</a>
-						</li>
+					 <li class="subMenuLi list-group-item"> 
+							<a href="hallModify.al">연회장 예약 수정</a> 
+						</li> 
+					 <li class="subMenuLi list-group-item"> 
+							<a href="hallSelct.al">연회장 예약 내역</a> 
+						</li>	
+					 <li class="subMenuLi list-group-item"> 
+							<a href="List.al">연회장 예약 내역</a> 
+						</li>	
 					</ul>
 				</li>
 

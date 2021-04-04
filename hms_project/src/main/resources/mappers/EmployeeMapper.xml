@@ -76,18 +76,7 @@
 	
 	<!-- 사원명부 가져오기 ㄱ,ㄴ,ㄷ 순 -->
 	<select id="getEmpList" resultType="com.hotel.hms.vo.EmployeeVO" resultMap="empMap">
-		SELECT * 
-			FROM (
-				SELECT ROWNUM RN, E.* 
-					FROM (
-							SELECT empCode, deptCode, levelCode, dutyCode
-								 , empName, enterDate, resignDate, empPhone
-								 , empEmail, postCode, roadAddress, detailAddress 
-							FROM emp_tbl 
-							ORDER BY empName
-							) E
-					)
-		WHERE RN BETWEEN #{start} AND #{end}
+	                                          
 	</select>
 	
 	<!-- 총 사원수 조회 -->

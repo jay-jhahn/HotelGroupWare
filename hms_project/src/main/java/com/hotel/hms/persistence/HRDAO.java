@@ -28,5 +28,8 @@ public interface HRDAO {
 	
 	// empEnabled 업데이트
 	public int updateEnabled(String key);
+	
+	
+	
 
 }
