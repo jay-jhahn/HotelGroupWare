@@ -84,6 +84,9 @@
 <script src="${path}js/pseScript.js"></script>
 <script src="${path}js/kswScript.js"></script>
 
+<!-- chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 
 
 
