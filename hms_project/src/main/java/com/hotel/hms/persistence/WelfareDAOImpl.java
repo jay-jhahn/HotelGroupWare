@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hotel.hms.vo.EmployeeVO;
 import com.hotel.hms.vo.WelfareVO;
 
 @Repository
@@ -15,6 +16,11 @@ public class WelfareDAOImpl implements WelfareDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
+	// 쿠폰 리액트 화면 보여줄때 넘길 직원 정보 - 박상원
+	@Override
+	public EmployeeVO empDetail(String empCode) {
+		return sqlSession.selectOne("com.hotel.hms.persistence.WelfareDAO.empDetail",empCode);
+	}
 	// 마이쿠폰 목록 조회 - 박상원
 	@Override
 	public List<WelfareVO> myCuponList(String empCode) {
