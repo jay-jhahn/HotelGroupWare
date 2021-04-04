@@ -20,10 +20,22 @@ public class AccountServiceImpl implements AccountService {
 	// 결산 리스트
 	@Override
 	public void accountList(HttpServletRequest req, Model model) {
-		
-		AccountVO vo = new AccountVO();
-		//List<AccountVO> list = dao.();
-		
+				
+		List<AccountVO> list = dao.accountList();
+		model.addAttribute("list", list);
 		
 	}
+	
+	// 연별 결산 목록
+	@Override
+	public void accountByYMD(HttpServletRequest req, Model model) {		
+		List<AccountVO> list1 = dao.accountByYear();
+		List<AccountVO> list2 = dao.accountByMonth();
+		List<AccountVO> list3 = dao.accountByDay();
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);		
+	}
+
+
 }

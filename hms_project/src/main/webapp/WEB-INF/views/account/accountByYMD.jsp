@@ -27,7 +27,7 @@
 						<div>
 							<ul class="nav nav-tabs">
 								<li class="nav-item"><a class="nav-link active"
-									data-toggle="tab" href="#dayAccount">일별 결산</a></li>
+									data-toggle="tab" href="#dayAccount">금일 결산 내역</a></li>
 								<li class="nav-item"><a class="nav-link" data-toggle="tab"
 									href="#monthAccount">월별 결산</a></li>
 								<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -41,32 +41,24 @@
 									<form action="cartAction.do" method="post" id="days">
 										<table class="table table-striped" align="center" border="1px solid">
 											<tr>
-												<th colspan="4">일별 결산 내역</th>
+												<th colspan="5">금일 결산 내역</th>
 											</tr>
 											<tr>
+												<th>일</th>
 												<th>객실</th>
 												<th>연회장</th>
-												<th>추가1</th>
-												<th>추가2</th>
+												<th>손실</th>
+												<th>순이익</th>
 											</tr>
+											<c:forEach var="vo" items="${list3}">
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${vo.this_day}일</td>
+												<td><fmt:formatNumber value="${vo.room_account_days}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.hall_account_days}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.pmt_account_days }" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.room_account_days + vo.hall_account_days - vo.pmt_account_days}" pattern="#,###"/>원</td>
 											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+											</c:forEach>
 										</table>
 									</form>
 								</div>
@@ -74,32 +66,24 @@
 									<form action="cartAction.do" method="post" id="months">
 										<table class="table table-striped" align="center" border="1px solid">
 											<tr>
-												<th colspan="4">월별 결산 내역</th>
+												<th colspan="5">월별 결산 내역</th>
 											</tr>
 											<tr>
-												<th>객실</th>
+												<th>월</th>
+												<th>객실</th>												
 												<th>연회장</th>
-												<th>추가1</th>
-												<th>추가2</th>
+												<th>손실</th>
+												<th>순이익</th>
 											</tr>
+											<c:forEach var="vo" items="${list2}">
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${vo.this_month}월</td>
+												<td><fmt:formatNumber value="${vo.room_account_months}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.hall_account_months}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.pmt_account_months }" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.room_account_months + vo.hall_account_months - vo.pmt_account_months}" pattern="#,###"/>원</td>
 											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+											</c:forEach>											
 										</table>
 									</form>
 								</div>
@@ -107,32 +91,24 @@
 									<form action="cartAction.do" method="post" id="years">
 										<table class="table table-striped" align="center" border="1px solid">
 											<tr>
-												<th colspan="4">연별 결산 내역</th>
+												<th colspan="5">연별 결산 내역</th>
 											</tr>
 											<tr>
-												<th>객실</th>
+												<th>년도</th>
+												<th>객실</th>												
 												<th>연회장</th>
-												<th>추가1</th>
-												<th>추가2</th>
+												<th>손실</th>
+												<th>순이익</th>
 											</tr>
+											<c:forEach var="vo" items="${list1}">
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${vo.this_year}년</td>
+												<td><fmt:formatNumber value="${vo.room_account_years}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.hall_account_years}" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.pmt_account_years }" pattern="#,###"/>원</td>
+												<td><fmt:formatNumber value="${vo.room_account_years + vo.hall_account_years - vo.pmt_account_years}" pattern="#,###"/>원</td>
 											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+											</c:forEach>
 										</table>
 									</form>
 								</div>

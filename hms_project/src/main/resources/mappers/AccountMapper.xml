@@ -4,7 +4,103 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.hotel.hms.persistence.AccountDAO">
-	
+	<!-- 월별 결산 리스트 -->
+	<select id="accountList" resultType="com.hotel.hms.vo.AccountVO">
+		<![CDATA[
+		    select SUM(r.roomprice) room_account, to_char(s.resDate, 'yyyy/mm') room_date, SUM(h.price) hall_account, SUM(p.totalpmt) pmt_account 
+				from room_tbl r
+				join roomuse_tbl u
+				on r.roomnum = u.roomnum
+				join guest_tbl g
+				on g.guestCode = u.guestcode
+				join res_tbl s
+				on s.guestCode = g.guestCode
+				join hall_tbl h
+				on s.hallCode = h.hallCode
+				join emp_tbl e
+				on e.empCode = u.empCode
+				join pmt_tbl p
+				on p.empCode = e.empCode
+				group by to_char(s.resDate, 'yyyy/mm')
+				order by to_char(s.resDate, 'yyyy/mm')
+		]]>
+	</select>
+	<!-- 연별 결산 리스트  -->
+	<select id="accountByYear" resultType="com.hotel.hms.vo.AccountVO">
+		<![CDATA[
+			select SUM(r.roomprice) room_account_years, SUM(h.price) hall_account_years, SUM(p.totalpmt) pmt_account_years, to_char(s.resDate, 'yyyy') this_year
+				from room_tbl r
+				join roomuse_tbl u
+				on r.roomnum = u.roomnum
+				join guest_tbl g
+				on g.guestCode = u.guestcode
+				join res_tbl s
+				on s.guestCode = g.guestCode
+				join hall_tbl h
+				on s.hallCode = h.hallCode
+				join emp_tbl e
+				on e.empCode = u.empCode
+				join pmt_tbl p
+				on p.empCode = e.empCode
+				group by to_char(s.resDate, 'yyyy')
+				order by to_char(s.resDate, 'yyyy')
+		]]>
 
-
+	</select>
+	<!-- 월별 결산 리스트 -->
+	<select id="accountByMonth" resultType="com.hotel.hms.vo.AccountVO">
+		<![CDATA[
+			select SUM(r.roomprice) room_account_months, SUM(h.price) hall_account_months, SUM(p.totalpmt) pmt_account_months, to_char(s.resDate, 'yyyy/mm') this_month
+				from room_tbl r
+				join roomuse_tbl u
+				on r.roomnum = u.roomnum
+				join guest_tbl g
+				on g.guestCode = u.guestcode
+				join res_tbl s
+				on s.guestCode = g.guestCode
+				join hall_tbl h
+				on s.hallCode = h.hallCode
+				join emp_tbl e
+				on e.empCode = u.empCode
+				join pmt_tbl p
+				on p.empCode = e.empCode
+				group by to_char(s.resDate, 'yyyy/mm')
+				order by to_char(s.resDate, 'yyyy/mm')
+		]]>
+	</select>
+	<!-- 금일 결산 -->
+	<select id="accountByDay" resultType="com.hotel.hms.vo.AccountVO">
+		<![CDATA[
+			select r1.roomsum as room_account_days , r2.hallsum as hall_account_days, r3.pmtsum as pmt_account_days, to_char(sysdate, 'yyyy/mm/dd') as pmt_account_days
+				from(
+				select SUM(r.roomprice) as roomsum, to_char(u.roomusedate, 'yyyy/mm/dd') as roomday
+				    from room_tbl r
+				    join roomuse_tbl u
+				    on r.roomnum = u.roomnum
+				    where to_char(sysdate, 'yyyy/mm/dd') = to_char(u.roomusedate, 'yyyy/mm/dd')
+				    group by to_char(u.roomusedate, 'yyyy/mm/dd')
+				) r1
+				inner join(
+				select SUM(h.price) as hallsum, to_char(s.resDate, 'yyyy/mm/dd') as resday
+				    from hall_tbl h
+				    join res_tbl s
+				    on s.hallCode = h.hallCode
+				    where to_char(sysdate, 'yyyy/mm/dd') = to_char(s.resDate, 'yyyy/mm/dd')
+				    group by to_char(s.resDate, 'yyyy/mm/dd')
+				) r2
+				on 
+				    r1.roomday = r2.resday
+				inner join(
+				select SUM(p.totalpmt) as pmtsum, to_char(p.pmtDate, 'yyyy/mm/dd') as pmtday
+				    from pmt_tbl p
+				    join emp_tbl e
+				    on p.empCode = e.empCode
+				    where to_char(sysdate, 'yyyy/mm/dd') = to_char(p.pmtDate, 'yyyy/mm/dd')
+				    group by to_char(p.pmtDate, 'yyyy/mm/dd')
+				) r3
+				on
+				    r3.pmtday = r2.resday
+				order by to_char(sysdate, 'yyyy/mm/dd')
+		]]>
+	</select>
 </mapper>
