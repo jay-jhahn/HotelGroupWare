@@ -50,6 +50,7 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 		}else {
 			request.setAttribute("errMsg", "아이디가 존재하지 않습니다. 확인 후 다시 시도하세요.");
 		}
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/index.jsp");
 		rd.forward(request, response);
 	}

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hotel.hms.persistence.WelfareDAO;
-import com.hotel.hms.vo.PagingVO;
+import com.hotel.hms.vo.Page;
 import com.hotel.hms.vo.WelfareVO;
 
 @Service
@@ -38,7 +38,7 @@ public class WelfareServiceImpl implements WelfareService {
 		if(pageNum == null) {
 			pageNum = "1"; // 첫페이지를 1페이지로 지정
 		}
-		PagingVO page = new PagingVO();		// 페이지 클래스 객체 생성
+		Page page = new Page();		// 페이지 클래스 객체 생성
 		page.setPageSize(10);		// 한 페이지당 출력할 글 개수
 		page.setPageBlock(3);		// 한 블럭당 페이지 개수
 		page.setPageNum(pageNum);	// 페이지 번호

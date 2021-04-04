@@ -11,7 +11,7 @@
 				<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personalData"> 인적사항 </a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#famHistory" onclick="return registerChk();"> 가족사항 </a></li>
 			</ul>
-			<form action="regEmpAction.oa?${_csrf.parameterName}=${_csrf.token}" method="post" name="regEmpForm" 
+			<form action="regEmpAction.al?${_csrf.parameterName}=${_csrf.token}" method="post" name="regEmpForm" 
 				id="regEmpForm"	enctype="multipart/form-data" >
 			<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 				<div class="tab-content">

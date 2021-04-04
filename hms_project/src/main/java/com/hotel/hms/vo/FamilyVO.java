@@ -1,13 +1,10 @@
 package com.hotel.hms.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 // 가족테이블
-@Getter
-@Setter
+@Data
 public class FamilyVO {
-	private int famCode;		// 가족번호
 	private String empCode;		// 사원번호
 	private String relation;	// 관계
 	private String faMemName;	// 구성원 이름
