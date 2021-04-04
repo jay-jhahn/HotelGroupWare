@@ -20,7 +20,8 @@
 							</div>
 							<div class="card-body">
 								<div>
-									<iframe class="welfareCardIframe" src="http://localhost:3003"></iframe>
+									${vo}
+									<iframe class="welfareCardIframe" src="http://localhost:3000/PcardMain"></iframe>
 								</div>
 							</div>
 						</div>

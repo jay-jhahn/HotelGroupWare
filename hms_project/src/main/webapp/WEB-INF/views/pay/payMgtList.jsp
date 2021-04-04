@@ -1,27 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
-<style>
-  .stroll {
-    width: 250px;
-    height: 140px;
-    overflow: auto;
-  }
-  .stroll::-webkit-scrollbar {
-    width: 10px;
-  }
-  .stroll::-webkit-scrollbar-thumb {
-    background-color: #A8B1BA;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-  }
-  .stroll::-webkit-scrollbar-track {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 2px white;
-  }
-</style>
+
 <body>
 <div class="wrapper">
    <!-- ====== Side Menu ===== -->
@@ -45,128 +25,59 @@
                    <div class="card-header">
                        <h4 class="card-title"></h4>
                    </div>
-                   
-                        <form>
-                        <div class="card-body">
+                       
+					<div class="card-body">
+						<form action="selectPayEmp.ad" method="post">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="d-flex">
-                              <div class="p-2">
-                                 <select class="form-control custom-select" name="Date">
-                                    <option selected>년-월</option>
-                                    <option value="최근 날짜">최근 날짜</option>
-                                       <option value="~">~</option>
-                                       <option value="마지막 기한">마지막 기한</option>
-                                 </select>
+                              <div class="p-2" style="width: 200px">
+                             	 <c:if test="${pmtDate == null}">
+                                 	<input type="month" class="form-control" name="pmtDate">
+                                 </c:if>
+                                 <c:if test="${pmtDate != null}">
+                                 	<input type="month" class="form-control" name="pmtDate" value="${pmtDate}">
+                                 </c:if>
+                              </div>
+                              <div class="p-2" style="width: 70px">
+                                 <input type="submit" class="btn input" value="확인" style="margin:0; height:32.39px; padding: 5px 22px">
                               </div>
                            </div>
-                            
+                         
                             <!-- 직원리스트 -->
                             <div class="table-responsive" style="padding: 10px;">
                                 <div class="stroll" style="width:40%; height:750px; overflow:auto; float:left;">
-                                   <p>직원 목록</p>
+                                   <legend>직원 목록</legend>
                                    <table class="table table-bordered">
+                                   
                                       <tr class="text-center backgray">
                                          <th><input type="checkbox" name="checkbox" onclick="selectAll(this)"></th>
                                               <th>No</th>
                                               <th>성명</th>
                                               <th>부서</th>
-                                              <th>직책</th>
+                                              <th>직위</th>
                                       </tr>
+                                      
+                                      <c:forEach var="vo" items="${list}" varStatus="status">
+                                      <input type="hidden" name="empCode" class="empCode" value="${vo.empCode}">
+                                      <input type="hidden" name="pmtDate" class="pmtDate" value="${vo.pmtDate}">
                                       <tr>
-                                         <td class="text-center"><input type="checkbox" name="checkbox" value="${vo.id}"></td>
-                                               <td>회원코드</td> <!-- NO -->
-                                               <td>홍길동</td> <!-- 성명 -->
-                                               <td>프론트</td> <!-- 부서 -->
-                                               <td>-</td> <!-- 직책 -->
+                                         <td class="text-center"><input type="checkbox" name="checkbox" class="pmtCode" value="${vo.pmtCode}"></td>
+                                         <td><a class="nav-link" data-toggle="tab" onclick="payMgtDetail('${vo.empCode}','${vo.pmtDate}');">${vo.empCode}</a></td> <!-- NO -->
+                                         <td>${vo.empName}</td> <!-- 성명 -->
+                                         <td>${vo.deptName}</td> <!-- 부서 -->
+                                         <td>${vo.levelName}</td> <!-- 직위 -->
                                       </tr>
+                                      </c:forEach>
+                                      
                                    </table>
                                 </div>
                                 
                                 <div class="stroll" style="width:5%; height:750px; overflow:auto; float:left;">
                                 </div>
                                 
-                                <div class="stroll" style="width:55%; height:750px; overflow:auto; float:left;">
-                                   <p>지급내용(과세)</p>
-                                   <table class="table table-bordered">
-                                      <tr class="text-center backgray">
-                                         <th class="backgray">지급항목(과세)</th>
-                                         <th>금액</th>
-                                         <th class="backgray">지급항목(비과세)</th>
-                                         <th>금액</th>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">급여</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">식대</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">연장수당</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">자가운전보조금</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">휴일수당</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">출산/보육수당</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">상여금</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">기타</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">지급합계</th>
-                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                   </table>
-                                   
-                                   <p>지급내용(과세)</p>
-                                   <table class="table table-bordered">
-                                      <tr class="text-center backgray">
-                                         <th class="backgray">공제내용</th>
-                                         <th class="backgray">금액</th>
-                                         <th class="backgray">공제내용</th>
-                                         <th class="backgray">금액</th>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">소득세</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">고용보험</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">주민세</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">국민연금</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">기타</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                         <th class="backgray">장기요양</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray"></th>
-                                         <td></td>
-                                         <th class="backgray">건강보험</th>
-                                         <td><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                      <tr class="text-center">
-                                         <th class="backgray">공제합계</th>
-                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                   </table>
-                                   
-                                   <table class="table table-bordered" style="font-size:14px;">
-                                      <tr class="text-center">
-                                         <th class="backgray">차감수령액</th>
-                                         <td colspan="3"><fmt:formatNumber type="number" pattern="#,##0" value=""/>원</td>
-                                      </tr>
-                                   </table>
+                                <div class="stroll2" id="payMgtDetail" style="width:55%; height:750px; overflow:auto; float:left;">
+                                   <!-- 급여명세 상세 조회 부분 -->
+                                   <div id="result" style="padding-top: 43px"></div>
                                 </div>
                              </div>
                              
@@ -176,9 +87,8 @@
                                 <input type="submit" class="btn input" style="background-color: #516375;" value="전송">
                              </div>
                          </div>
-                         </form>
-                   
-               </div>
+					</form>
+				</div>
             </div>
             </div><!-- ====== Card ===== -->
            
@@ -188,5 +98,23 @@
 </div> <!-- close wrapper -->
    <!-- ======= Footer ======= -->
    <jsp:include page="${jspPath}common/footer.jsp" flush="false" />
+
 </body>
+<script type="text/javascript">
+function payMgtDetail(code1,code2) {
+	var param="&${_csrf.parameterName}=${_csrf.token}&empCode=" + code1 + "&pmtDate=" + code2;
+	$.ajax({
+		url: 'payMgtDetail.ad',	
+		type: 'POST',
+		data: param,
+		success: function(data){	
+			$('#result').html(data);
+			$('#payMgtDetail').attr('style', "display:'';");  //나타내기
+		},
+		error: function(){
+			alert('오류');
+		}
+	});
+};
+</script>
 </html>

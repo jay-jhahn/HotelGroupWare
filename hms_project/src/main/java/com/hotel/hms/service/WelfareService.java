@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public interface WelfareService {
+	
+	void empDetail(HttpServletRequest req, Model model);
 
 	// 마이쿠폰 목록 조회 - 박상원
 	void myCuponList(HttpServletRequest req, Model model);

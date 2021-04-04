@@ -20,15 +20,16 @@ public class WelfareController {
 	@Autowired
 	WelfareService service;
 
-	// 직원복지 목록 - 박상원
+	// 직원 할인 페키지 페이지 REACT - 박상원
 	@RequestMapping("welfareCard.al")
-	public String welfareCard(Model model) {
+	public String welfareCard(HttpServletRequest req, Model model) {
 		logger.info("welfareCard.al");
 		
+		service.empDetail(req, model);
 		return "/welfare/welfareCard";
 	}
 	
-	// 직원복지 목록 - 박상원
+	// 직원복지 마이쿠폰 목록 - 박상원
 	@RequestMapping("welfareMyCupon.al")
 	public String welfareMyCupon(HttpServletRequest req, Model model) {
 		logger.info("welfareMyCupon.al");
