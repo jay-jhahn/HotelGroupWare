@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.hotel.hms.persistence.PayDAO">
+	<!-- 직원 정보 가져오기 - 박상원 -->
+	<select id="selectSabun" resultType="com.hotel.hms.vo.EmployeeVO">
+		SELECT *
+		  FROM emp_tbl
+		 WHERE empCode=#{empCode}
+	</select>
+	<!-- 인사고과에 따른 상여금 가져오기 - 박상원 -->
+	<select id="selectBonus" resultType="int">
+		SELECT incentive
+		  FROM rating_tbl
+		 WHERE ratGrade = (SELECT ratGrade
+		 					 FROM rating_log_tbl
+		 					WHERE empCode=#{empCode})
+	</select>
+
+ 	<!-- 급여명세서 해당월 조회 - 박상원 -->
+ 	<select id="selectPmtDate" resultType="int">
+		SELECT COUNT(*)
+		  FROM pmt_tbl
+		 WHERE empCode = #{empCode}
+		   AND pmtDate = #{pmtDate}
+ 	</select>
+ 	<!-- 급여명세서 입력 - 박상원 -->
+ 	<insert id="insertPay" parameterType="java.util.Map">
+		INSERT INTO pmt_tbl (pmtCode, empCode, deptCode, levelCode, salary, extension, holiday, bonus, meals, selfDrive, welfare, etc, taxPmt, nonTaxPmt, totalPmt, payrollTx, rsdtTx, employmentIns, nationalPension, longCareIns, healthIns, totalDeduct, ddctAmount, pmtDate)
+		VALUES (pmt_seq.nextval, #{empCode}, #{deptCode}, #{levelCode}, #{salary}, #{extension}, #{holiday}, #{bonus}, #{meals}, #{selfDrive}, #{welfare}, #{etc}, #{taxPmt}, #{nonTaxPmt}, #{totalPmt}, #{payrollTx}, #{rsdtTx}, #{employmentIns}, #{nationalPension}, #{longCareIns}, #{healthIns}, #{totalDeduct}, #{ddctAmount}, #{pmtDate})
+ 	</insert>
+ 	
+ 	<!-- 급여명세서 수정 - 박상원 -->
+ 	<update id="updatePay" parameterType="java.util.Map">
+		UPDATE pmt_tbl
+		   SET deptCode=#{deptCode}, levelCode=#{levelCode}, salary=#{salary}, extension=#{extension}, holiday=#{holiday}, bonus=#{bonus}, meals=#{meals}, selfDrive=#{selfDrive}, welfare=#{welfare}, etc=#{etc}, taxPmt=#{taxPmt}, nonTaxPmt=#{nonTaxPmt}, totalPmt=#{totalPmt}, payrollTx=#{payrollTx}, rsdtTx=#{rsdtTx}, employmentIns=#{employmentIns}, nationalPension=#{nationalPension}, longCareIns=#{longCareIns}, healthIns=#{healthIns}, totalDeduct=#{totalDeduct}, ddctAmount=#{ddctAmount}
+		 WHERE empCode = #{empCode} AND pmtDate = #{pmtDate}
+ 	</update>
+ 	
+ 	<!-- 급여명세서 관리페이지 날짜면 사원 조회 -->
+ 	<select id="selectPayEmp" resultType="com.hotel.hms.vo.PayVO">
+	 	SELECT p.pmtCode, e.empCode, e.empName, d.deptName, l.levelName, p.*
+		  FROM pmt_tbl p 
+		  JOIN emp_tbl e ON P.empCode = e.empCode
+		  JOIN dept_tbl d ON e.deptCode = d.deptCode
+		  JOIN level_tbl l ON e.levelCode = l.levelcode
+		 WHERE pmtDate = #{pmtDate}
+		 ORDER BY d.deptCode DESC, l.levelCode DESC, e.empName
+ 	</select>
+ 	
+ 	<!-- 급여명세서 관리페이지 날짜면 사원 조회 -->
+ 	<select id="payMgtDetail" resultType="com.hotel.hms.vo.PayVO">
+	 	SELECT e.empName, p.*
+		  FROM pmt_tbl p
+		  JOIN emp_tbl e ON P.empCode = e.empCode
+		 WHERE p.pmtDate = #{pmtDate}
+		   AND p.empCode = #{empCode}
+ 	</select>
+	<!-- com.hotel.hms.persistence.PayDAO -->
+</mapper>
