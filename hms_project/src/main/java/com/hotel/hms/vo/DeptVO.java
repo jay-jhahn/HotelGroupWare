@@ -1,9 +1,11 @@
 package com.hotel.hms.vo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 // 부서테이블
-@Data
+@Getter
+@Setter
 public class DeptVO {
 
 	private String deptCode;	// 부서코드

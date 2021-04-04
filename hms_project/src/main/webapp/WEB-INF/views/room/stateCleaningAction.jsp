@@ -11,7 +11,7 @@
 	<c:if test="${updateCnt == 0}">
 			<script type="text/javascript">
 				alert("'청소중'으로 변경 실패");
-				location.href="check.al";
+				location.href="check.ra";
 			</script>
 		</c:if>
 		<c:if test="${updateCnt != 0}">	

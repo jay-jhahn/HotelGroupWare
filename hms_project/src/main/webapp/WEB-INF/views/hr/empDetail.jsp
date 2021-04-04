@@ -3,7 +3,7 @@
 <%@ include file="../common/setting.jsp"%>
 <body>
 <script type="text/javascript">
-	empDetails('${empVo.deptCode}', '${empVo.levelCode}', '${empVo.dutyCode}', '${empVo.gender}', '${empVo.empState}', '${empVo.payConStand}', '${empVo.isProbation}');
+	empDetails('${empVo.deptVo.deptCode}', '${empVo.levelVo.levelCode}', '${empVo.dutyVo.dutyCode}', '${empVo.gender}', '${empVo.empState}', '${empVo.payConStand}');
 </script>
 	<div class="detail-wrap">
 		<ul class="nav nav-tabs">
@@ -17,7 +17,7 @@
 				<div class="tab-pane fade show active" id="personalData">
 					<div class="perDataDiv mb-10 mt-10">
 						<div class="perDataImg mt-10"> 
-							<img id="image_section" alt="" src="http://placehold.it/300x400" src="">
+							<img id="image_section" alt="증명사진" src="<c:url value="/uploadPath/${empVo.empImg}" />" />
 							<div class="filebox">
 								<label for="empImg">증명사진</label>	
 								<input type="file" id="empImg" name="empImg" accept="image/*" onchange="setThumbnail(event);">

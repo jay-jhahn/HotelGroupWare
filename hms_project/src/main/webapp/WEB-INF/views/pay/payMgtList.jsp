@@ -21,7 +21,7 @@
             <!-- ====== Card ===== -->
             <div class="row">
             <div class="col-md-12">
-               <div class="card cardPadding">
+               <div class="card" style="padding: 5px 15px;">
                    <div class="card-header">
                        <h4 class="card-title"></h4>
                    </div>
@@ -75,9 +75,10 @@
                                 <div class="stroll" style="width:5%; height:750px; overflow:auto; float:left;">
                                 </div>
                                 
+
                                 <div class="stroll2" id="payMgtDetail" style="width:55%; height:750px; overflow:auto; float:left;">
                                    <!-- 급여명세 상세 조회 부분 -->
-                                   <div id="result" style="padding-top: 43px"></div>
+                                  <div id="result" style="padding-top: 43px"></div>
                                 </div>
                              </div>
                              

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hotel.hms.persistence.WelfareDAO;
-import com.hotel.hms.vo.EmployeeVO;
-import com.hotel.hms.vo.Page;
+
+import com.hotel.hms.vo.PagingVO;
 import com.hotel.hms.vo.WelfareVO;
 
 @Service
@@ -48,12 +48,12 @@ public class WelfareServiceImpl implements WelfareService {
 		if(pageNum == null) {
 			pageNum = "1"; // 첫페이지를 1페이지로 지정
 		}
-		Page page = new Page();		// 페이지 클래스 객체 생성
+		PagingVO page = new PagingVO();		// 페이지 클래스 객체 생성
 		page.setPageSize(10);		// 한 페이지당 출력할 글 개수
 		page.setPageBlock(3);		// 한 블럭당 페이지 개수
 		page.setPageNum(pageNum);	// 페이지 번호
 		
-		// 쿠폰 개수 구하기
+		// 1. 카테고리에 따른 상품 개수 구하기
 		page.setCnt(dao.welfareCuponCount());	// 쿠폰개수
 		int cnt = page.getCnt();
 		
@@ -81,33 +81,33 @@ public class WelfareServiceImpl implements WelfareService {
 	public void welfareCuponInsert(HttpServletRequest req) {
 		// 값 가져오기
 		String prodName = req.getParameter("prodName");
-		int dcPrice = 0;
 		int realPrice = Integer.parseInt(req.getParameter("realPrice"));
 		int dcRate = Integer.parseInt(req.getParameter("dcRate"));
-		float rate = 100-dcRate;
-		dcPrice = (int)(realPrice * rate/100);
+		int dcPrice = realPrice * ((100-dcRate)/100);
+		System.out.println("dbPrice >> " + dcPrice);
 		
 		String roomKind = "";
 		String roomClass = req.getParameter("roomClass");
 		String roomType = req.getParameter("roomType");
-		String isBreakfast = req.getParameter("isBreakfast");
-		if (roomClass.equals("등급") || roomType.equals("객실")) {
-			roomKind = "";
-			isBreakfast = "조식지원x";
-		} else {
+		if (roomClass != null && roomType != null) {
 			roomKind = roomClass + " " + roomType;
 		}
+
+		System.out.println("roomKind >> " + roomKind);
+		
+		String isBreakfast = req.getParameter("isBreakfast");
 		
 		String prodContents1 = req.getParameter("prodContents1");
-		String prodContents2 = "" ;
-		if (req.getParameter("prodContents2") != null) {prodContents2 = req.getParameter("prodContents2");}
-		String prodContents3 = "";
-		if (req.getParameter("prodContents3") != null) {prodContents3 = req.getParameter("prodContents3");}
+		String prodContents2 = req.getParameter("prodContents2");
+		if (prodContents2 == null) {prodContents2 = "";}
+		String prodContents3 = req.getParameter("prodContents3");
+		if (prodContents3 == null) {prodContents3 = "";}
+		System.out.println("prodContents1 >> " + prodContents1);
 		
 		// 복지쿠폰 입력
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("prodName", prodName);
-		map.put("realPrice", realPrice);
+		map.put("dcPrice", realPrice);
 		map.put("dcPrice", dcPrice);
 		map.put("roomKind", roomKind);
 		map.put("isBreakfast", isBreakfast);
@@ -115,5 +115,6 @@ public class WelfareServiceImpl implements WelfareService {
 		map.put("prodContents2", prodContents2);
 		map.put("prodContents3", prodContents3);
 		dao.welfareCuponInsert(map);
+
 	}
 }

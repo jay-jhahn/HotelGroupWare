@@ -3,6 +3,7 @@ package com.hotel.hms.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,10 @@ import com.hotel.hms.controller.HRController;
 import com.hotel.hms.persistence.HRDAO;
 import com.hotel.hms.vo.EmployeeVO;
 import com.hotel.hms.vo.FamilyVO;
+import com.hotel.hms.vo.RatScorePerItemVO;
+import com.hotel.hms.vo.RatingItemVO;
+import com.hotel.hms.vo.RatingLogVO;
+import com.hotel.hms.vo.RatingVO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -39,7 +44,7 @@ public class HRServiceImpl implements HRService {
 
 	@Autowired
 	HRDAO dao;
-
+	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
@@ -73,7 +78,7 @@ public class HRServiceImpl implements HRService {
 		////////////////// 개인정보 입력창 값 받아오기 시작 /////////////////////////////////////////
 		String empCode = req.getParameter("empCode"); // 사번
 		String empPwd = empCode; // 초기 비밀번호는 사번과 동일하다.
-		String encryptPassword = passwordEncoder.encode(empCode);
+		String encryptPassword = passwordEncoder.encode(empPwd);
 		String empName = req.getParameter("empName"); // 성명
 
 		String empJumin = ""; // 주민번호
@@ -120,7 +125,6 @@ public class HRServiceImpl implements HRService {
 
 		String postCode = req.getParameter("postCode"); // 우편번호
 		String roadAddress = req.getParameter("roadAddress"); // 도로명주소
-		String jibunAddress = req.getParameter("jibunAddress"); // 지번주소
 		String detailAddress = req.getParameter("detailAddress"); // 상세주소
 		String extraAddress = req.getParameter("extraAddress"); // 참고항목
 
@@ -156,41 +160,37 @@ public class HRServiceImpl implements HRService {
 		// 부서와 직위로 분류하여 권한 부여
 		String empAuthority = "";
 		switch (deptCode) {
-		case "RO":
-			switch (levelCode) {
-			case 1:
-			case 2:
-			case 3:
-				empAuthority = "ROLE_RO";
+			case "RO":
+				switch (dutyCode) {
+				case "NONE": case "EMP":
+					empAuthority = "ROLE_RO";
+					break;
+				case "MNG":
+					empAuthority = "ROLE_ROM";
+					break;
+				case "SMNG":
+					empAuthority = "ROLE_ROSM";
+					break;
+				case "GM":
+					empAuthority = "ROLE_GM";
+					break;
+				}
 				break;
-			case 4:
-			case 5:
-			case 6:
-				empAuthority = "ROLE_ROM";
-			case 7:
-			case 8:
-			case 9:
-				empAuthority = "ROLE_ROSM";
-				break;
-			}
-			break;
-		case "OF":
-			switch (levelCode) {
-			case 1:
-			case 2:
-			case 3:
-				empAuthority = "ROLE_OFF";
-				break;
-			case 4:
-			case 5:
-			case 6:
-				empAuthority = "ROLE_OFFM";
-			case 7:
-			case 8:
-			case 9:
-				empAuthority = "ROLE_OFFSM";
-				break;
-			}
+			case "OF":
+				switch (dutyCode) {
+				case "NONE": case "EMP":
+					empAuthority = "ROLE_OFF";
+					break;
+				case "MNG":
+					empAuthority = "ROLE_OFFM";
+					break;
+				case "SMNG":
+					empAuthority = "ROLE_OFFSM";
+					break;
+				case "GM":
+					empAuthority = "ROLE_GM";
+					break;
+				}
 			break;
 		}
 
@@ -223,26 +223,6 @@ public class HRServiceImpl implements HRService {
 		empVo.setEmpAuthority(empAuthority);
 		empVo.setEmpImg(savedName);
 		////////////////// 개인정보 입력창 값 받아오기 끝 /////////////////////////////////////////
-
-		////////////////// 가족사항 입력창 값 받아오기 시작 /////////////////////////////////////////
-		String famMem = req.getParameter("femMems");
-
-		List<Map<String, Object>> famMap = new ArrayList<Map<String, Object>>();
-		famMap = JSONArray.fromObject(famMem);
-
-		FamilyVO famVo = new FamilyVO();
-
-		int insertFamCnt = 0;
-		for (Map<String, Object> map : famMap) {
-			famVo.setEmpCode(empCode);
-			famVo.setRelation((String) map.get("relation"));
-			famVo.setFaMemName((String) map.get("faMemName"));
-			famVo.setFaMemAge((String) map.get("faMemAge"));
-			famVo.setIsLiveTogt((String) map.get("isLiveTogt"));
-
-			insertFamCnt = dao.insertFamMem(famVo);
-		}
-		////////////////// 가족사항 입력창 값 받아오기 끝 /////////////////////////////////////////
 
 		////////////////// 메세지 전송하기 시작 ///////////////////////////////////////////////
 		String api_key = "NCSVCHFM3EJ6LS11";
@@ -290,11 +270,33 @@ public class HRServiceImpl implements HRService {
 		
 		// 개인정보 insert
 		int insertEmpCnt = dao.insertEmpInfo(empVo);
+
 		
 		if (insertEmpCnt != 0) {
 			dao.sendMail(empEmail, key);
 		}
 		////////////////// 이메일 전송하기 끝 ///////////////////////////////////////////////
+
+		//////////////////가족사항 입력창 값 받아오기 시작 /////////////////////////////////////////
+		String famMem = req.getParameter("femMems");
+		
+		List<Map<String, Object>> famMap = new ArrayList<Map<String, Object>>();
+		famMap = JSONArray.fromObject(famMem);
+		
+		FamilyVO famVo = new FamilyVO();
+		
+		int insertFamCnt = 0;
+		for (Map<String, Object> map : famMap) {
+			famVo.setEmpCode(empCode);
+			famVo.setRelation((String) map.get("relation"));
+			famVo.setFaMemName((String) map.get("faMemName"));
+			famVo.setFaMemAge((String) map.get("faMemAge"));
+			famVo.setIsLiveTogt((String) map.get("isLiveTogt"));
+			
+			// 가족사항 insert
+			insertFamCnt = dao.insertFamMem(famVo);
+		}
+		////////////////// 가족사항 입력창 값 받아오기 끝 /////////////////////////////////////////
 
 		model.addAttribute("insertEmpCnt", insertEmpCnt);
 		model.addAttribute("insertFamCnt", insertFamCnt);
@@ -323,10 +325,14 @@ public class HRServiceImpl implements HRService {
 		String empCode = req.getParameter("empCode");
 		EmployeeVO empVo = dao.empDetail(empCode);
 		List<FamilyVO> empFamMemList = dao.empFamMemList(empCode);
+		List<RatingItemVO> rtList = dao.getRatingItem();
+		
+		model.addAttribute("rtList", rtList);
 		model.addAttribute("empVo", empVo);
 		model.addAttribute("empFamMemList", empFamMemList);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void modifyAction(MultipartHttpServletRequest req, Model model) {
 		//////////////////증명사진 파일업로드 시작 /////////////////////////////////////////
@@ -396,7 +402,6 @@ public class HRServiceImpl implements HRService {
 		
 		String postCode = req.getParameter("postCode"); // 우편번호
 		String roadAddress = req.getParameter("roadAddress"); // 도로명주소
-		String jibunAddress = req.getParameter("jibunAddress"); // 지번주소
 		String detailAddress = req.getParameter("detailAddress"); // 상세주소
 		String extraAddress = req.getParameter("extraAddress"); // 참고항목
 		
@@ -544,6 +549,221 @@ public class HRServiceImpl implements HRService {
 		
 		model.addAttribute("updateEmpCnt", updateEmpCnt);
 		model.addAttribute("updateFamCnt", updateFamCnt);
-				
 		}
+
+	@Override
+	public void getEmpListDept(HttpServletRequest req, Model model) {
+		String deptCode = req.getParameter("deptCode");
+		String empCode = (String)req.getSession().getAttribute("empCode");
+		
+		System.out.println("deptCodedeptCode"+deptCode);
+		System.out.println("empCodeempCode"+empCode);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("empCode", empCode);
+		map.put("deptCode", deptCode);
+		
+		// 로그인한 사원의 권한(직책)체크
+		EmployeeVO empVo = dao.empDetail(empCode);
+		String dutyCode = empVo.getDutyVo().getDutyCode();
+		List<EmployeeVO> empList = null;
+		
+		if(dutyCode.equals("MNG")) {
+			empList = dao.getEmpListDeptMNG(map);
+		} else if(dutyCode.equals("SMNG") || dutyCode.equals("GM")) {
+			empList = dao.getEmpListDeptSMNG(map);
+		}
+		
+		model.addAttribute("deptCode", deptCode);
+		model.addAttribute("deptName", empList.get(0).getDeptVo().getDeptName());
+		model.addAttribute("empList", empList);
+	}
+
+	// 인사고과 평가 내용 저장
+	@Override
+	public void ratingAction(HttpServletRequest req, Model model) {
+		//////////////////////// 고과내역 테이블 저장 시작 ////////////////////////
+		// 평가항목별 점수 받아오기
+		String score1 = req.getParameter("score1");
+		String score2 = req.getParameter("score2");
+		String score3 = req.getParameter("score3");
+		String score4 = req.getParameter("score4");
+		String score5 = req.getParameter("score5");
+		String score6 = req.getParameter("score6");
+		String score7 = req.getParameter("score7");
+		String score8 = req.getParameter("score8");
+		
+		// 받아온 점수들을 array에 담아줌
+		ArrayList<String> scoreArr = new ArrayList<String>();
+		scoreArr.add(score1);
+		scoreArr.add(score2);
+		scoreArr.add(score3);
+		scoreArr.add(score4);
+		scoreArr.add(score5);
+		scoreArr.add(score6);
+		scoreArr.add(score7);
+		scoreArr.add(score8);
+	
+		// 고과 평가 날짜 받아오기
+		String ratDate = req.getParameter("ratDate");
+		String year = ratDate.substring(0, 4);
+		System.out.println("year=================>"+year);
+		// 피평가자 사번 받아오기
+		String empCode = req.getParameter("empCode");
+		
+		// 피평가자 직위, 부서코드 검색
+		EmployeeVO empVo = dao.empDetail(empCode);
+		int levelCode = empVo.getLevelVo().getLevelCode();
+		String deptCode = empVo.getDeptVo().getDeptCode();
+
+		// 평균 받아오기
+		String avg = req.getParameter("avg");
+		// String형의 평균을 float으로 변환
+		float favg = Float.parseFloat(avg);
+		
+		// 평균값이 해당하는 등급 조회
+		RatingVO rtVo = dao.getGrade(favg);
+		String ratGrade = rtVo.getRatGrade();
+		
+		Map<String, Object> ratLogMap = new HashMap<String, Object>();
+		ratLogMap.put("empCode", empCode);
+		ratLogMap.put("levelCode", levelCode);
+		ratLogMap.put("deptCode", deptCode);
+		ratLogMap.put("ratGrade", ratGrade);
+		ratLogMap.put("ratDate", ratDate);
+		ratLogMap.put("ratAvg", avg);
+		
+		// 인사고과 내역 저장
+		int insertCnt = dao.insertRatLog(ratLogMap);
+		System.out.println("insertCnt=======>" + insertCnt);
+		//////////////////////// 고과내역 테이블 저장 끝 ////////////////////////
+
+		//////////////////////// 고과항목별 점수 저장 //////////////////////////
+		// 저장한 고과 내역 코드 가져오기
+		Map<String , String> logCodeMap = new HashMap<String, String>();
+		logCodeMap.put("empCode", empCode);
+		logCodeMap.put("year", year);
+		int ratLogCode = dao.getRatLogCode(logCodeMap);
+
+
+		List<RatingItemVO> riList = dao.getRatingItem();	// 고가평가항목명을 담을 리스트
+		
+		Map<String, Object> ratScorePerItemMap = new HashMap<String, Object>();
+		int insertRspiCnt = 0;
+		for(int i=0;i<riList.size();i++) {
+			int ratItemCode = riList.get(i).getRatItemCode();
+			float ratScore = Float.parseFloat(scoreArr.get(i));
+			ratScorePerItemMap.put("ratItemCode", ratItemCode);
+			ratScorePerItemMap.put("ratLogCode", ratLogCode);
+			ratScorePerItemMap.put("empCode", empCode);
+			ratScorePerItemMap.put("ratDate", ratDate);
+			ratScorePerItemMap.put("ratScore", ratScore);
+			// 고과 항목별 점수 저장
+			insertRspiCnt = dao.insertRatScorePerItem(ratScorePerItemMap);
+		}
+		//////////////////////// 고과항목별 점수 끝 ////////////////////////////
+
+		///////////////////// 화면에 뿌릴 평가정보 가져오기 /////////////////////////
+		// 제대로 저장이 되었다면
+		if(insertCnt==1 && insertRspiCnt==1) {
+			Map<String, String> logMap = new HashMap<String, String>();
+			logMap.put("empCode", empCode);
+			logMap.put("year", year);
+			
+			// 고과내역 가져옴
+			RatingLogVO rlVo = dao.getRatLog(logMap);
+			
+			Map<String, Object> updateMap = new HashMap<String, Object>();
+			updateMap.put("empCode", empCode);
+			updateMap.put("cnt", 1); // 저장(제출 전)
+			dao.updateState(updateMap);
+			
+			Map<String, Object> rspiMap = new HashMap<String, Object>();
+			rspiMap.put("empCode", empCode);
+			rspiMap.put("year", year);
+			
+			System.out.println("Before getRspi()");
+			List<RatScorePerItemVO> rspiList = dao.getRspi(rspiMap);
+			System.out.println("rspiList ==> "+rspiList);
+			System.out.println(rspiList.get(1).getRatItem());
+			
+			model.addAttribute("rspiList", rspiList);
+			model.addAttribute("empVo", empVo);
+			model.addAttribute("rlVo", rlVo);
+		} else {
+			model.addAttribute("errMsg", "평가정보 입력에 실패하였습니다.");
+		}
+		///////////////////// 화면에 뿌릴 평가정보 가져오기 /////////////////////////		
+	}
+
+	@Override
+	public void getRatingResult(HttpServletRequest req, Model model) {
+		Calendar cal = Calendar.getInstance();
+		String year = Integer.toString(cal.get(Calendar.YEAR));
+		
+		// 피평가자 사번 받아오기
+		String empCode = req.getParameter("empCode");
+		// 피평가자 직위, 부서코드 검색
+		EmployeeVO empVo = dao.empDetail(empCode);
+		
+		Map<String, String> logMap = new HashMap<String, String>();
+		logMap.put("empCode", empCode);
+		logMap.put("year", year);
+		
+		// 고과내역 가져옴
+		RatingLogVO rlVo = dao.getRatLog(logMap);
+		
+		Map<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("empCode", empCode);
+		updateMap.put("cnt", 1); // 저장(제출 전)
+		dao.updateState(updateMap);
+		
+		Map<String, Object> rspiMap = new HashMap<String, Object>();
+		rspiMap.put("empCode", empCode);
+		rspiMap.put("year", year);
+		
+		System.out.println("Before getRspi()");
+		List<RatScorePerItemVO> rspiList = dao.getRspi(rspiMap);
+		System.out.println("rspiList ==> "+rspiList);
+		System.out.println(rspiList.get(1).getRatItem());
+		
+		String ratingState = empVo.getRatingState();
+		
+		if(ratingState.equals("0")) {
+			model.addAttribute("rspiList", rspiList);
+			model.addAttribute("empVo", empVo);
+		} else if (ratingState.equals("1")) {
+			model.addAttribute("rspiList", rspiList);
+			model.addAttribute("empVo", empVo);
+			model.addAttribute("rlVo", rlVo);
+		}
+	}
+	
+	// 인사고과 평가 결재 상태 변경
+	@Override
+	public void updateState(HttpServletRequest req, Model model) {
+		String empCode = req.getParameter("empCode");
+		// 피평가자 정보 가져오기
+		EmployeeVO empVo = dao.empDetail(empCode);
+		// 피평가자 인사고과 평가 결재 상태 가져오기
+		String ratingState = empVo.getRatingState();
+		
+		// 결재상태가 저장(제출 전)
+		if(ratingState == "1") {
+			// 결재상태 2 : 제출, 결재대기
+			ratingState = "2";
+		} else if(ratingState == "2") {
+			// 결재상태 3 : 결재완료
+			ratingState = "3";
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("empCode", empCode);
+		map.put("ratingState", ratingState);
+
+		int updateCnt = dao.updateState(map);
+		model.addAttribute("ratingState", ratingState);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
 }

@@ -33,6 +33,12 @@
 		<!-- 객실팀 시니어 매니저('ROLE_ROSM') : room senior(rs) -->
 		<sec:intercept-url pattern = "/**.rs" access = "hasRole('ROLE_ROSM', 'ROLE_GM')"/>
 		
+		<!-- 매니저 이상 직책일 때 접근가능 -->
+		<sec:intercept-url pattern = "/**.or" access = "hasAnyRole('ROLE_ROM', 'ROLE_ROSM', 'ROLE_OFFM', 'ROLE_OFFSM', 'ROLE_GM')"/>
+		
+		<!-- 로그인한 모든 직원 접근가능 -->
+		<sec:intercept-url pattern = "/**.lo" access="hasAnyRole('ROLE_OFF', 'ROLE_OFFM', 'ROLE_OFFSM', 'ROLE_GM', 'ROLE_RO', 'ROLE_ROM', 'ROLE_ROSM')"/>
+		
 		<!-- 로그인 폼 -->
 		<!-- username-parameter = "컬럼명" password-parameter = "컬럼명" -->
 		<sec:form-login login-page = "/main.al"

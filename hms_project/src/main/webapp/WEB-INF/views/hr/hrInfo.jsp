@@ -17,7 +17,7 @@
 							<li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="getInsertEmp();"> 인사정보등록 </a></li>
 						</ul>
 						<div class="card result">
-						
+							
 						</div> <!-- close card -->
 					</div>
 				</div> <!-- close row -->
