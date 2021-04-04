@@ -1,7 +1,5 @@
 package com.hotel.hms.vo;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,16 +18,7 @@ public class WelfareVO {
 	private String prodContents2;	// 상세내용2
 	private String prodContents3;	// 상세내용3
 	private int isUsed;				// 사용여부
-	private Timestamp regDate;
 	
 	public WelfareVO() {}
-
-	public int getrNum() {
-		return rNum;
-	}
-
-	public void setrNum(int rNum) {
-		this.rNum = rNum;
-	}
 	
 }
