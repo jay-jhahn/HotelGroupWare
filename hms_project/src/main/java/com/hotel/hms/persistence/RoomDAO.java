@@ -5,7 +5,7 @@ import java.util.List;
 import com.hotel.hms.vo.GuestVO;
 import com.hotel.hms.vo.RoomUseVO;
 import com.hotel.hms.vo.RoomVO;
-import com.hotel.hms.vo.currentlInUseVO;
+import com.hotel.hms.vo.CurrentlInUseVO;
 
 public interface RoomDAO {
 
@@ -31,13 +31,13 @@ public interface RoomDAO {
 	public int roomUseInsert(RoomUseVO roomUse);
 	
 	// 객실 현재 이용 내역 인서트
-	public int currentlInUseInsert(currentlInUseVO currentlInUse);
+	public int currentlInUseInsert(CurrentlInUseVO currentlInUse);
 	
 	// 체크인, 수리중, 청소중에서 빈방으로
 	public int checkInRoomStateChange(String roomNum);
 	
 	// 이용내역테이블 접근 후 정보 가져오기
-	public currentlInUseVO roomUseInformationGet(String roomNum);
+	public CurrentlInUseVO roomUseInformationGet(String roomNum);
 	
 	// 고객테이블 접근 후 정보 가져오기
 	public GuestVO guestInformationGet(int guestCode);

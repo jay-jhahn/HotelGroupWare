@@ -8,36 +8,61 @@
 	
 	<!-- 근무 정보 가져오는 메서드 -->
 	<select id="getWork" parameterType="java.util.Map" resultType="com.hotel.hms.vo.WorkVO" >
-		SELECT skdwork, empCode FROM work_tbl WHERE skdMonth=#{skdMonth} AND empCode = #{empCode}
+		SELECT scdwork, empCode FROM work_tbl WHERE scdMonth=#{scdMonth} AND empCode=#{empCode}
 	</select>
 	
 	<!-- 직원정보 가져오는 메서드  -->
 	<select id="getInfoEmp" parameterType="String" resultType="com.hotel.hms.vo.EmployeeVO">
-		SELECT empCode, empName FROM emp_tbl WHERE empCode = #{empCode}
+		SELECT e.empname, d.deptname, e.empPhone, e.empEmail  FROM emp_tbl e, dept_tbl d WHERE e.deptcode=d.deptcode AND e.empcode= #{empCode}
+
 	</select>
 	
-	<!-- 매니저가 작성한 스케줄근무 db에 집어넣는 매핑 시퀀스 나중에 고치기 -->
-	<insert id="insertSchedule" parameterType="map">
-		INSERT INTO work_tbl_test (skdCode, skdMonth, empCode, skdWorkd)  VALUES (scdcode_seq.nextval, #{skdMonth}, #{empCode}, #{work}) 
+	<!-- 매니저가 작성한 근무 DB에 넣기 -->
+	<insert id="insertSchedule" parameterType="java.util.Map">
+		INSERT INTO work_tbl (scdCode, scdMonth, empCode, scdWork)  
+		VALUES (scdCode_seq.nextVal, #{scdMonth}, #{empCode}, #{work}) 
 	</insert>
 	
+	<!-- 휴무신청한거 DB에 집어넣기 -->
 	<insert id="insertDayOff" parameterType="java.util.Map">
-		INSERT INTO holiday_tbl (holidayCode, empCode, startHoliday, endHoliday, state, reasonHoliday) VALUES(dayoff_seq.nextval, #{empCode}, #{startDate} ,#{endDate} , 1, #{dayOffReason})
+		INSERT INTO holiday_tbl (holidayCode, empCode, startHoliday, endHoliday, state, reasonHoliday) 
+		VALUES(dayoff_seq.nextval, #{empCode}, #{startDate} ,#{endDate} , 0, #{dayOffReason})
 	</insert>	
 	
 	<!-- 직원이 휴무 신청한 내역 가져오기 -->
-	<select id="getLogDayOff" parameterType="String" resultType="com.hotel.hms.vo.HolidayVO">
-		SELECT * FROM holiday_tbl WHERE empCode=#{empCode}		
+	<select id="getLogDayOff" parameterType="java.util.Map" resultType="com.hotel.hms.vo.HolidayVO">
+		SELECT * FROM holiday_tbl WHERE empcode = #{empCode} AND state=#{state}
 	</select>
 	
-	<select id="checkWorkData" parameterType="map" resultType="int">
-		SELECT COUNT(*) FROM work_tbl_test WHERE empCode=#{empCode} AND skdMonth= #{skdMonth} 
+	<!-- 직원이 해당 월에 근무 데이터가 있는지 확인 -->
+	<select id="checkWorkData" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM work_tbl WHERE empCode=#{empCode} AND scdMonth=#{scdMonth} 
 	</select>
 	
 	<!-- 직원정보 가져오는 메서드  -->
 	<select id="getEmpInfo" parameterType="String" resultType="com.hotel.hms.vo.EmployeeVO">
-		SELECT * FROM emp_tbl WHERE empName = #{empName}
+		SELECT e.empcode, e.empname, d.deptname, e.enterdate, y.dutyName, l.levelname, e.empPhone  
+		FROM emp_tbl e, dept_tbl d, duty_tbl y, level_tbl l
+		WHERE e.deptcode=d.deptcode AND y.dutyCode=e.dutyCode AND e.levelcode=l.levelcode AND e.empname=#{empName}
 	</select>
+	
+	<!-- 잔여 휴무일 가져오는 맵핑  휴무 상태(state) ( 0:진행중 / 1:승인 / 2:반려 )  -->
+	<select id="getHolidayDays" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM holiday_tbl WHERE empcode=#{empcode} AND state=1  
+	</select>
+	
+	<!-- 해당직원 해당월에 근무정보 가져온다 -->
+	<select id="getWorkDayInfo" parameterType="java.util.Map" resultType="com.hotel.hms.vo.WorkVO">
+		SELECT scdWork FROM work_tbl WHERE empCode=#{empCode} AND scdMonth=#{scdMonth}
+	</select>
+	
+	<!-- 휴무신청 상태(반려/승인) 알려준다 -->
+	<select id="getHolidayState" parameterType="int" resultType="com.hotel.hms.vo.HolidayVO" >
+		SELECT * FROM holiday_tbl WHERE state=#{state} AND empCode=#{empCode}
+	</select>
+	
+	
+	
 	
 	
 	

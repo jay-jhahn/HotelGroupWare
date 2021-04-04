@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hotel.hms.vo.CurrentlInUseVO;
 import com.hotel.hms.vo.GuestVO;
 import com.hotel.hms.vo.RoomUseVO;
 import com.hotel.hms.vo.RoomVO;
-import com.hotel.hms.vo.currentlInUseVO;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO {
@@ -74,9 +74,9 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 
 	@Override
-	public currentlInUseVO roomUseInformationGet(String roomNum) {
+	public CurrentlInUseVO roomUseInformationGet(String roomNum) {
 		// 이용내역테이블 접근 후 정보 가져오기
-		currentlInUseVO roomUse = sqlSession.selectOne("com.hotel.hms.persistence.RoomDAO.roomUseInformationGet", roomNum);
+		CurrentlInUseVO roomUse = sqlSession.selectOne("com.hotel.hms.persistence.RoomDAO.roomUseInformationGet", roomNum);
 		return roomUse;
 	}
 
@@ -94,7 +94,7 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 
 	@Override
-	public int currentlInUseInsert(currentlInUseVO currentlInUse) {
+	public int currentlInUseInsert(CurrentlInUseVO currentlInUse) {
 		int insertCnt = sqlSession.insert("com.hotel.hms.persistence.RoomDAO.currentlInUseInsert", currentlInUse);
 		return insertCnt;
 	}

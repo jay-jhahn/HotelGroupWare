@@ -3,21 +3,19 @@ package com.hotel.hms.service;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.hotel.hms.persistence.RoomDAO;
+import com.hotel.hms.vo.CurrentlInUseVO;
 import com.hotel.hms.vo.GuestVO;
 import com.hotel.hms.vo.RoomUseVO;
 import com.hotel.hms.vo.RoomVO;
-import com.hotel.hms.vo.currentlInUseVO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -114,7 +112,7 @@ public class RoomServiceImpl implements RoomService {
 				roomUse.setCheckIn(checkIn);
 				roomUse.setCheckOut(checkOut);
 				
-				currentlInUseVO currentlInUse = new currentlInUseVO();
+				CurrentlInUseVO currentlInUse = new CurrentlInUseVO();
 				currentlInUse.setEmpCode(empCode);
 				currentlInUse.setGuestCode(guestCode);		// 회원정보 인서트하고 거기서 꺼내오기!
 				currentlInUse.setRoomNum(roomNum);
@@ -151,7 +149,7 @@ public class RoomServiceImpl implements RoomService {
 					roomUse.setCheckIn(checkIn);
 					roomUse.setCheckOut(checkOut);
 					
-					currentlInUseVO currentlInUse = new currentlInUseVO();
+					CurrentlInUseVO currentlInUse = new CurrentlInUseVO();
 					currentlInUse.setEmpCode(empCode);
 					currentlInUse.setGuestCode(guestCode);		// 회원정보 인서트하고 거기서 꺼내오기!
 					currentlInUse.setRoomNum(roomNum);
@@ -211,7 +209,7 @@ public class RoomServiceImpl implements RoomService {
 		model.addAttribute("roomNum", roomNum);
 		
 		
-		currentlInUseVO roomUse = dao.roomUseInformationGet(roomNum);
+		CurrentlInUseVO roomUse = dao.roomUseInformationGet(roomNum);
 		
 		
 		String empCode = roomUse.getEmpCode();
