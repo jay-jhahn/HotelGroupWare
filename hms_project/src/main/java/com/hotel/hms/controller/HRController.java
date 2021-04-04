@@ -32,7 +32,7 @@ public class HRController {
 	// 사이드바에서 인사정보 클릭시 인사정보 페이지로 이동 - 안재효
 	@RequestMapping("hrInfo.oa")
 	public ModelAndView hrInfo(HttpServletRequest req, ModelAndView mav) {
-		logger.info("hrInfo.ad");
+		logger.info("hrInfo.oa");
 		String requestCnt = req.getParameter("requestCnt");
 		mav.addObject("requestCnt", requestCnt).setViewName("/hr/hrInfo");
 		return mav;

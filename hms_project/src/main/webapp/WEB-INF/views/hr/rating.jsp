@@ -128,12 +128,12 @@
 						<th style="width: 15%;"> 점수 </th>
 						<th style="width: 75%;"> 능력 분포 그래프 </th>
 					</tr>
-					<c:set var="i" value="1"/>	
-					<c:forEach var="rtList" items="${rtList}">
+					<c:set var="j" value="1"/>	
+					<c:forEach var="rspiList" items="${rspiList}">
 						<tr>
-							<th>${rtList.ratItem}</th>
+							<th>${rspiList.ratItem}</th>
 							<td> 
-								<select class="ratScore" id="score${i}" name="score${i}" onchange="calAvg();">
+								<select class="ratScore" id="score${j}" name="score${j}" onchange="calAvg();">
 									<option value="0">점수</option>
 									<option value="5">5</option>
 									<option value="4.5">4.5</option>
@@ -146,14 +146,14 @@
 									<option value="1">1</option>
 								</select> 
 							</td>
-							<c:if test="${i==1}">
+							<c:if test="${j==1}">
 								<td rowspan="9" class="chart_section">
 									<canvas id="myChart" width="400" height="400">
 									</canvas>
 								</td>
 							</c:if>
 						</tr>
-						<c:set var="i" value="${i+1}"/>
+						<c:set var="j" value="${j+1}"/>
 					</c:forEach>
 					<tr>
 						<th> 평균 </th>
@@ -161,7 +161,7 @@
 					</tr>
 				</table>
 				<div class="ratSbmDiv">
-					<input type="submit" class="faMemBtn" value="저장" id="ratSaveBtn">
+					<input type="submit" class="faMemBtn" value="수정" id="ratMdfBtn">
 					<input type="button" class="faMemBtn" value="제출" id="ratSbmBtn">
 				</div>
 			</div>

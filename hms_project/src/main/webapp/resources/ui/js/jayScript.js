@@ -483,14 +483,16 @@ function calAvg() {
 
 /* 인사고과 평가 점수 저장하기 전 수정할 수 있는 페이지에 점수 뿌려주기 */
 function getScores() {
-	$('#score1').val($('#scores1').val()).props("selected", true);
-	$('#score2').val($('#scores2').val()).props("selected", true);
-	$('#score3').val($('#scores3').val()).props("selected", true);
-	$('#score4').val($('#scores4').val()).props("selected", true);
-	$('#score5').val($('#scores5').val()).props("selected", true);
-	$('#score6').val($('#scores6').val()).props("selected", true);
-	$('#score7').val($('#scores7').val()).props("selected", true);
-	$('#score8').val($('#scores8').val()).props("selected", true);
+	var score1 = $('#scores1').val();
+	
+	$('#score1').val(score1).prop("selected", "selected");
+	$('#score2').val($('#scores2').val()).prop("selected", "selected");
+	$('#score3').val($('#scores3').val()).prop("selected", "selected");
+	$('#score4').val($('#scores4').val()).prop("selected", "selected");
+	$('#score5').val($('#scores5').val()).prop("selected", "selected");
+	$('#score6').val($('#scores6').val()).prop("selected", "selected");
+	$('#score7').val($('#scores7').val()).prop("selected", "selected");
+	$('#score8').val($('#scores8').val()).prop("selected", "selected");
 }
 
 

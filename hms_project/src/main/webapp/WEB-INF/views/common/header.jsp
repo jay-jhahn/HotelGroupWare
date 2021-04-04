@@ -36,7 +36,7 @@
 						<ul>
 							<li><a href="shareMain.lo">공통</a></li>
 							<li><a href="roomMain.ra">객실</a></li>
-							<li><a href="officeMain.ad">경영지원</a></li>
+							<li><a href="hrInfo.oa">경영지원</a></li>
 						</ul></li>
 					<li><a href="#contact">Contact Us</a></li>
 					<c:if test="${sessionScope.empCode != null}">
