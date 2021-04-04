@@ -36,6 +36,16 @@
 
 		<div class="sidebar-wrapper" id="sidebar-wrapper">
 			<ul class="nav">
+				<sec:authorize access="hasAnyRole('ROLE_ROM', 'ROLE_ROSM')">
+					<li class="dpMenu">
+						<a> 
+							<i class="now-ui-icons users_single-02"></i> 인사관리
+						</a>
+						<ul class="hide list-group list-group-flush text-center" style="display: none;">
+							<li class="subMenuLi list-group-item"><a href="ratingList.or">인사고과</a></li>
+						</ul>
+					</li>
+				</sec:authorize>
 				<li class="dpMenu">
 					<a href="#"> 
 						<i class="now-ui-icons design_app"></i> 객실

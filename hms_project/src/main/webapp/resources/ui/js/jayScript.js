@@ -1,15 +1,6 @@
 /**
  * 안재효 자바스크립트
  */
-var invalidIdError = "아이디가 존재하지 않습니다.\n확인 후 다시 시도하세요.";
-var passwordError = "비밀번호가 일치하지 않습니다.\n확인 후 다시 시도하세요.";
-
-/* 에러메시지 */
-function errorAlert(errorMsg) {
-	alert(errorMsg);
-	window.history.back();	// 이전 페이지로 이동
-}
-
 /* 로그인 페이지 */
 function idFocus() {
 	document.loginform.memId.focus();
@@ -27,10 +18,10 @@ function loginCheck() {
 }
 
 /* 인사정보 페이지 상위 탭 ajax 시작 */
-/* 사원명부 페이지 가는 AJAX */
+/* 사원명부 가져오는 AJAX */
 function getEmpList(){
 	$.ajax({
-		url: 'empList.ad',	
+		url: 'empList.oa',	
 		type: 'GET',	
 		dataType: 'html',	
 		success: function(content){	
@@ -42,25 +33,10 @@ function getEmpList(){
 	});
 };
 
-/* 사원명부 리스트 테이블 가져오는 AJAX */
-function getEmpInnderList() {
-	$.ajax({
-		url: 'getEmpList.ad',	
-		type: 'GET',	
-		dataType: 'html',	
-		success: function(content){	
-			$('.empListDiv').html(content);
-		},
-		error: function(){
-			alert('오류');
-		}
-	});
-};
-
 /* 인사정보 등록 페이지 */
 function getInsertEmp() {
 	$.ajax({
-		url: 'regEmpPage.ad',	
+		url: 'regEmpPage.oa',	
 		type: 'GET',	
 		dataType: 'html',	
 		success: function(content){	
@@ -83,7 +59,6 @@ function makeEmpCode() {
 	// 사번 input 태그에 부서 약자 + 6자리 난수 자동 입력
 	$("#empCode").val($("#dept").val() + ranNum);
 }
-
 
 /* 우편번호/도로명주소 검색 */
 function daumPostcode() {
@@ -275,17 +250,12 @@ function changeVal() {
 
 /* 가족사항 테이블 열 추가 */
 function addRow() {
-	var num = $('.num').val();
-	var i = parseInt(num);
-	
-	const table = document.getElementById('famMemTbl');
-	const newRow = table.insertRow();
-	newRow.insertCell(0).innerHTML = "<td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>";
-	newRow.insertCell(1).innerHTML = "<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>";
-	newRow.insertCell(2).innerHTML = "<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>";
-	newRow.insertCell(3).innerHTML = "<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td>";
-	
-	$('.num').val(i+1);
+	const table = $('#famMemTbl');
+	var i = table.find("tr").length;
+	table.append("<tr><td> <input type='text' class='form-control' name='relation" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='faMemName" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='faMemAge" + i + "' value=''> </td>"+
+			"<td> <input type='text' class='form-control' name='isLiveTogt" + i + "' value=''> </td></tr>");
 }
 
 /* 인사정보등록 페이지 주민번호 쓰면 자동으로 생년월일, 성별 입력 */
@@ -314,239 +284,280 @@ $('#empJumin2').focusout(function(){
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function confirmId() {
-	var form = document.joinform;
-	// id값 미입력시
-	if(!form.id.value) {
-		alert("아이디를 입력하세요.");
-		form.id.focus();
-		return false;
-	} 
-	var url = "confirmId.al?id=" + form.id.value;
-	window.open(url, "confirm", "menubar=no, width=300, height=150");
+/* 개인정보 상세 페이지 */
+function empDetails(dept, level, duty, gender, state, payConStand) {
+	$('#dept').val(dept).attr("selected", true);
+	$('#level').val(level).attr("selected", true);
+	$('#duty').val(duty).attr("selected", true);
+	$('input:radio[name=gender]:input[value='+ gender +']').attr("checked", true);
+	$('#empState').val(state).attr("selected", true);
+	$('#payConStand').val(payConStand).attr("selecter", true);
 }
 
-function setId(id) {
-	opener.document.joinform.id.value = id;
-	opener.document.joinform.hiddenId.value = 1;
-	self.close();
-}
-
-
-function nextJumin1() {	// 주민번호 앞자리 6자리 입력받으면 주민번호 뒷자리로 focus 이동
-	var form = document.joinform;
-	if(form.jumin1.value.length >= 6) {
-		form.jumin2.focus();
-	}
-}
-
-function nextJumin2() {	// 주민번호 뒷자리 7자리 입력받으면 휴대폰번호 앞자리 focus 이동
-	var form = document.joinform;
-	if(form.jumin2.value.length >= 7) {
-		form.phone1.focus();
-	}
-}
-
-function nextHp1() {
-	var form = document.joinform;
-	if(form.phone1.value.length >= 3) {
-		form.phone2.focus();
-	}
-}
-
-function nextHp2() {
-	var form = document.joinform;
-	if(form.phone2.value.length >= 4) {
-		form.phone3.focus();
-	}
-}
-
-function nextHp3() {
-	var form = document.joinform;
-	if(form.phone3.value.length >= 4) {
-		form.email1.focus();
-	}
-}
-
-
-/* 마이페이지 이동 */
-function pwdCheck() {
-	var form = document.mypagePwdCheck;
-	if(!form.pwd.value) {
-		alert("비밀번호를 입력해주세요.");
-		form.pwd.focus();
-		return false;
-	}
-}
-
-function pwdFocus() {
-	document.mypagePwdCheck.pwd.focus();
-}
-
-/* 회원탈퇴 */
-function dPwdCheck() {
-	var form = document.deletePwdCheck;
-	if(!form.pwd.value) {
-		alert("비밀번호를 입력해주세요.");
-		form.pwd.focus();
-		return false;
-	}
-}
-
-function deletePwdFocus() {
-	document.deletePwdCheck.pwd.focus();
-}
-
-/* 회원정보 수정 */
-function modifyPwdCheck() {
-	var form = document.modifyMemberPwdCheck;
-	if(!form.pwd.value) {
-		alert("비밀번호를 입력해주세요.");
-		form.pwd.focus();
-		return false;
-	}
-}
-
-function modifyPwdFocus() {
-	document.modifyMemberPwdCheck.pwd.focus();
-}
-
-/* 회원정보 수정 */
-function modifyMemberFocus() {
-	document.modifyform.id.focus();
-}
-
-function selectModifyEmailChk() {
-	var form = document.modifyform;
-	
-	if(form.email3.value == '0'){
-		form.email2.value = "";
-		form.email2.focus();
-	} else {
-		form.email2.value = form.email3.value;
-	}
-}
-
-function modifyCheck() {
-	var form = document.modifyform;
-	
-	if(!form.pwd.value){
-		alert("비밀번호를 입력하세요.");
-		form.pwd.focus();
-		return false;
-	} 
-	if(!form.repwd.value){
-		alert("비밀번호를 확인하세요.");
-		form.repwd.focus();
-		return false;
-	} 
-	if(form.pwd.value != form.repwd.value){
-		alert("비밀번호가 일치하지 않습니다.");
-		form.repwd.focus();
-		return false;
-	} 
-	if(!form.name.value){
-		alert("이름을 입력하세요.");
-		form.name.focus();
-		return false;
-	} 
-	if(!form.jumin1.value){
-		alert("주민번호를 입력하세요.");
-		form.jumin1.focus();
-		return false;
-	} 
-	if(!form.jumin2.value){
-		alert("주민번호 뒷자리를 입력하세요.");
-		form.jumin2.focus();
-		return false;
-	}
-	if(!form.email1.value){
-		alert("이메일을 입력하세요.");
-		form.email1.focus();
-		return false;
-	} 
-	if(!form.email2.value || form.email2.value == "0"){
-		alert("이메일을 형식에 일치하지 않습니다.");
-		form.email2.focus();
-		return false;
-	}
-}
-
-function nextModiJumin1() {	
-	var form = document.modifyform;
-	if(form.jumin1.value.length >= 6) {
-		form.jumin2.focus();
-	}
-}
-
-function nextModiJumin2() {	
-	var form = document.modifyform;
-	if(form.jumin2.value.length >= 7) {
-		form.phone1.focus();
-	}
-}
-
-function nextModiHp1() {
-	var form = document.modifyform;
-	if(form.phone1.value.length >= 3) {
-		form.phone2.focus();
-	}
-}
-
-function nextModiHp2() {
-	var form = document.modifyform;
-	if(form.phone2.value.length >= 4) {
-		form.phone3.focus();
-	}
-}
-
-function nextModiHp3() {
-	var form = document.modifyform;
-	if(form.phone3.value.length >= 4) {
-		form.email1.focus();
-	}
-}
-
-/* 게시글 작성 비밀글 여부 체크박스 체크 */
-$(function isSecret(){
-	$('input[type="checkbox"][id="isSecret"]').change(function(){
-		if(this.checked){
-			$("#pwd").attr('disabled', false);
-			$("#isSecret").val('Y');
-		} 
-		if(!this.checked) {
-			$("#pwd").attr('disabled', true);
-			$("#pwd").val('');
-			$("#isSecret").val('N');
+/* 인사 정보 상세 페이지 가져오는 AJAX */
+function empDetail(empCode) {
+	$.ajax({
+		url: 'empDetail.oa?empCode='+empCode,	
+		type: 'GET',	
+		dataType: 'html',	
+		success: function(content){	
+			$('.detailDiv').html(content);
+		},
+		error: function(){
+			alert('오류');
 		}
 	});
+}
+
+/* 인사정보 상세 띄워주는 DIV */
+function displayDetail(empCode) {
+	empDetail(empCode);
+	$('.detailDiv').show();
+	location.href="#personalData";
+}
+
+/* 인사정보 상세 div 닫기 버튼 */
+$('#closeMdfBtn').click(function(){
+	$('.detailDiv').hide();
 });
+
+/* 인사정보 상세 div CSS 시작 */
+/* 인사정보등록 페이지 이메일 select로 입력 */
+function selectMdfEmailChk() {
+	var form = document.modifyForm;
+	if(form.empEmail3.value == '0'){
+		form.empEmail2.value = "";
+		form.empEmail2.focus();
+	} else {
+		form.empEmail2.value = form.empEmail3.value;
+	}
+}
+
+function modifyChk(){
+	var form = document.modifyForm;
+	if(!form.empName.value) {
+		alert("이름을 입력하세요.");
+		form.empName.focus();
+		return false;
+	}
+	if(!form.empJumin1.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin1.focus();
+		return false;
+	}
+	if(!form.empJumin2.value) {
+		alert("주민번호를 입력하세요.");
+		form.empJumin2.focus();
+		return false;
+	}
+	if(!form.empBirth.value) {
+		alert("생년월일을 입력하세요.");
+		return false;
+	}
+	if(!form.empPhone1.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone1.focus();
+		return false;
+	}
+	if(!form.empPhone2.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone2.focus();
+		return false;
+	}
+	if(!form.empPhone3.value) {
+		alert("핸드폰 번호를 입력하세요.");
+		form.empPhone3.focus();
+		return false;
+	}
+	if(!form.empEmail1.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail1.focus();
+		return false;
+	}
+	if(!form.empEmail2.value) {
+		alert("이메일 주소를 입력하세요.");
+		form.empEmail2.focus();
+		return false;
+	}
+	if(!form.postCode.value) {
+		alert("자택주소를 입력하세요.");
+		return false;
+	}
+	if(!form.empCode.value) {
+		alert("부서를 선택하세요.");
+		form.dept.focus();
+		return false;
+	}
+	if(!form.enterDate.value) {
+		alert("입사일을 선택하세요.");
+		return false;
+	}
+	if(!form.level.value) {
+		alert("직위를 선택하세요.");
+		return false;
+	}
+	return true;
+};
+
+/* 인사정보수정 페이지 수정버튼 클릭시 발생 이벤트 */
+$("#mdfBtn").click(function(){
+	var tr = $("#famMemTbl").find("tr"); // 가족구성원 테이블의 tr 
+	var trlen = tr.length;		// 행의 갯수
+	
+	var famJson = new Object();		// 가족구성원 한명의 정보를 담을 JSON Object
+	var famJsonArray = new Array();	// 가족구성원 모두의 정보를 담을 Array
+
+	for(var i=1;i<trlen; i++){
+		var relation = $("input[name='relation"+i+"']").val();
+		var faMemName = $("input[name='faMemName"+i+"']").val();
+		var faMemAge = $("input[name='faMemAge"+i+"']").val();
+		var isLiveTogt = $("input[name='isLiveTogt"+i+"']").val();
+		// JSON Object에 배열로 한명의 정보 담음
+		famJson = {
+				relation : relation,
+				faMemName : faMemName,
+				faMemAge : faMemAge,
+				isLiveTogt : isLiveTogt
+		};
+		famJsonArray.push(famJson);
+		var famJson = JSON.stringify(famJsonArray);
+	}
+	$(".femMemArr").val(famJson);
+	$("#modifyForm").submit();
+});
+
+/* 부서별 사원 리스트 */
+function getEmpListDept(empCode) {
+	var dept = empCode.substr(0,2);
+	$.ajax({
+		url: 'getEmpListDept.or?deptCode=' + dept + '',	
+		type: 'GET',	
+		dataType: 'html',	
+		success: function(content){	
+			$('.ratingResult').html(content);
+		},
+		error: function(){
+			alert('오류');
+		}
+	});
+}
+
+/* 인사고과 평가창 */
+function goRating(deptCode, empCode) {
+	var width = (window.innerWidth/2);
+	var height = window.innerHeight;
+	
+	var _left = 300;
+    var _top = 40; 
+    
+    window.open('goRating.or?deptCode='+ deptCode +'&empCode='+ empCode +'', '인사고과 평가하기', 'width='+ width +', height='+ height +', left='+ _left +', top='+ _top);
+}
+
+/* 인사고과 평가 결과 조회창 */
+function goRatingResult(deptCode, empCode) {
+	var width = (window.innerWidth/2);
+	var height = window.innerHeight;
+	
+	var _left = 300;
+    var _top = 40; 
+    
+    window.open('goRatResult.or?deptCode='+ deptCode +'&empCode='+ empCode +'', '인사고과 평가결과 조회', 'width='+ width +', height='+ height +', left='+ _left +', top='+ _top);
+}
+
+/* 점수가 변할때마다 실시간 평균 반영하기 */
+function calAvg() {
+	var tr = $('#ratTbl').find("tr");
+	var trlen = tr.length;
+	var score = 0;
+	var sum = 0;
+	
+	for(var i=1;i<trlen-1;i++) {
+		score = $('#score'+i+'').val();
+		realScore = Number(score);
+		sum += realScore;
+	}
+	var avg = sum/(trlen-2);
+	$('.avg').val(avg.toFixed(1));
+	$('.avg_section').text(avg.toFixed(1));
+}
+
+/* 인사고과 평가 점수 저장하기 전 수정할 수 있는 페이지에 점수 뿌려주기 */
+function getScores() {
+	$('#score1').val($('#scores1').val()).props("selected", true);
+	$('#score2').val($('#scores2').val()).props("selected", true);
+	$('#score3').val($('#scores3').val()).props("selected", true);
+	$('#score4').val($('#scores4').val()).props("selected", true);
+	$('#score5').val($('#scores5').val()).props("selected", true);
+	$('#score6').val($('#scores6').val()).props("selected", true);
+	$('#score7').val($('#scores7').val()).props("selected", true);
+	$('#score8').val($('#scores8').val()).props("selected", true);
+}
+
+
+
+
+/* 인사고과 차트 가져오기 */
+function drawChart() {
+	$.ajax({
+		url: 'chartData.or',
+		type: 'GET',
+		dataType: 'json',
+		success: function(jsonData) {
+			var ctx = document.getElementById("myChart").getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'radar',
+				data: {
+					labels: ["달성도", "성실성", "노력도", "의사전달력", "신속성", "협동심", "고객응대", "책임감"],
+					datasets: [{
+						label: '인사고과 평가 차트',
+						data: [5, 4.5, 3, 4, 4, 2.5, 3.5, 4.5],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)',
+								'rgba(255, 159, 64, 1)',
+								'rgba(255, 159, 64, 1)'
+								],
+								borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
+			});
+			
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

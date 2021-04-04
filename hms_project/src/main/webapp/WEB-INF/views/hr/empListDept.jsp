@@ -2,8 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
 <body>
+<c:if test="${errMsg!=null}">
+	<script type="text/javascript">
+		alert('${errMsg}');
+		location.href="/hms/main.al";
+	</script>
+</c:if>
 	<div class="card-header">
-		<h4 class="card-title">사원명부</h4>
+		<h4 class="card-title">사원명부(${deptName})</h4>
 	</div>
 
 	<div class="card-body">
@@ -28,7 +34,6 @@
 				</div>
 				<div class="p-2">
 					<input type="text" class="searchInput" name="searchKeyword" id="searchKeyword"> 
-					<input type="checkbox" value="empState" class="check"><span class="include">퇴직자포함</span>
 				</div>
 				<div class="ml-auto" style="padding: 0px;">
 					<input type="button" value="search" class="searchBtn" onClick="">
@@ -36,31 +41,36 @@
 			</div>
 		</div>
 
-		<table class="table table-bordered empListTbl">
+		<table class="table table-bordered ratingTbl">
 			<tr>
-				<th style="width: 10%;">사번</th>
-				<th style="width: 10%;">성명</th>
-				<th style="width: 5%;">직위</th>
-				<th style="width: 7%;">부서</th>
-				<th style="width: 10%;">입사일자</th>
-				<th style="width: 10%;">퇴사일자</th>
-				<th style="width: 13%;">핸드폰</th>
-				<th style="width: 15%;">E-MAIL</th>
-				<th style="width: 20%;">주소</th>
+				<th style="width: 15%;">사번</th>
+				<th style="width: 15%;">성명</th>
+				<th style="width: 15%;">직위</th>
+				<th style="width: 15%;">직책</th>
+				<th style="width: 20%;">입사일자</th>
+				<th style="width: 20%;">평가상태</th>
 			</tr>
 		
 			<c:if test="${empList != null}">
 				<c:forEach var="empList" items="${empList}">
-					<tr onclick="displayDetail('${empList.empCode}');">
+					<tr>
 						<td>${empList.empCode}</td>
 						<td>${empList.empName}</td>
 						<td>${empList.levelVo.levelName}</td>
-						<td>${empList.deptVo.deptName}</td>
+						<td>${empList.dutyVo.dutyName}</td>
 						<td>${empList.enterDate}</td>
-						<td>${empList.resignDate}</td>
-						<td>${empList.empPhone}</td>
-						<td>${empList.empEmail}</td>
-						<td>${empList.postCode}&nbsp;${empList.roadAddress}&nbsp;${empList.detailAddress}</td>
+						<c:if test="${empList.ratingState==0}">
+							<td><input type="button" value="평가하기" class="ratingBtn" onclick="goRating('${deptCode}', '${empList.empCode}');"/></td>
+						</c:if>
+						<c:if test="${empList.ratingState==1}">
+							<td><input type="button" value="제출대기" class="ratingBtn" onclick="goRatingResult('${deptCode}', '${empList.empCode}');"/></td>
+						</c:if>
+						<c:if test="${empList.ratingState==2}">
+							<td><input type="button" value="결재대기" class="ratingBtn" onclick="goRatingResult('${deptCode}', '${empList.empCode}');"/></td>
+						</c:if>
+						<c:if test="${empList.ratingState==3}">
+							<td><input type="button" value="평가완료" class="ratingBtn" onclick="goRatingResult('${deptCode}', '${empList.empCode}');"/></td>
+						</c:if>
 					</tr>
 				</c:forEach>
 				<div class="detailDiv" style="display: none;">

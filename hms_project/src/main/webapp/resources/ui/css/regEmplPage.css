@@ -1,132 +1,3 @@
-/* 안재효 스타일시트 */
-@charset "UTF-8";
-
-/* pages */
-.pages{
-	text-align: center;
-}
-
-/* 상세정보  */
-.detail-wrap{
-	border: 1px solid #EBECF1;
-	height: 880px;
-	padding:5px;
-	margin-bottom: 10px;
-}
-
-/* 사원명부 CSS */
-.empListDiv {
-	height: 600px;	
-	overflow-y:scroll;
-}
-
-.empListTbl{
-	table-layout: fixed;
-}
-
-.empListTbl tr {
-	cursor: pointer;	
-}
-
-.empListTbl td {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
-}
-
-.empListTbl th {
-	text-align: center;
-	background: #EBECF1;
-}
-
-.noData{
-	text-align: center;
-}
-
-.searchDiv{
-	background-color: #EBECF1;
-	margin-bottom: 10px;
-	height: 60px;
-	padding-left: 10px;
-	padding-top: 10px;
-}
-
-.searchWord{
-	margin-right: 20px;
-}
-
-.include {
-	font-size: 9pt;
-	padding-left: 3px;
-}
-
-.check {
-	margin-right: 5px;
-	margin-left: 30px;
-}
-
-.searchInput .searchKind{
-	border-radius: 0;
-	width: 150px;
-}
-
-.searchKind{
-	width: 150px;
-	padding: .3em .5em;
-	border: 1px solid #999;
-	font-family: inherit;
-	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
-	border-radius: 0px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-.solting{
-	padding: .3em .5em;
-	border: 1px solid #999;
-	font-family: inherit;
-	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
-	border-radius: 0px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	width: 100px;
-	border-radius: 0;
-}
-
-.searchKind::-ms-expand {
-	display: none;
-}
-
-.innerWrapper {
-	margin-top: 5px;
-	margin-bottom:5px;
-	vertical-align: middle;
-}
-
-.searchBtn {
-	text-align:center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 12px;
-    border-radius: 0;
-    transition: 0.5s;
-    line-height: 1;
-    color: #fff;
-    width: 120px;
-    hight: 31px;
-    margin-right:10px;
-    margin-bottom: 20px;
-    animation-delay: 0.8s;
-    border: 0;
-    background: #55789B;    
-}
-
 /* 인사정보 등록 페이지 CSS */
 .redStar{
 	color: red;	
@@ -146,34 +17,24 @@
 }
 
 .perDataDiv {
-	height: 450px;
+	height: 300px;
 	margin-top:10px;
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 1px solid black;
 }
 
-.perDataDiv3 {
-	height: 315px;
+.perDataDiv2 {
+	height: 400px;
 	margin-top: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 1px solid black;
 }
 
-#image_section {
-	height: 151.181102362px;
-	width: 113.385826772px;
-}
-
-.image_section{
-	height: 151.181102362px;
-	width: 113.385826772px;
-}
-
 .perDataImg{
-	height: 153.181102362px;
-	width: 115.385826772px;
+	height: 151.181102362px;
+	width: 113.385826772px;
 	margin-right: 10px;
 	float: left;
 }
@@ -348,8 +209,8 @@
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-control-jumin{
-	width: 40%;
+.form-control3-phone {
+	width: 15%;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
@@ -363,8 +224,8 @@
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-control3-phone {
-	width: 25%;
+.form-control3 {
+	width: 28%;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
@@ -379,7 +240,7 @@
 }
 
 .form-control2 {
-	width: 15%;
+	width: 35%;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
@@ -438,16 +299,65 @@
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-/* 연회장예약 페이지 CSS */
-.perDataDivEx {
-	margin-top:10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border: 1px solid white;
+/* empList */
+.empListTbl th {
+	text-align: center;
 }
 
-/* 인사고과 평가 버튼 */
-.ratingBtn {
+.noData{
+	text-align: center;
+}
+
+.searchDiv{
+	background-color: #EBECF1;
+	margin-bottom: 10px;
+	height: 60px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.searchWord{
+	margin-right: 20px;
+}
+
+.include {
+	font-size: 9pt;
+	padding-left: 3px;
+}
+
+.check {
+	margin-right: 5px;
+	margin-left: 30px;
+}
+
+.searchInput .searchKind{
+	border-radius: 0;
+	width: 150px;
+}
+
+.searchKind{
+	width: 150px;
+	padding: .3em .5em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('/hms/resources/ui/img/down.jpg') no-repeat 95% 50% white;
+	border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.searchKind::-ms-expand {
+	display: none;
+}
+
+.innerWrapper {
+	margin-top: 5px;
+	margin-bottom:5px;
+	vertical-align: middle;
+}
+
+.searchBtn {
 	text-align:center;
     font-family: "Raleway", sans-serif;
     font-weight: 500;
@@ -459,59 +369,20 @@
     transition: 0.5s;
     line-height: 1;
     color: #fff;
-    width: 150px;
+    width: 120px;
     hight: 31px;
+    margin-right:10px;
+    margin-bottom: 20px;
     animation-delay: 0.8s;
     border: 0;
-    background: #55789B;   
+    background: #55789B;    
 }
 
-.ratingTbl{
-	table-layout: fixed;
+/* 연회장예약 페이지 CSS */
+.perDataDivEx {
+	margin-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid white;
 }
-
-.ratingTbl td {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
-}
-
-.ratingTbl th {
-	text-align: center;
-	background: #EBECF1;
-}
-
-/* 인사고과 평가 창 테이블 */
-.ratingForm {
-	margin-top: 10%;
-}
-
-.ratEmpInfo, .ratingInfo {
-	margin-left: 10%;
-	margin-right:10%;
-	width: 80%;
-	text-align: center;
-	border: 1px solid black;
-}
-
-.ratEmpInfo tr th, .ratingInfo tr th {
-	background: #EBECF1;
-}
-
-.ratEmpInfo tr td, .ratEmpInfo tr th, .ratingInfo tr td, .ratingInfo tr th {
-	border: 1px solid black!important;
-	border-top: 1px solid black!important;
-	border-right: 1px solid black!important;
-}
-
-.ratEmpInfo {
-	margin-bottom: 30px;
-}
-
-.popUp{
-	text-align: center;
-}
-
-/* 인사고과 평가창 버튼 DIV */
 
